@@ -3,7 +3,7 @@
     "__docId__": 0,
     "kind": "file",
     "name": "src/core/model.js",
-    "content": "class Model {\n\n    constructor() {\n        console.log('creates a model');\n    }\n\n    destroy() {\n        console.log('destroy model');\n    }\n\n}\n\nexport default Model;\n",
+    "content": "class Model {\n\n    constructor() {\n        console.log('creates a model');\n    }\n\n    /**\n    * destroys Model\n    */\n    destroy() {\n        console.log('destroy model');\n    }\n\n}\n\nexport default Model;\n",
     "static": true,
     "longname": "src/core/model.js",
     "access": null,
@@ -63,15 +63,8 @@
     "static": false,
     "longname": "src/core/model.js~Model#destroy",
     "access": null,
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "destroys Model",
+    "lineNumber": 10,
     "params": []
   },
   {

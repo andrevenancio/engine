@@ -4,6 +4,9 @@ class Model {
         console.log('creates a model');
     }
 
+    /**
+    * destroys Model
+    */
     destroy() {
         console.log('destroy model');
     }

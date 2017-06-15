@@ -1,15 +1,14 @@
 {
-  "coverage": "12.5%",
+  "coverage": "18.75%",
   "expectCount": 16,
-  "actualCount": 2,
+  "actualCount": 3,
   "files": {
     "src/core/model.js": {
       "expectCount": 3,
-      "actualCount": 0,
+      "actualCount": 1,
       "undocumentLines": [
         1,
-        3,
-        7
+        3
       ]
     },
     "src/renderer/index.js": {
