@@ -25,7 +25,7 @@
   "scripts": {
     "build": "webpack --env build && esdoc",
     "start": "npm run dev",
-    "dev": "webpack-dev-server --progress --colors --watch --port 8081",
+    "dev": "webpack-dev-server --env dev --progress --colors --watch --host 0.0.0.0 --open",
     "docs": "esdoc"
   },
   "devDependencies": {
@@ -44,6 +44,7 @@
     "yargs": "^6.6.0"
   },
   "dependencies": {
-    "gl-matrix": "^2.3.2"
+    "gl-matrix": "^2.3.2",
+    "normals": "^1.1.0"
   }
 }

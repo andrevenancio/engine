@@ -1,12 +1,18 @@
-/* eslint-disable */
 const webpack = require('webpack');
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-const path = require('path');
-const env  = require('yargs').argv.env;
+const env = require('yargs').argv.env;
 
 let libraryName = 'engine';
-let plugins = [];
 let outputFile;
+
+const pkg = require('./package.json');
+const plugins = [];
+
+plugins.push(new webpack.DefinePlugin({
+    __LIBRARY__: JSON.stringify(`lowww WebGL${libraryName}`),
+    __VERSION__: JSON.stringify(pkg.version),
+    __ENV__: JSON.stringify(env),
+}));
 
 if (env === 'build') {
     plugins.push(new UglifyJsPlugin({ minimize: true, beautify: false }));
@@ -31,20 +37,20 @@ const config = {
             {
                 test: /(\.jsx|\.js)$/,
                 loader: 'babel-loader',
-                exclude: /(node_modules|bower_components)/
+                exclude: /(node_modules|bower_components)/,
             },
             {
                 test: /(\.jsx|\.js)$/,
                 loader: 'eslint-loader',
-                exclude: /node_modules/
-            }
+                exclude: /node_modules/,
+            },
         ],
     },
     resolve: {
         // modules: [__dirname + './src'],
-        extensions: ['.js']
+        extensions: ['.js'],
     },
-    plugins: plugins
+    plugins: plugins,
 };
 
 module.exports = config;

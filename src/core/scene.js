@@ -5,17 +5,11 @@ class Scene {
         this.lights = [];
     }
 
-    /**
-    * @param {Model} model - adds a model to the scene
-    */
     addModel(model) {
         model.parent = this;
         this.models.push(model);
     }
 
-    /**
-    * @param {Model} model - removes a model from the scene
-    */
     removeModel(model) {
         const index = this.models.indexOf(model);
         if (index !== -1) {
@@ -23,6 +17,18 @@ class Scene {
             this.models.splice(index, 1);
         }
     }
+
+    traverse(object) {
+        for (let i = 0; i < object.children.length; i += 1) {
+            this.traverse(object.children[i]);
+        }
+
+        if (object.parent === null) {
+            return;
+        }
+
+        object.updateMatrices();
+    };
 
 }
 

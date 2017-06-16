@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>engine</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            html, body {
+                margin: 0;
+                background-color: #000;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="/webpack-dev-server.js"></script>
+        <script src="/lib/engine.js"></script>
+        <script>
+            var renderer, scene, camera;
+            var model;
+
+            setup();
+            update();
+
+            function setup() {
+                renderer = new engine.Renderer();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+
+                scene = new engine.Scene();
+
+                engine.loaders.Obj.load('/dev/cube.obj', init);
+            }
+
+            function init(data) {
+                const geometry = engine.utils.geometry.mergeVertices(data);
+                model = new engine.Model(geometry);
+                scene.addModel(model);
+            }
+
+            function update() {
+                requestAnimationFrame(update);
+                renderer.render(scene, camera);
+            }
+
+        </script>
+    </body>
+</html>

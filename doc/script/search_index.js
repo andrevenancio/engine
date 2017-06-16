@@ -6,6 +6,18 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "engine/src/loaders/obj.js~objloader",
+    "class/src/loaders/obj.js~ObjLoader.html",
+    "<span>ObjLoader</span> <span class=\"search-result-import-path\">engine/src/loaders/obj.js</span>",
+    "class"
+  ],
+  [
+    "engine/src/core/object3.js~object3",
+    "class/src/core/object3.js~Object3.html",
+    "<span>Object3</span> <span class=\"search-result-import-path\">engine/src/core/object3.js</span>",
+    "class"
+  ],
+  [
     "engine/src/renderer/index.js~renderer",
     "class/src/renderer/index.js~Renderer.html",
     "<span>Renderer</span> <span class=\"search-result-import-path\">engine/src/renderer/index.js</span>",
@@ -16,6 +28,48 @@ window.esdocSearchIndex = [
     "class/src/core/scene.js~Scene.html",
     "<span>Scene</span> <span class=\"search-result-import-path\">engine/src/core/scene.js</span>",
     "class"
+  ],
+  [
+    "engine/src/core/vector3.js~vector3",
+    "class/src/core/vector3.js~Vector3.html",
+    "<span>Vector3</span> <span class=\"search-result-import-path\">engine/src/core/vector3.js</span>",
+    "class"
+  ],
+  [
+    "engine/src/session.js~env",
+    "variable/index.html#static-variable-env",
+    "<span>env</span> <span class=\"search-result-import-path\">engine/src/session.js</span>",
+    "variable"
+  ],
+  [
+    "engine/src/utils/geometry.js~flatten",
+    "function/index.html#static-function-flatten",
+    "<span>flatten</span> <span class=\"search-result-import-path\">engine/src/utils/geometry.js</span>",
+    "function"
+  ],
+  [
+    "engine/src/utils/geometry.js~generatevertexnormals",
+    "function/index.html#static-function-generateVertexNormals",
+    "<span>generateVertexNormals</span> <span class=\"search-result-import-path\">engine/src/utils/geometry.js</span>",
+    "function"
+  ],
+  [
+    "engine/src/utils/geometry.js~mergevertices",
+    "function/index.html#static-function-mergeVertices",
+    "<span>mergeVertices</span> <span class=\"search-result-import-path\">engine/src/utils/geometry.js</span>",
+    "function"
+  ],
+  [
+    "engine/src/utils/geometry.js~unflatten",
+    "function/index.html#static-function-unflatten",
+    "<span>unflatten</span> <span class=\"search-result-import-path\">engine/src/utils/geometry.js</span>",
+    "function"
+  ],
+  [
+    "engine/src/session.js~version",
+    "variable/index.html#static-variable-version",
+    "<span>version</span> <span class=\"search-result-import-path\">engine/src/session.js</span>",
+    "variable"
   ],
   [
     "builtinexternal/ecmascriptexternal.js~array",
@@ -366,6 +420,54 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/core/model.js~model#geometry",
+    "class/src/core/model.js~Model.html#instance-member-geometry",
+    "src/core/model.js~Model#geometry",
+    "member"
+  ],
+  [
+    "src/core/model.js~model#material",
+    "class/src/core/model.js~Model.html#instance-member-material",
+    "src/core/model.js~Model#material",
+    "member"
+  ],
+  [
+    "src/core/object3.js",
+    "file/src/core/object3.js.html",
+    "src/core/object3.js",
+    "file"
+  ],
+  [
+    "src/core/object3.js~object3#constructor",
+    "class/src/core/object3.js~Object3.html#instance-constructor-constructor",
+    "src/core/object3.js~Object3#constructor",
+    "method"
+  ],
+  [
+    "src/core/object3.js~object3#position",
+    "class/src/core/object3.js~Object3.html#instance-member-position",
+    "src/core/object3.js~Object3#position",
+    "member"
+  ],
+  [
+    "src/core/object3.js~object3#rotation",
+    "class/src/core/object3.js~Object3.html#instance-member-rotation",
+    "src/core/object3.js~Object3#rotation",
+    "member"
+  ],
+  [
+    "src/core/object3.js~object3#scale",
+    "class/src/core/object3.js~Object3.html#instance-member-scale",
+    "src/core/object3.js~Object3#scale",
+    "member"
+  ],
+  [
+    "src/core/object3.js~object3#uid",
+    "class/src/core/object3.js~Object3.html#instance-member-uid",
+    "src/core/object3.js~Object3#uid",
+    "member"
+  ],
+  [
     "src/core/scene.js",
     "file/src/core/scene.js.html",
     "src/core/scene.js",
@@ -402,16 +504,106 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/core/vector3.js",
+    "file/src/core/vector3.js.html",
+    "src/core/vector3.js",
+    "file"
+  ],
+  [
+    "src/core/vector3.js~vector3#constructor",
+    "class/src/core/vector3.js~Vector3.html#instance-constructor-constructor",
+    "src/core/vector3.js~Vector3#constructor",
+    "method"
+  ],
+  [
+    "src/core/vector3.js~vector3#data",
+    "class/src/core/vector3.js~Vector3.html#instance-member-data",
+    "src/core/vector3.js~Vector3#data",
+    "member"
+  ],
+  [
+    "src/core/vector3.js~vector3#x",
+    "class/src/core/vector3.js~Vector3.html#instance-set-x",
+    "src/core/vector3.js~Vector3#x",
+    "member"
+  ],
+  [
+    "src/core/vector3.js~vector3#x",
+    "class/src/core/vector3.js~Vector3.html#instance-get-x",
+    "src/core/vector3.js~Vector3#x",
+    "member"
+  ],
+  [
+    "src/core/vector3.js~vector3#y",
+    "class/src/core/vector3.js~Vector3.html#instance-set-y",
+    "src/core/vector3.js~Vector3#y",
+    "member"
+  ],
+  [
+    "src/core/vector3.js~vector3#y",
+    "class/src/core/vector3.js~Vector3.html#instance-get-y",
+    "src/core/vector3.js~Vector3#y",
+    "member"
+  ],
+  [
+    "src/core/vector3.js~vector3#z",
+    "class/src/core/vector3.js~Vector3.html#instance-get-z",
+    "src/core/vector3.js~Vector3#z",
+    "member"
+  ],
+  [
+    "src/core/vector3.js~vector3#z",
+    "class/src/core/vector3.js~Vector3.html#instance-set-z",
+    "src/core/vector3.js~Vector3#z",
+    "member"
+  ],
+  [
     "src/index.js",
     "file/src/index.js.html",
     "src/index.js",
     "file"
   ],
   [
+    "src/loaders/index.js",
+    "file/src/loaders/index.js.html",
+    "src/loaders/index.js",
+    "file"
+  ],
+  [
+    "src/loaders/obj.js",
+    "file/src/loaders/obj.js.html",
+    "src/loaders/obj.js",
+    "file"
+  ],
+  [
+    "src/loaders/obj.js~objloader.load",
+    "class/src/loaders/obj.js~ObjLoader.html#static-method-load",
+    "src/loaders/obj.js~ObjLoader.load",
+    "method"
+  ],
+  [
+    "src/loaders/obj.js~objloader.loadfile",
+    "class/src/loaders/obj.js~ObjLoader.html#static-method-loadFile",
+    "src/loaders/obj.js~ObjLoader.loadFile",
+    "method"
+  ],
+  [
+    "src/loaders/obj.js~objloader.parse",
+    "class/src/loaders/obj.js~ObjLoader.html#static-method-parse",
+    "src/loaders/obj.js~ObjLoader.parse",
+    "method"
+  ],
+  [
     "src/renderer/index.js",
     "file/src/renderer/index.js.html",
     "src/renderer/index.js",
     "file"
+  ],
+  [
+    "src/renderer/index.js~renderer#clear",
+    "class/src/renderer/index.js~Renderer.html#instance-method-clear",
+    "src/renderer/index.js~Renderer#clear",
+    "method"
   ],
   [
     "src/renderer/index.js~renderer#constructor",
@@ -432,6 +624,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/renderer/index.js~renderer#render",
+    "class/src/renderer/index.js~Renderer.html#instance-method-render",
+    "src/renderer/index.js~Renderer#render",
+    "method"
+  ],
+  [
     "src/renderer/index.js~renderer#setratio",
     "class/src/renderer/index.js~Renderer.html#instance-method-setRatio",
     "src/renderer/index.js~Renderer#setRatio",
@@ -448,5 +646,29 @@ window.esdocSearchIndex = [
     "class/src/renderer/index.js~Renderer.html#instance-member-width",
     "src/renderer/index.js~Renderer#width",
     "member"
+  ],
+  [
+    "src/renderer/utils.js",
+    "file/src/renderer/utils.js.html",
+    "src/renderer/utils.js",
+    "file"
+  ],
+  [
+    "src/session.js",
+    "file/src/session.js.html",
+    "src/session.js",
+    "file"
+  ],
+  [
+    "src/utils/geometry.js",
+    "file/src/utils/geometry.js.html",
+    "src/utils/geometry.js",
+    "file"
+  ],
+  [
+    "src/utils/index.js",
+    "file/src/utils/index.js.html",
+    "src/utils/index.js",
+    "file"
   ]
 ]

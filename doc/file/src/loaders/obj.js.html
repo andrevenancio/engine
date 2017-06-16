@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/loaders/obj.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/andrevenancio/engine" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-env">env</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-version">version</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/model.js~Model.html">Model</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/object3.js~Object3.html">Object3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/scene.js~Scene.html">Scene</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/vector3.js~Vector3.html">Vector3</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">loaders</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/loaders/obj.js~ObjLoader.html">ObjLoader</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/index.js~Renderer.html">Renderer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-flatten">flatten</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateVertexNormals">generateVertexNormals</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-mergeVertices">mergeVertices</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unflatten">unflatten</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/loaders/obj.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">class ObjLoader {
+
+    static parse(raw) {
+        // credits: https://raw.githubusercontent.com/frenchtoast747/webgl-obj-loader/master/webgl-obj-loader.js
+        const verts = [], vertNormals = [], textures = [], unpacked = {};
+
+        unpacked.verts = [];
+        unpacked.norms = [];
+        unpacked.textures = [];
+        unpacked.hashindices = {};
+        unpacked.indices = [];
+        unpacked.index = 0;
+
+        const lines = raw.split(&apos;\n&apos;);
+
+        const VERTEX_RE = /^v\s/;
+        const NORMAL_RE = /^vn\s/;
+        const TEXTURE_RE = /^vt\s/;
+        const FACE_RE = /^f\s/;
+        const WHITESPACE_RE = /\s+/;
+
+        for (let i = 0; i &lt; lines.length; i++) {
+            const line = lines[i].trim();
+            const elements = line.split(WHITESPACE_RE);
+            elements.shift();
+
+            if (VERTEX_RE.test(line)) {
+                verts.push.apply(verts, elements);
+            } else if (NORMAL_RE.test(line)) {
+                vertNormals.push.apply(vertNormals, elements);
+            } else if (TEXTURE_RE.test(line)) {
+                textures.push.apply(textures, elements);
+            } else if (FACE_RE.test(line)) {
+                let quad = false;
+                for (let j = 0; j &lt; elements.length; j++) {
+                    if (j === 3 &amp;&amp; !quad) {
+                        j = 2;
+                        quad = true;
+                    }
+
+                    if(elements[j] in unpacked.hashindices) {
+                        unpacked.indices.push(unpacked.hashindices[elements[j]]);
+                    } else {
+                        const vertex = elements[j].split(&apos;/&apos;);
+
+                        unpacked.verts.push(+verts[(vertex[0] - 1) * 3 + 0]);
+                        unpacked.verts.push(+verts[(vertex[0] - 1) * 3 + 1]);
+                        unpacked.verts.push(+verts[(vertex[0] - 1) * 3 + 2]);
+
+                        if (textures.length) {
+                            unpacked.textures.push(+textures[(vertex[1] - 1) * 2 + 0]);
+                            unpacked.textures.push(+textures[(vertex[1] - 1) * 2 + 1]);
+                        }
+
+                        unpacked.norms.push(+vertNormals[(vertex[2] - 1) * 3 + 0]);
+                        unpacked.norms.push(+vertNormals[(vertex[2] - 1) * 3 + 1]);
+                        unpacked.norms.push(+vertNormals[(vertex[2] - 1) * 3 + 2]);
+
+                        unpacked.hashindices[elements[j]] = unpacked.index;
+                        unpacked.indices.push(unpacked.index);
+
+                        unpacked.index += 1;
+                    }
+                    if(j === 3 &amp;&amp; quad) {
+                        unpacked.indices.push(unpacked.hashindices[elements[0]]);
+                    }
+                }
+            }
+        }
+
+        return {
+            positions: unpacked.verts,
+            indices: unpacked.indices,
+            normals: unpacked.norms,
+            uvs: unpacked.textures,
+        };
+    }
+
+    static load(url, callback) {
+        ObjLoader.loadFile(url).then((raw) =&gt; {
+            callback(ObjLoader.parse(raw));
+        });
+    }
+
+    static loadFile(url) {
+        return new Promise(function (resolve, reject) {
+
+            var req = new XMLHttpRequest();
+            req.open(&apos;GET&apos;, url);
+            req.onload = function () {
+                if (req.status === 200) {
+                    resolve(req.response);
+                } else {
+                    reject(Error(req.statusText));
+                }
+            };
+
+            req.onerror = function () {
+                reject(Error(&apos;Network Error&apos;));
+            };
+
+            req.send();
+        });
+    }
+
+}
+
+export default ObjLoader;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

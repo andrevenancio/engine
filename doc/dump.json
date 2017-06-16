@@ -3,7 +3,7 @@
     "__docId__": 0,
     "kind": "file",
     "name": "src/core/model.js",
-    "content": "class Model {\n\n    constructor() {\n        console.log('creates a model');\n    }\n\n    /**\n    * destroys Model\n    */\n    destroy() {\n        console.log('destroy model');\n    }\n\n}\n\nexport default Model;\n",
+    "content": "import Object3 from './object3';\n\nclass Model extends Object3 {\n\n    constructor(props) {\n        super();\n\n        this.geometry = {\n            positions: new Float32Array(props.positions),\n            indices: new Uint16Array(props.indices),\n            normals: new Float32Array(props.normals),\n            uvs: new Float32Array(props.uvs),\n        };\n\n        this.material = props.material;\n    }\n\n    destroy() {\n        // destroys buffers\n    }\n\n}\n\nexport default Model;\n",
     "static": true,
     "longname": "src/core/model.js",
     "access": null,
@@ -22,7 +22,7 @@
     "importPath": "engine/src/core/model.js",
     "importStyle": "Model",
     "description": null,
-    "lineNumber": 1,
+    "lineNumber": 3,
     "undocument": true,
     "unknown": [
       {
@@ -30,7 +30,10 @@
         "tagValue": ""
       }
     ],
-    "interface": false
+    "interface": false,
+    "extends": [
+      "src/core/object3.js~Object3"
+    ]
   },
   {
     "__docId__": 2,
@@ -43,7 +46,81 @@
     "longname": "src/core/model.js~Model#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 3,
+    "lineNumber": 5,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "props",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 3,
+    "kind": "member",
+    "name": "geometry",
+    "memberof": "src/core/model.js~Model",
+    "static": false,
+    "longname": "src/core/model.js~Model#geometry",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "{\"positions\": *, \"indices\": *, \"normals\": *, \"uvs\": *}"
+      ]
+    }
+  },
+  {
+    "__docId__": 4,
+    "kind": "member",
+    "name": "material",
+    "memberof": "src/core/model.js~Model",
+    "static": false,
+    "longname": "src/core/model.js~Model#material",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 5,
+    "kind": "method",
+    "name": "destroy",
+    "memberof": "src/core/model.js~Model",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/core/model.js~Model#destroy",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
     "undocument": true,
     "unknown": [
       {
@@ -54,24 +131,182 @@
     "params": []
   },
   {
-    "__docId__": 3,
-    "kind": "method",
-    "name": "destroy",
-    "memberof": "src/core/model.js~Model",
+    "__docId__": 6,
+    "kind": "file",
+    "name": "src/core/object3.js",
+    "content": "import Vector3 from './vector3';\n\nlet uuid = 0;\n\nclass Object3 {\n\n    constructor() {\n        this.uid = uuid++;\n\n        this.position = new Vector3();\n        this.rotation = new Vector3();\n        this.scale = new Vector3(1, 1, 1);\n    }\n\n}\n\nexport default Object3;\n",
+    "static": true,
+    "longname": "src/core/object3.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 7,
+    "kind": "variable",
+    "name": "uuid",
+    "memberof": "src/core/object3.js",
+    "static": true,
+    "longname": "src/core/object3.js~uuid",
+    "access": null,
+    "export": false,
+    "importPath": "engine/src/core/object3.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 8,
+    "kind": "class",
+    "name": "Object3",
+    "memberof": "src/core/object3.js",
+    "static": true,
+    "longname": "src/core/object3.js~Object3",
+    "access": null,
+    "export": true,
+    "importPath": "engine/src/core/object3.js",
+    "importStyle": "Object3",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 9,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/core/object3.js~Object3",
     "generator": false,
     "async": false,
     "static": false,
-    "longname": "src/core/model.js~Model#destroy",
+    "longname": "src/core/object3.js~Object3#constructor",
     "access": null,
-    "description": "destroys Model",
-    "lineNumber": 10,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
     "params": []
   },
   {
-    "__docId__": 4,
+    "__docId__": 10,
+    "kind": "member",
+    "name": "uid",
+    "memberof": "src/core/object3.js~Object3",
+    "static": false,
+    "longname": "src/core/object3.js~Object3#uid",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 11,
+    "kind": "member",
+    "name": "position",
+    "memberof": "src/core/object3.js~Object3",
+    "static": false,
+    "longname": "src/core/object3.js~Object3#position",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 12,
+    "kind": "member",
+    "name": "rotation",
+    "memberof": "src/core/object3.js~Object3",
+    "static": false,
+    "longname": "src/core/object3.js~Object3#rotation",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 13,
+    "kind": "member",
+    "name": "scale",
+    "memberof": "src/core/object3.js~Object3",
+    "static": false,
+    "longname": "src/core/object3.js~Object3#scale",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 14,
     "kind": "file",
     "name": "src/core/scene.js",
-    "content": "class Scene {\n\n    constructor() {\n        this.models = [];\n        this.lights = [];\n    }\n\n    /**\n    * @param {Model} model - adds a model to the scene\n    */\n    addModel(model) {\n        model.parent = this;\n        this.models.push(model);\n    }\n\n    /**\n    * @param {Model} model - removes a model from the scene\n    */\n    removeModel(model) {\n        const index = this.models.indexOf(model);\n        if (index !== -1) {\n            model.destroy();\n            this.models.splice(index, 1);\n        }\n    }\n\n}\n\nexport default Scene;\n",
+    "content": "class Scene {\n\n    constructor() {\n        this.models = [];\n        this.lights = [];\n    }\n\n    addModel(model) {\n        model.parent = this;\n        this.models.push(model);\n    }\n\n    removeModel(model) {\n        const index = this.models.indexOf(model);\n        if (index !== -1) {\n            model.destroy();\n            this.models.splice(index, 1);\n        }\n    }\n\n}\n\nexport default Scene;\n",
     "static": true,
     "longname": "src/core/scene.js",
     "access": null,
@@ -79,7 +314,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 5,
+    "__docId__": 15,
     "kind": "class",
     "name": "Scene",
     "memberof": "src/core/scene.js",
@@ -101,7 +336,7 @@
     "interface": false
   },
   {
-    "__docId__": 6,
+    "__docId__": 16,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/core/scene.js~Scene",
@@ -122,7 +357,7 @@
     "params": []
   },
   {
-    "__docId__": 7,
+    "__docId__": 17,
     "kind": "member",
     "name": "models",
     "memberof": "src/core/scene.js~Scene",
@@ -145,7 +380,7 @@
     }
   },
   {
-    "__docId__": 8,
+    "__docId__": 18,
     "kind": "member",
     "name": "lights",
     "memberof": "src/core/scene.js~Scene",
@@ -168,7 +403,7 @@
     }
   },
   {
-    "__docId__": 9,
+    "__docId__": 19,
     "kind": "method",
     "name": "addModel",
     "memberof": "src/core/scene.js~Scene",
@@ -177,23 +412,26 @@
     "static": false,
     "longname": "src/core/scene.js~Scene#addModel",
     "access": null,
-    "description": "",
-    "lineNumber": 11,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
     "params": [
       {
-        "nullable": null,
-        "types": [
-          "Model"
-        ],
-        "spread": false,
-        "optional": false,
         "name": "model",
-        "description": "adds a model to the scene"
+        "types": [
+          "*"
+        ]
       }
     ]
   },
   {
-    "__docId__": 10,
+    "__docId__": 20,
     "kind": "method",
     "name": "removeModel",
     "memberof": "src/core/scene.js~Scene",
@@ -202,26 +440,284 @@
     "static": false,
     "longname": "src/core/scene.js~Scene#removeModel",
     "access": null,
-    "description": "",
-    "lineNumber": 19,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
     "params": [
       {
-        "nullable": null,
-        "types": [
-          "Model"
-        ],
-        "spread": false,
-        "optional": false,
         "name": "model",
-        "description": "removes a model from the scene"
+        "types": [
+          "*"
+        ]
       }
     ]
   },
   {
-    "__docId__": 11,
+    "__docId__": 21,
+    "kind": "file",
+    "name": "src/core/vector3.js",
+    "content": "import { vec3 } from 'gl-matrix';\n\nclass Vector3 {\n\n    constructor(x = 0, y = 0, z = 0) {\n        this.data = vec3.fromValues(x, y, z);\n    }\n\n    set x(value) {\n        vec3.set(this.data, value, this.data[1], this.data[2]);\n    }\n\n    get x() {\n        return this.data[0];\n    }\n\n    set y(value) {\n        vec3.set(this.data, this.data[0], value, this.data[2]);\n    }\n\n    get y() {\n        return this.data[1];\n    }\n\n    set z(value) {\n        vec3.set(this.data, this.data[0], this.data[1], value);\n    }\n\n    get z() {\n        return this.data[2];\n    }\n\n}\n\nexport default Vector3;\n",
+    "static": true,
+    "longname": "src/core/vector3.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 22,
+    "kind": "class",
+    "name": "Vector3",
+    "memberof": "src/core/vector3.js",
+    "static": true,
+    "longname": "src/core/vector3.js~Vector3",
+    "access": null,
+    "export": true,
+    "importPath": "engine/src/core/vector3.js",
+    "importStyle": "Vector3",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 23,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/core/vector3.js~Vector3",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/core/vector3.js~Vector3#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "x",
+        "optional": true,
+        "types": [
+          "number"
+        ],
+        "defaultRaw": 0,
+        "defaultValue": "0"
+      },
+      {
+        "name": "y",
+        "optional": true,
+        "types": [
+          "number"
+        ],
+        "defaultRaw": 0,
+        "defaultValue": "0"
+      },
+      {
+        "name": "z",
+        "optional": true,
+        "types": [
+          "number"
+        ],
+        "defaultRaw": 0,
+        "defaultValue": "0"
+      }
+    ]
+  },
+  {
+    "__docId__": 24,
+    "kind": "member",
+    "name": "data",
+    "memberof": "src/core/vector3.js~Vector3",
+    "static": false,
+    "longname": "src/core/vector3.js~Vector3#data",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 25,
+    "kind": "set",
+    "name": "x",
+    "memberof": "src/core/vector3.js~Vector3",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/core/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 26,
+    "kind": "get",
+    "name": "x",
+    "memberof": "src/core/vector3.js~Vector3",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/core/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 27,
+    "kind": "set",
+    "name": "y",
+    "memberof": "src/core/vector3.js~Vector3",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/core/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 28,
+    "kind": "get",
+    "name": "y",
+    "memberof": "src/core/vector3.js~Vector3",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/core/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 21,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 29,
+    "kind": "set",
+    "name": "z",
+    "memberof": "src/core/vector3.js~Vector3",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/core/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 25,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 30,
+    "kind": "get",
+    "name": "z",
+    "memberof": "src/core/vector3.js~Vector3",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/core/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 29,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 31,
     "kind": "file",
     "name": "src/index.js",
-    "content": "// core\nimport Model from './core/model';\nimport Scene from './core/scene';\n\n// renderer\nimport Renderer from './renderer';\n\nexport {\n    // core\n    Model,\n    Scene,\n\n    // renderer\n    Renderer,\n};\n",
+    "content": "import * as session from './session';\n\nimport Model from './core/model';\nimport Scene from './core/scene';\nimport Renderer from './renderer';\n\nimport * as utils from './utils';\nimport * as loaders from './loaders';\n\nexport {\n    session,\n    Model,\n    Scene,\n\n    Renderer,\n\n    utils,\n    loaders,\n};\n",
     "static": true,
     "longname": "src/index.js",
     "access": null,
@@ -229,27 +725,38 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 12,
+    "__docId__": 32,
     "kind": "file",
-    "name": "src/renderer/index.js",
-    "content": "class Renderer {\n\n    constructor(props = {}) {\n        this.width = props.width || global.innerWidth;\n        this.height = props.height || global.innerHeight;\n        this.ratio = props.ratio || global.devicePixelRatio;\n    }\n\n    setSize(width, height) {\n        this.width = width;\n        this.height = height;\n    }\n\n    setRatio(ratio) {\n        this.ratio = ratio;\n    }\n\n}\n\nexport default Renderer;\n",
+    "name": "src/loaders/index.js",
+    "content": "import Obj from './obj';\n\nexport {\n    Obj,\n};\n",
     "static": true,
-    "longname": "src/renderer/index.js",
+    "longname": "src/loaders/index.js",
     "access": null,
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 13,
-    "kind": "class",
-    "name": "Renderer",
-    "memberof": "src/renderer/index.js",
+    "__docId__": 33,
+    "kind": "file",
+    "name": "src/loaders/obj.js",
+    "content": "class ObjLoader {\n\n    static parse(raw) {\n        // credits: https://raw.githubusercontent.com/frenchtoast747/webgl-obj-loader/master/webgl-obj-loader.js\n        const verts = [], vertNormals = [], textures = [], unpacked = {};\n\n        unpacked.verts = [];\n        unpacked.norms = [];\n        unpacked.textures = [];\n        unpacked.hashindices = {};\n        unpacked.indices = [];\n        unpacked.index = 0;\n\n        const lines = raw.split('\\n');\n\n        const VERTEX_RE = /^v\\s/;\n        const NORMAL_RE = /^vn\\s/;\n        const TEXTURE_RE = /^vt\\s/;\n        const FACE_RE = /^f\\s/;\n        const WHITESPACE_RE = /\\s+/;\n\n        for (let i = 0; i < lines.length; i++) {\n            const line = lines[i].trim();\n            const elements = line.split(WHITESPACE_RE);\n            elements.shift();\n\n            if (VERTEX_RE.test(line)) {\n                verts.push.apply(verts, elements);\n            } else if (NORMAL_RE.test(line)) {\n                vertNormals.push.apply(vertNormals, elements);\n            } else if (TEXTURE_RE.test(line)) {\n                textures.push.apply(textures, elements);\n            } else if (FACE_RE.test(line)) {\n                let quad = false;\n                for (let j = 0; j < elements.length; j++) {\n                    if (j === 3 && !quad) {\n                        j = 2;\n                        quad = true;\n                    }\n\n                    if(elements[j] in unpacked.hashindices) {\n                        unpacked.indices.push(unpacked.hashindices[elements[j]]);\n                    } else {\n                        const vertex = elements[j].split('/');\n\n                        unpacked.verts.push(+verts[(vertex[0] - 1) * 3 + 0]);\n                        unpacked.verts.push(+verts[(vertex[0] - 1) * 3 + 1]);\n                        unpacked.verts.push(+verts[(vertex[0] - 1) * 3 + 2]);\n\n                        if (textures.length) {\n                            unpacked.textures.push(+textures[(vertex[1] - 1) * 2 + 0]);\n                            unpacked.textures.push(+textures[(vertex[1] - 1) * 2 + 1]);\n                        }\n\n                        unpacked.norms.push(+vertNormals[(vertex[2] - 1) * 3 + 0]);\n                        unpacked.norms.push(+vertNormals[(vertex[2] - 1) * 3 + 1]);\n                        unpacked.norms.push(+vertNormals[(vertex[2] - 1) * 3 + 2]);\n\n                        unpacked.hashindices[elements[j]] = unpacked.index;\n                        unpacked.indices.push(unpacked.index);\n\n                        unpacked.index += 1;\n                    }\n                    if(j === 3 && quad) {\n                        unpacked.indices.push(unpacked.hashindices[elements[0]]);\n                    }\n                }\n            }\n        }\n\n        return {\n            positions: unpacked.verts,\n            indices: unpacked.indices,\n            normals: unpacked.norms,\n            uvs: unpacked.textures,\n        };\n    }\n\n    static load(url, callback) {\n        ObjLoader.loadFile(url).then((raw) => {\n            callback(ObjLoader.parse(raw));\n        });\n    }\n\n    static loadFile(url) {\n        return new Promise(function (resolve, reject) {\n\n            var req = new XMLHttpRequest();\n            req.open('GET', url);\n            req.onload = function () {\n                if (req.status === 200) {\n                    resolve(req.response);\n                } else {\n                    reject(Error(req.statusText));\n                }\n            };\n\n            req.onerror = function () {\n                reject(Error('Network Error'));\n            };\n\n            req.send();\n        });\n    }\n\n}\n\nexport default ObjLoader;\n",
     "static": true,
-    "longname": "src/renderer/index.js~Renderer",
+    "longname": "src/loaders/obj.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 34,
+    "kind": "class",
+    "name": "ObjLoader",
+    "memberof": "src/loaders/obj.js",
+    "static": true,
+    "longname": "src/loaders/obj.js~ObjLoader",
     "access": null,
     "export": true,
-    "importPath": "engine/src/renderer/index.js",
-    "importStyle": "Renderer",
+    "importPath": "engine/src/loaders/obj.js",
+    "importStyle": "ObjLoader",
     "description": null,
     "lineNumber": 1,
     "undocument": true,
@@ -262,7 +769,140 @@
     "interface": false
   },
   {
-    "__docId__": 14,
+    "__docId__": 35,
+    "kind": "method",
+    "name": "parse",
+    "memberof": "src/loaders/obj.js~ObjLoader",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/loaders/obj.js~ObjLoader.parse",
+    "access": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "raw",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "{\"positions\": *, \"indices\": *, \"normals\": *, \"uvs\": *}"
+      ]
+    }
+  },
+  {
+    "__docId__": 36,
+    "kind": "method",
+    "name": "load",
+    "memberof": "src/loaders/obj.js~ObjLoader",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/loaders/obj.js~ObjLoader.load",
+    "access": null,
+    "description": null,
+    "lineNumber": 79,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "url",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "callback",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 37,
+    "kind": "method",
+    "name": "loadFile",
+    "memberof": "src/loaders/obj.js~ObjLoader",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/loaders/obj.js~ObjLoader.loadFile",
+    "access": null,
+    "description": null,
+    "lineNumber": 85,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "url",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 38,
+    "kind": "file",
+    "name": "src/renderer/index.js",
+    "content": "let gl;\n\nclass Renderer {\n\n    constructor(props = {}) {\n        this.width = props.width || global.innerWidth;\n        this.height = props.height || global.innerHeight;\n        this.ratio = props.ratio || global.devicePixelRatio;\n\n        gl = {};\n    }\n\n    setSize(width, height) {\n        this.width = width;\n        this.height = height;\n    }\n\n    setRatio(ratio) {\n        this.ratio = ratio;\n    }\n\n    clear() {\n        //\n    }\n\n    render(scene, camera, clear = true) {\n        gl.test;\n    }\n\n}\n\nexport default Renderer;\n",
+    "static": true,
+    "longname": "src/renderer/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 39,
+    "kind": "class",
+    "name": "Renderer",
+    "memberof": "src/renderer/index.js",
+    "static": true,
+    "longname": "src/renderer/index.js~Renderer",
+    "access": null,
+    "export": true,
+    "importPath": "engine/src/renderer/index.js",
+    "importStyle": "Renderer",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 40,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/renderer/index.js~Renderer",
@@ -272,7 +912,7 @@
     "longname": "src/renderer/index.js~Renderer#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 3,
+    "lineNumber": 5,
     "undocument": true,
     "unknown": [
       {
@@ -293,58 +933,12 @@
     ]
   },
   {
-    "__docId__": 15,
+    "__docId__": 41,
     "kind": "member",
     "name": "width",
     "memberof": "src/renderer/index.js~Renderer",
     "static": false,
     "longname": "src/renderer/index.js~Renderer#width",
-    "access": null,
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 16,
-    "kind": "member",
-    "name": "height",
-    "memberof": "src/renderer/index.js~Renderer",
-    "static": false,
-    "longname": "src/renderer/index.js~Renderer#height",
-    "access": null,
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 17,
-    "kind": "member",
-    "name": "ratio",
-    "memberof": "src/renderer/index.js~Renderer",
-    "static": false,
-    "longname": "src/renderer/index.js~Renderer#ratio",
     "access": null,
     "description": null,
     "lineNumber": 6,
@@ -362,7 +956,53 @@
     }
   },
   {
-    "__docId__": 18,
+    "__docId__": 42,
+    "kind": "member",
+    "name": "height",
+    "memberof": "src/renderer/index.js~Renderer",
+    "static": false,
+    "longname": "src/renderer/index.js~Renderer#height",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 43,
+    "kind": "member",
+    "name": "ratio",
+    "memberof": "src/renderer/index.js~Renderer",
+    "static": false,
+    "longname": "src/renderer/index.js~Renderer#ratio",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 44,
     "kind": "method",
     "name": "setSize",
     "memberof": "src/renderer/index.js~Renderer",
@@ -372,7 +1012,7 @@
     "longname": "src/renderer/index.js~Renderer#setSize",
     "access": null,
     "description": null,
-    "lineNumber": 9,
+    "lineNumber": 13,
     "undocument": true,
     "unknown": [
       {
@@ -396,60 +1036,12 @@
     ]
   },
   {
-    "__docId__": 19,
+    "__docId__": 45,
     "kind": "member",
     "name": "width",
     "memberof": "src/renderer/index.js~Renderer",
     "static": false,
     "longname": "src/renderer/index.js~Renderer#width",
-    "access": null,
-    "description": null,
-    "lineNumber": 10,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 20,
-    "kind": "member",
-    "name": "height",
-    "memberof": "src/renderer/index.js~Renderer",
-    "static": false,
-    "longname": "src/renderer/index.js~Renderer#height",
-    "access": null,
-    "description": null,
-    "lineNumber": 11,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 21,
-    "kind": "method",
-    "name": "setRatio",
-    "memberof": "src/renderer/index.js~Renderer",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/renderer/index.js~Renderer#setRatio",
     "access": null,
     "description": null,
     "lineNumber": 14,
@@ -460,22 +1052,19 @@
         "tagValue": ""
       }
     ],
-    "params": [
-      {
-        "name": "ratio",
-        "types": [
-          "*"
-        ]
-      }
-    ]
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
-    "__docId__": 22,
+    "__docId__": 46,
     "kind": "member",
-    "name": "ratio",
+    "name": "height",
     "memberof": "src/renderer/index.js~Renderer",
     "static": false,
-    "longname": "src/renderer/index.js~Renderer#ratio",
+    "longname": "src/renderer/index.js~Renderer#height",
     "access": null,
     "description": null,
     "lineNumber": 15,
@@ -493,7 +1082,374 @@
     }
   },
   {
-    "__docId__": 24,
+    "__docId__": 47,
+    "kind": "method",
+    "name": "setRatio",
+    "memberof": "src/renderer/index.js~Renderer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/renderer/index.js~Renderer#setRatio",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "ratio",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 48,
+    "kind": "member",
+    "name": "ratio",
+    "memberof": "src/renderer/index.js~Renderer",
+    "static": false,
+    "longname": "src/renderer/index.js~Renderer#ratio",
+    "access": null,
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 49,
+    "kind": "method",
+    "name": "clear",
+    "memberof": "src/renderer/index.js~Renderer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/renderer/index.js~Renderer#clear",
+    "access": null,
+    "description": null,
+    "lineNumber": 22,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 50,
+    "kind": "method",
+    "name": "render",
+    "memberof": "src/renderer/index.js~Renderer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/renderer/index.js~Renderer#render",
+    "access": null,
+    "description": null,
+    "lineNumber": 26,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "scene",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "camera",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "clear",
+        "optional": true,
+        "types": [
+          "boolean"
+        ],
+        "defaultRaw": true,
+        "defaultValue": "true"
+      }
+    ]
+  },
+  {
+    "__docId__": 51,
+    "kind": "file",
+    "name": "src/renderer/utils.js",
+    "content": "",
+    "static": true,
+    "longname": "src/renderer/utils.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 52,
+    "kind": "file",
+    "name": "src/session.js",
+    "content": "/* global __VERSION__, __NODE_ENV__ */\n\nexport const version = __VERSION__;\nexport const env = __NODE_ENV__;\n",
+    "static": true,
+    "longname": "src/session.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 53,
+    "kind": "variable",
+    "name": "version",
+    "memberof": "src/session.js",
+    "static": true,
+    "longname": "src/session.js~version",
+    "access": null,
+    "export": true,
+    "importPath": "engine/src/session.js",
+    "importStyle": "{version}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "variable",
+    "name": "env",
+    "memberof": "src/session.js",
+    "static": true,
+    "longname": "src/session.js~env",
+    "access": null,
+    "export": true,
+    "importPath": "engine/src/session.js",
+    "importStyle": "{env}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "file",
+    "name": "src/utils/geometry.js",
+    "content": "/* eslint-disable */\nimport { vec3 } from 'gl-matrix';\nimport { vertexNormals } from 'normals';\n\nexport function flatten(arr) {\n    let output = [];\n    for (let i = 0; i < arr.length; i++) {\n        if(Array.isArray(arr[i]) || arr[i] instanceof Float32Array) {\n            output = output.concat(flatten(arr[i]));\n        } else {\n            output.push(arr[i]);\n        }\n    }\n    return output;\n};\n\nexport function unflatten(arr, amount) {\n    const output = [];\n    for (let i = 0; i < arr.length; i += amount) {\n        const value = [];\n        for (let j = 0; j < amount; j++) {\n            value.push(arr[i + j]);\n        }\n        output.push(value);\n    }\n    return output;\n}\n\nexport function generateVertexNormals(positions, indices) {\n    // TODO: remove if I decide to make this generation of normals optional. (on Geometry.js)\n    if (indices === undefined) {\n        return;\n    }\n    // const output = flatten(vertexNormals(unflatten(indices, 3), unflatten(positions, 3)));\n\n    const faces = unflatten(indices, 3);\n    const vertices = unflatten(positions, 3);\n\n    const temp = [];\n\n    let cb = vec3.create();\n    let ab = vec3.create();\n    let cross = vec3.create();\n\n    let vA, vB, vC;\n\n    for (let i = 0; i < faces.length; i++) {\n        const face = faces[i];\n        const a = face[0];\n        const b = face[1];\n        const c = face[2];\n\n        vA = vertices[a];\n        vB = vertices[b];\n        vC = vertices[c];\n\n        vec3.subtract(cb, vC, vB);\n        vec3.subtract(ab, vA, vB);\n        vec3.cross(cross, cb, ab);\n\n        if (temp[a] === undefined) {\n            temp[a] = vec3.create();\n        }\n\n        if (temp[b] === undefined) {\n            temp[b] = vec3.create();\n        }\n\n        if (temp[c] === undefined) {\n            temp[c] = vec3.create();\n        }\n\n        vec3.add(temp[a], temp[a], cross);\n        vec3.add(temp[b], temp[b], cross);\n        vec3.add(temp[c], temp[c], cross);\n    }\n\n    for (var i = 0; i < temp.length; i++) {\n        vec3.normalize(temp[i], temp[i]);\n    }\n\n    return new Float32Array(flatten(temp, 3));\n};\n\nexport function mergeVertices(data) {\n    const positions = unflatten(data.positions, 3);\n    const verticesMap = {};\n    const unique = [];\n    const changes = [];\n\n    const precisionPoints = 4; // number of decimal points, e.g. 4 for epsilon of 0.0001\n    const precision = Math.pow(10, precisionPoints);\n\n    // remove duplicated positions\n    for (let i = 0; i < positions.length; i++) {\n        const v = positions[i];\n        const key = `\n            ${Math.round(v[0] * precision)}_\n            ${Math.round(v[1] * precision)}_\n            ${Math.round(v[2] * precision)}\n        `;\n\n        if (verticesMap[key] === undefined) {\n            verticesMap[key] = i;\n            unique.push(positions[i]);\n            changes[i] = unique.length - 1;\n        } else {\n            // console.log('Duplicate vertex found. ', i, ' could be using ', verticesMap[key]);\n            changes[i] = changes[verticesMap[key]];\n        }\n\n    }\n\n    // remove duplicated faces\n    const faceIndicesToRemove = [];\n    const faces = unflatten(data.indices, 3);\n\n    for (let i = 0; i < faces.length; i++) {\n        const face = faces[i];\n\n        face[0] = changes[face[0]];\n        face[1] = changes[face[1]];\n        face[2] = changes[face[2]];\n\n        const indices = [face[0], face[1], face[2]];\n\n        for (let n = 0; n < 3; n++) {\n            if (indices[n] === indices[(n + 1) % 3]) {\n                faceIndicesToRemove.push(i);\n                break;\n            }\n        }\n    }\n\n    const p = flatten(unique, 3);\n    const f = flatten(faces, 3);\n\n    return {\n        positions: new Float32Array(p),\n        indices: new Uint16Array(f),\n        normals: new Float32Array(generateVertexNormals(p, f)),\n    }\n}\n",
+    "static": true,
+    "longname": "src/utils/geometry.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 56,
+    "kind": "function",
+    "name": "flatten",
+    "memberof": "src/utils/geometry.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/geometry.js~flatten",
+    "access": null,
+    "export": true,
+    "importPath": "engine/src/utils/geometry.js",
+    "importStyle": "{flatten}",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "arr",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "function",
+    "name": "unflatten",
+    "memberof": "src/utils/geometry.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/geometry.js~unflatten",
+    "access": null,
+    "export": true,
+    "importPath": "engine/src/utils/geometry.js",
+    "importStyle": "{unflatten}",
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "arr",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "amount",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "function",
+    "name": "generateVertexNormals",
+    "memberof": "src/utils/geometry.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/geometry.js~generateVertexNormals",
+    "access": null,
+    "export": true,
+    "importPath": "engine/src/utils/geometry.js",
+    "importStyle": "{generateVertexNormals}",
+    "description": null,
+    "lineNumber": 29,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "positions",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "indices",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "function",
+    "name": "mergeVertices",
+    "memberof": "src/utils/geometry.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/geometry.js~mergeVertices",
+    "access": null,
+    "export": true,
+    "importPath": "engine/src/utils/geometry.js",
+    "importStyle": "{mergeVertices}",
+    "description": null,
+    "lineNumber": 85,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "{\"positions\": *, \"indices\": *, \"normals\": *}"
+      ]
+    }
+  },
+  {
+    "__docId__": 60,
+    "kind": "file",
+    "name": "src/utils/index.js",
+    "content": "import * as geometry from './geometry';\n\nexport {\n    geometry,\n};\n",
+    "static": true,
+    "longname": "src/utils/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 62,
     "kind": "external",
     "name": "Infinity",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
@@ -505,7 +1461,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 25,
+    "__docId__": 63,
     "kind": "external",
     "name": "NaN",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
@@ -517,7 +1473,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 26,
+    "__docId__": 64,
     "kind": "external",
     "name": "undefined",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
@@ -529,7 +1485,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 27,
+    "__docId__": 65,
     "kind": "external",
     "name": "null",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
@@ -541,7 +1497,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 28,
+    "__docId__": 66,
     "kind": "external",
     "name": "Object",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
@@ -553,7 +1509,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 29,
+    "__docId__": 67,
     "kind": "external",
     "name": "object",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
@@ -565,7 +1521,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 30,
+    "__docId__": 68,
     "kind": "external",
     "name": "Function",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
@@ -577,7 +1533,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 31,
+    "__docId__": 69,
     "kind": "external",
     "name": "function",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
@@ -589,7 +1545,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 32,
+    "__docId__": 70,
     "kind": "external",
     "name": "Boolean",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
@@ -601,7 +1557,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 33,
+    "__docId__": 71,
     "kind": "external",
     "name": "boolean",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
@@ -613,7 +1569,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 34,
+    "__docId__": 72,
     "kind": "external",
     "name": "Symbol",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
@@ -625,7 +1581,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 35,
+    "__docId__": 73,
     "kind": "external",
     "name": "Error",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
@@ -637,7 +1593,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 36,
+    "__docId__": 74,
     "kind": "external",
     "name": "EvalError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
@@ -649,7 +1605,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 37,
+    "__docId__": 75,
     "kind": "external",
     "name": "InternalError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
@@ -661,7 +1617,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 38,
+    "__docId__": 76,
     "kind": "external",
     "name": "RangeError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
@@ -673,7 +1629,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 39,
+    "__docId__": 77,
     "kind": "external",
     "name": "ReferenceError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
@@ -685,7 +1641,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 40,
+    "__docId__": 78,
     "kind": "external",
     "name": "SyntaxError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
@@ -697,7 +1653,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 41,
+    "__docId__": 79,
     "kind": "external",
     "name": "TypeError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
@@ -709,7 +1665,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 42,
+    "__docId__": 80,
     "kind": "external",
     "name": "URIError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
@@ -721,7 +1677,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 43,
+    "__docId__": 81,
     "kind": "external",
     "name": "Number",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
@@ -733,7 +1689,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 44,
+    "__docId__": 82,
     "kind": "external",
     "name": "number",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
@@ -745,7 +1701,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 45,
+    "__docId__": 83,
     "kind": "external",
     "name": "Date",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
@@ -757,7 +1713,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 46,
+    "__docId__": 84,
     "kind": "external",
     "name": "String",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
@@ -769,7 +1725,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 47,
+    "__docId__": 85,
     "kind": "external",
     "name": "string",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
@@ -781,7 +1737,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 48,
+    "__docId__": 86,
     "kind": "external",
     "name": "RegExp",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
@@ -793,7 +1749,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 49,
+    "__docId__": 87,
     "kind": "external",
     "name": "Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
@@ -805,7 +1761,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 50,
+    "__docId__": 88,
     "kind": "external",
     "name": "Int8Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
@@ -817,7 +1773,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 51,
+    "__docId__": 89,
     "kind": "external",
     "name": "Uint8Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
@@ -829,7 +1785,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 52,
+    "__docId__": 90,
     "kind": "external",
     "name": "Uint8ClampedArray",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
@@ -841,7 +1797,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 53,
+    "__docId__": 91,
     "kind": "external",
     "name": "Int16Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
@@ -853,7 +1809,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 54,
+    "__docId__": 92,
     "kind": "external",
     "name": "Uint16Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
@@ -865,7 +1821,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 55,
+    "__docId__": 93,
     "kind": "external",
     "name": "Int32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
@@ -877,7 +1833,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 56,
+    "__docId__": 94,
     "kind": "external",
     "name": "Uint32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
@@ -889,7 +1845,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 57,
+    "__docId__": 95,
     "kind": "external",
     "name": "Float32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
@@ -901,7 +1857,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 58,
+    "__docId__": 96,
     "kind": "external",
     "name": "Float64Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
@@ -913,7 +1869,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 59,
+    "__docId__": 97,
     "kind": "external",
     "name": "Map",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -925,7 +1881,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 60,
+    "__docId__": 98,
     "kind": "external",
     "name": "Set",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
@@ -937,7 +1893,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 61,
+    "__docId__": 99,
     "kind": "external",
     "name": "WeakMap",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
@@ -949,7 +1905,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 62,
+    "__docId__": 100,
     "kind": "external",
     "name": "WeakSet",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
@@ -961,7 +1917,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 63,
+    "__docId__": 101,
     "kind": "external",
     "name": "ArrayBuffer",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
@@ -973,7 +1929,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 64,
+    "__docId__": 102,
     "kind": "external",
     "name": "DataView",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
@@ -985,7 +1941,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 65,
+    "__docId__": 103,
     "kind": "external",
     "name": "JSON",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
@@ -997,7 +1953,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 66,
+    "__docId__": 104,
     "kind": "external",
     "name": "Promise",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
@@ -1009,7 +1965,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 67,
+    "__docId__": 105,
     "kind": "external",
     "name": "Generator",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
@@ -1021,7 +1977,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 68,
+    "__docId__": 106,
     "kind": "external",
     "name": "GeneratorFunction",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
@@ -1033,7 +1989,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 69,
+    "__docId__": 107,
     "kind": "external",
     "name": "Reflect",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
@@ -1045,7 +2001,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 70,
+    "__docId__": 108,
     "kind": "external",
     "name": "Proxy",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
@@ -1058,7 +2014,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 72,
+    "__docId__": 110,
     "kind": "external",
     "name": "CanvasRenderingContext2D",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
@@ -1070,7 +2026,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 73,
+    "__docId__": 111,
     "kind": "external",
     "name": "DocumentFragment",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
@@ -1082,7 +2038,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 74,
+    "__docId__": 112,
     "kind": "external",
     "name": "Element",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
@@ -1094,7 +2050,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 75,
+    "__docId__": 113,
     "kind": "external",
     "name": "Event",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
@@ -1106,7 +2062,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 76,
+    "__docId__": 114,
     "kind": "external",
     "name": "Node",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
@@ -1118,7 +2074,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 77,
+    "__docId__": 115,
     "kind": "external",
     "name": "NodeList",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
@@ -1130,7 +2086,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 78,
+    "__docId__": 116,
     "kind": "external",
     "name": "XMLHttpRequest",
     "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
@@ -1142,7 +2098,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 79,
+    "__docId__": 117,
     "kind": "external",
     "name": "AudioContext",
     "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",

@@ -1,14 +1,22 @@
-class Model {
+import Object3 from './object3';
 
-    constructor() {
-        console.log('creates a model');
+class Model extends Object3 {
+
+    constructor(props) {
+        super();
+
+        this.geometry = {
+            positions: new Float32Array(props.positions),
+            indices: new Uint16Array(props.indices),
+            normals: new Float32Array(props.normals),
+            uvs: new Float32Array(props.uvs),
+        };
+
+        this.material = props.material;
     }
 
-    /**
-    * destroys Model
-    */
     destroy() {
-        console.log('destroy model');
+        // destroys buffers
     }
 
 }

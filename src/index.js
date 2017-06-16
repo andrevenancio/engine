@@ -1,15 +1,19 @@
-// core
+import * as session from './session';
+
 import Model from './core/model';
 import Scene from './core/scene';
-
-// renderer
 import Renderer from './renderer';
 
+import * as utils from './utils';
+import * as loaders from './loaders';
+
 export {
-    // core
+    session,
     Model,
     Scene,
 
-    // renderer
     Renderer,
+
+    utils,
+    loaders,
 };
