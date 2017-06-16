@@ -19,11 +19,12 @@
             var model;
 
             setup();
-            update();
 
             function setup() {
                 renderer = new engine.Renderer();
                 renderer.setSize(window.innerWidth, window.innerHeight);
+
+                camera = new engine.cameras.Perspective();
 
                 scene = new engine.Scene();
 
@@ -31,14 +32,30 @@
             }
 
             function init(data) {
-                const geometry = engine.utils.geometry.mergeVertices(data);
-                model = new engine.Model(geometry);
+                let geometry = engine.utils.geometry.mergeVertices(data);
+                // temporary
+                geometry = {
+                    positions: new Float32Array([
+                        -0.5, 0.5, 0,
+                        -0.5, -0.5, 0,
+                        0.5, 0.5, 0,
+                        0.5, -0.5, 0,
+                    ]),
+                    indices: new Uint16Array([0, 1, 2, 2, 1, 3]),
+                }
+
+                const material = new engine.materials.Basic();
+                model = new engine.Model(geometry, material);
                 scene.addModel(model);
+
+                update();
             }
 
             function update() {
                 requestAnimationFrame(update);
                 renderer.render(scene, camera);
+
+                model.position.x = Math.cos(Date.now() / 500);
             }
 
         </script>

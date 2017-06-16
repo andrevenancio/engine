@@ -1,24 +1,33 @@
-class Scene {
+import { mat4 } from 'gl-matrix';
+import Object3 from './object3';
+
+class Scene extends Object3 {
 
     constructor() {
-        this.models = [];
+        super();
         this.lights = [];
+
+        this.modelViewMatrix = mat4.create();
     }
 
     addModel(model) {
         model.parent = this;
-        this.models.push(model);
+        this.children.push(model);
     }
 
     removeModel(model) {
-        const index = this.models.indexOf(model);
+        const index = this.children.indexOf(model);
         if (index !== -1) {
             model.destroy();
-            this.models.splice(index, 1);
+            this.children.splice(index, 1);
         }
     }
 
     traverse(object) {
+        if (object === undefined) {
+            object = this;
+        }
+
         for (let i = 0; i < object.children.length; i += 1) {
             this.traverse(object.children[i]);
         }

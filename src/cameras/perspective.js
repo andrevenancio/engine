@@ -1,6 +1,5 @@
 import { vec3, mat4 } from 'gl-matrix';
 import Object3 from '../core/object3';
-import { getContext } from '../renderer/utils';
 
 class PerspectiveCamera extends Object3 {
 
@@ -22,21 +21,16 @@ class PerspectiveCamera extends Object3 {
         vec3.copy(this.target, v);
     }
 
-    updateCameraMatrix() {
-        const gl = getContext();
+    updateCameraMatrix(width, height) {
         mat4.perspective(
             this.projectionMatrix,
             this.fov * Math.PI / 180,
-            gl.canvas.width / gl.canvas.height,
+            width / height,
             this.near,
             this.far,
         );
     }
 
-    get ratio() {
-        const gl = getContext();
-        return gl.canvas.width / gl.canvas.height;
-    }
 }
 
 export default PerspectiveCamera;

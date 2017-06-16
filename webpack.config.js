@@ -9,7 +9,7 @@ const pkg = require('./package.json');
 const plugins = [];
 
 plugins.push(new webpack.DefinePlugin({
-    __LIBRARY__: JSON.stringify(`lowww WebGL${libraryName}`),
+    __LIBRARY__: JSON.stringify(`lowww WebGL ${libraryName}`),
     __VERSION__: JSON.stringify(pkg.version),
     __ENV__: JSON.stringify(env),
 }));

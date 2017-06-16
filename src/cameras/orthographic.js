@@ -21,7 +21,7 @@ class OrthographicCamera extends Object3 {
         vec3.copy(this.target, v);
     }
 
-    updateCameraMatrix() {
+    updateCameraMatrix(width, height) {
         mat4.ortho(
             this.projectionMatrix,
             -1.0,

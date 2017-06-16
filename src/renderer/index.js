@@ -1,6 +1,10 @@
+import { mat4 } from 'gl-matrix';
 import { library, version, getContext, setContext } from '../session';
 
 let supported = false;
+let child;
+
+let lastProgram;
 
 class Renderer {
 
@@ -59,23 +63,52 @@ class Renderer {
         this.ratio = ratio;
     }
 
-    clear() {
-        const gl = getContext();
-        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-        gl.clearColor(0, 0, 0, 1);
-
-        gl.enable(gl.CULL_FACE);
-        gl.enable(gl.DEPTH_TEST);
-    }
-
     render(scene, camera, clear = true) {
         if (supported) {
-            if (clear) {
-                this.clear();
-            }
             const gl = getContext();
 
             gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+            if (clear) {
+                gl.clearColor(0, 0, 0, 1);
+                gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+            }
+
+            gl.enable(gl.CULL_FACE);
+            gl.enable(gl.DEPTH_TEST);
+
+            camera.updateCameraMatrix(gl.canvas.width, gl.canvas.height);
+            mat4.identity(scene.modelViewMatrix);
+            mat4.lookAt(scene.modelViewMatrix, camera.position.data, camera.target, camera.up);
+
+            scene.traverse();
+
+            // TODO: sort by program?
+            // TODO: sort opaque and transparent objects
+
+            // render transparent objects (sorted by z);
+            // TODO
+            // render opaque objects
+            // TODO
+
+            // temporary render until I sort the "sort" :p
+            for (let i = 0, len = scene.children.length; i < len; i++) {
+                child = scene.children[i]; // eslint-disable-line
+                if (!child.material.program) {
+                    child.material.init();
+                    return;
+                }
+
+                if (lastProgram !== child.material.program) {
+                    lastProgram = child.material.program;
+                    gl.useProgram(lastProgram);
+                }
+
+                child.material.bind();
+                child.update();
+                child.material.unbind();
+                child = null;
+            }
         }
     }
 
