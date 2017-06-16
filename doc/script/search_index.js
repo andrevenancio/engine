@@ -1,5 +1,23 @@
 window.esdocSearchIndex = [
   [
+    "engine/src/constants.js~basic_material",
+    "variable/index.html#static-variable-BASIC_MATERIAL",
+    "<span>BASIC_MATERIAL</span> <span class=\"search-result-import-path\">engine/src/constants.js</span>",
+    "variable"
+  ],
+  [
+    "engine/src/materials/basic.js~basic",
+    "class/src/materials/basic.js~Basic.html",
+    "<span>Basic</span> <span class=\"search-result-import-path\">engine/src/materials/basic.js</span>",
+    "class"
+  ],
+  [
+    "engine/src/core/material.js~material",
+    "class/src/core/material.js~Material.html",
+    "<span>Material</span> <span class=\"search-result-import-path\">engine/src/core/material.js</span>",
+    "class"
+  ],
+  [
     "engine/src/core/model.js~model",
     "class/src/core/model.js~Model.html",
     "<span>Model</span> <span class=\"search-result-import-path\">engine/src/core/model.js</span>",
@@ -18,6 +36,18 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "engine/src/cameras/orthographic.js~orthographiccamera",
+    "class/src/cameras/orthographic.js~OrthographicCamera.html",
+    "<span>OrthographicCamera</span> <span class=\"search-result-import-path\">engine/src/cameras/orthographic.js</span>",
+    "class"
+  ],
+  [
+    "engine/src/cameras/perspective.js~perspectivecamera",
+    "class/src/cameras/perspective.js~PerspectiveCamera.html",
+    "<span>PerspectiveCamera</span> <span class=\"search-result-import-path\">engine/src/cameras/perspective.js</span>",
+    "class"
+  ],
+  [
     "engine/src/renderer/index.js~renderer",
     "class/src/renderer/index.js~Renderer.html",
     "<span>Renderer</span> <span class=\"search-result-import-path\">engine/src/renderer/index.js</span>",
@@ -30,10 +60,22 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "engine/src/renderer/helpers/vao.js~vao",
+    "class/src/renderer/helpers/vao.js~Vao.html",
+    "<span>Vao</span> <span class=\"search-result-import-path\">engine/src/renderer/helpers/vao.js</span>",
+    "class"
+  ],
+  [
     "engine/src/core/vector3.js~vector3",
     "class/src/core/vector3.js~Vector3.html",
     "<span>Vector3</span> <span class=\"search-result-import-path\">engine/src/core/vector3.js</span>",
     "class"
+  ],
+  [
+    "engine/src/renderer/helpers/program.js~createprogram",
+    "function/index.html#static-function-createProgram",
+    "<span>createProgram</span> <span class=\"search-result-import-path\">engine/src/renderer/helpers/program.js</span>",
+    "function"
   ],
   [
     "engine/src/session.js~env",
@@ -54,9 +96,27 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "engine/src/session.js~getcontext",
+    "function/index.html#static-function-getContext",
+    "<span>getContext</span> <span class=\"search-result-import-path\">engine/src/session.js</span>",
+    "function"
+  ],
+  [
+    "engine/src/session.js~library",
+    "variable/index.html#static-variable-library",
+    "<span>library</span> <span class=\"search-result-import-path\">engine/src/session.js</span>",
+    "variable"
+  ],
+  [
     "engine/src/utils/geometry.js~mergevertices",
     "function/index.html#static-function-mergeVertices",
     "<span>mergeVertices</span> <span class=\"search-result-import-path\">engine/src/utils/geometry.js</span>",
+    "function"
+  ],
+  [
+    "engine/src/session.js~setcontext",
+    "function/index.html#static-function-setContext",
+    "<span>setContext</span> <span class=\"search-result-import-path\">engine/src/session.js</span>",
     "function"
   ],
   [
@@ -402,6 +462,204 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "src/cameras/index.js",
+    "file/src/cameras/index.js.html",
+    "src/cameras/index.js",
+    "file"
+  ],
+  [
+    "src/cameras/orthographic.js",
+    "file/src/cameras/orthographic.js.html",
+    "src/cameras/orthographic.js",
+    "file"
+  ],
+  [
+    "src/cameras/orthographic.js~orthographiccamera#constructor",
+    "class/src/cameras/orthographic.js~OrthographicCamera.html#instance-constructor-constructor",
+    "src/cameras/orthographic.js~OrthographicCamera#constructor",
+    "method"
+  ],
+  [
+    "src/cameras/orthographic.js~orthographiccamera#lookat",
+    "class/src/cameras/orthographic.js~OrthographicCamera.html#instance-method-lookAt",
+    "src/cameras/orthographic.js~OrthographicCamera#lookAt",
+    "method"
+  ],
+  [
+    "src/cameras/orthographic.js~orthographiccamera#projectionmatrix",
+    "class/src/cameras/orthographic.js~OrthographicCamera.html#instance-member-projectionMatrix",
+    "src/cameras/orthographic.js~OrthographicCamera#projectionMatrix",
+    "member"
+  ],
+  [
+    "src/cameras/orthographic.js~orthographiccamera#target",
+    "class/src/cameras/orthographic.js~OrthographicCamera.html#instance-member-target",
+    "src/cameras/orthographic.js~OrthographicCamera#target",
+    "member"
+  ],
+  [
+    "src/cameras/orthographic.js~orthographiccamera#up",
+    "class/src/cameras/orthographic.js~OrthographicCamera.html#instance-member-up",
+    "src/cameras/orthographic.js~OrthographicCamera#up",
+    "member"
+  ],
+  [
+    "src/cameras/orthographic.js~orthographiccamera#updatecameramatrix",
+    "class/src/cameras/orthographic.js~OrthographicCamera.html#instance-method-updateCameraMatrix",
+    "src/cameras/orthographic.js~OrthographicCamera#updateCameraMatrix",
+    "method"
+  ],
+  [
+    "src/cameras/perspective.js",
+    "file/src/cameras/perspective.js.html",
+    "src/cameras/perspective.js",
+    "file"
+  ],
+  [
+    "src/cameras/perspective.js~perspectivecamera#constructor",
+    "class/src/cameras/perspective.js~PerspectiveCamera.html#instance-constructor-constructor",
+    "src/cameras/perspective.js~PerspectiveCamera#constructor",
+    "method"
+  ],
+  [
+    "src/cameras/perspective.js~perspectivecamera#lookat",
+    "class/src/cameras/perspective.js~PerspectiveCamera.html#instance-method-lookAt",
+    "src/cameras/perspective.js~PerspectiveCamera#lookAt",
+    "method"
+  ],
+  [
+    "src/cameras/perspective.js~perspectivecamera#projectionmatrix",
+    "class/src/cameras/perspective.js~PerspectiveCamera.html#instance-member-projectionMatrix",
+    "src/cameras/perspective.js~PerspectiveCamera#projectionMatrix",
+    "member"
+  ],
+  [
+    "src/cameras/perspective.js~perspectivecamera#target",
+    "class/src/cameras/perspective.js~PerspectiveCamera.html#instance-member-target",
+    "src/cameras/perspective.js~PerspectiveCamera#target",
+    "member"
+  ],
+  [
+    "src/cameras/perspective.js~perspectivecamera#up",
+    "class/src/cameras/perspective.js~PerspectiveCamera.html#instance-member-up",
+    "src/cameras/perspective.js~PerspectiveCamera#up",
+    "member"
+  ],
+  [
+    "src/cameras/perspective.js~perspectivecamera#updatecameramatrix",
+    "class/src/cameras/perspective.js~PerspectiveCamera.html#instance-method-updateCameraMatrix",
+    "src/cameras/perspective.js~PerspectiveCamera#updateCameraMatrix",
+    "method"
+  ],
+  [
+    "src/constants.js",
+    "file/src/constants.js.html",
+    "src/constants.js",
+    "file"
+  ],
+  [
+    "src/core/material.js",
+    "file/src/core/material.js.html",
+    "src/core/material.js",
+    "file"
+  ],
+  [
+    "src/core/material.js~material#attributes",
+    "class/src/core/material.js~Material.html#instance-member-attributes",
+    "src/core/material.js~Material#attributes",
+    "member"
+  ],
+  [
+    "src/core/material.js~material#bind",
+    "class/src/core/material.js~Material.html#instance-method-bind",
+    "src/core/material.js~Material#bind",
+    "method"
+  ],
+  [
+    "src/core/material.js~material#constructor",
+    "class/src/core/material.js~Material.html#instance-constructor-constructor",
+    "src/core/material.js~Material#constructor",
+    "method"
+  ],
+  [
+    "src/core/material.js~material#defines",
+    "class/src/core/material.js~Material.html#instance-member-defines",
+    "src/core/material.js~Material#defines",
+    "member"
+  ],
+  [
+    "src/core/material.js~material#destroy",
+    "class/src/core/material.js~Material.html#instance-method-destroy",
+    "src/core/material.js~Material#destroy",
+    "method"
+  ],
+  [
+    "src/core/material.js~material#fragment",
+    "class/src/core/material.js~Material.html#instance-member-fragment",
+    "src/core/material.js~Material#fragment",
+    "member"
+  ],
+  [
+    "src/core/material.js~material#generatefragmentshader",
+    "class/src/core/material.js~Material.html#instance-method-generateFragmentShader",
+    "src/core/material.js~Material#generateFragmentShader",
+    "method"
+  ],
+  [
+    "src/core/material.js~material#generatevertexshader",
+    "class/src/core/material.js~Material.html#instance-method-generateVertexShader",
+    "src/core/material.js~Material#generateVertexShader",
+    "method"
+  ],
+  [
+    "src/core/material.js~material#indexbuffer",
+    "class/src/core/material.js~Material.html#instance-member-indexBuffer",
+    "src/core/material.js~Material#indexBuffer",
+    "member"
+  ],
+  [
+    "src/core/material.js~material#init",
+    "class/src/core/material.js~Material.html#instance-method-init",
+    "src/core/material.js~Material#init",
+    "method"
+  ],
+  [
+    "src/core/material.js~material#program",
+    "class/src/core/material.js~Material.html#instance-member-program",
+    "src/core/material.js~Material#program",
+    "member"
+  ],
+  [
+    "src/core/material.js~material#unbind",
+    "class/src/core/material.js~Material.html#instance-method-unbind",
+    "src/core/material.js~Material#unbind",
+    "method"
+  ],
+  [
+    "src/core/material.js~material#uniforms",
+    "class/src/core/material.js~Material.html#instance-member-uniforms",
+    "src/core/material.js~Material#uniforms",
+    "member"
+  ],
+  [
+    "src/core/material.js~material#update",
+    "class/src/core/material.js~Material.html#instance-method-update",
+    "src/core/material.js~Material#update",
+    "method"
+  ],
+  [
+    "src/core/material.js~material#vao",
+    "class/src/core/material.js~Material.html#instance-member-vao",
+    "src/core/material.js~Material#vao",
+    "member"
+  ],
+  [
+    "src/core/material.js~material#vertex",
+    "class/src/core/material.js~Material.html#instance-member-vertex",
+    "src/core/material.js~Material#vertex",
+    "member"
+  ],
+  [
     "src/core/model.js",
     "file/src/core/model.js.html",
     "src/core/model.js",
@@ -432,10 +690,22 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/core/model.js~model#update",
+    "class/src/core/model.js~Model.html#instance-method-update",
+    "src/core/model.js~Model#update",
+    "method"
+  ],
+  [
     "src/core/object3.js",
     "file/src/core/object3.js.html",
     "src/core/object3.js",
     "file"
+  ],
+  [
+    "src/core/object3.js~object3#children",
+    "class/src/core/object3.js~Object3.html#instance-member-children",
+    "src/core/object3.js~Object3#children",
+    "member"
   ],
   [
     "src/core/object3.js~object3#constructor",
@@ -444,9 +714,33 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/core/object3.js~object3#localmatrix",
+    "class/src/core/object3.js~Object3.html#instance-member-localMatrix",
+    "src/core/object3.js~Object3#localMatrix",
+    "member"
+  ],
+  [
+    "src/core/object3.js~object3#modelmatrix",
+    "class/src/core/object3.js~Object3.html#instance-member-modelMatrix",
+    "src/core/object3.js~Object3#modelMatrix",
+    "member"
+  ],
+  [
+    "src/core/object3.js~object3#parent",
+    "class/src/core/object3.js~Object3.html#instance-member-parent",
+    "src/core/object3.js~Object3#parent",
+    "member"
+  ],
+  [
     "src/core/object3.js~object3#position",
     "class/src/core/object3.js~Object3.html#instance-member-position",
     "src/core/object3.js~Object3#position",
+    "member"
+  ],
+  [
+    "src/core/object3.js~object3#quaternion",
+    "class/src/core/object3.js~Object3.html#instance-member-quaternion",
+    "src/core/object3.js~Object3#quaternion",
     "member"
   ],
   [
@@ -466,6 +760,12 @@ window.esdocSearchIndex = [
     "class/src/core/object3.js~Object3.html#instance-member-uid",
     "src/core/object3.js~Object3#uid",
     "member"
+  ],
+  [
+    "src/core/object3.js~object3#updatematrices",
+    "class/src/core/object3.js~Object3.html#instance-method-updateMatrices",
+    "src/core/object3.js~Object3#updateMatrices",
+    "method"
   ],
   [
     "src/core/scene.js",
@@ -492,15 +792,21 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/core/scene.js~scene#models",
-    "class/src/core/scene.js~Scene.html#instance-member-models",
-    "src/core/scene.js~Scene#models",
+    "src/core/scene.js~scene#modelviewmatrix",
+    "class/src/core/scene.js~Scene.html#instance-member-modelViewMatrix",
+    "src/core/scene.js~Scene#modelViewMatrix",
     "member"
   ],
   [
     "src/core/scene.js~scene#removemodel",
     "class/src/core/scene.js~Scene.html#instance-method-removeModel",
     "src/core/scene.js~Scene#removeModel",
+    "method"
+  ],
+  [
+    "src/core/scene.js~scene#traverse",
+    "class/src/core/scene.js~Scene.html#instance-method-traverse",
+    "src/core/scene.js~Scene#traverse",
     "method"
   ],
   [
@@ -523,13 +829,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/core/vector3.js~vector3#x",
-    "class/src/core/vector3.js~Vector3.html#instance-set-x",
+    "class/src/core/vector3.js~Vector3.html#instance-get-x",
     "src/core/vector3.js~Vector3#x",
     "member"
   ],
   [
     "src/core/vector3.js~vector3#x",
-    "class/src/core/vector3.js~Vector3.html#instance-get-x",
+    "class/src/core/vector3.js~Vector3.html#instance-set-x",
     "src/core/vector3.js~Vector3#x",
     "member"
   ],
@@ -594,16 +900,76 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/materials/basic.js",
+    "file/src/materials/basic.js.html",
+    "src/materials/basic.js",
+    "file"
+  ],
+  [
+    "src/materials/basic.js~basic#constructor",
+    "class/src/materials/basic.js~Basic.html#instance-constructor-constructor",
+    "src/materials/basic.js~Basic#constructor",
+    "method"
+  ],
+  [
+    "src/materials/basic.js~basic#type",
+    "class/src/materials/basic.js~Basic.html#instance-member-type",
+    "src/materials/basic.js~Basic#type",
+    "member"
+  ],
+  [
+    "src/materials/index.js",
+    "file/src/materials/index.js.html",
+    "src/materials/index.js",
+    "file"
+  ],
+  [
+    "src/renderer/helpers/program.js",
+    "file/src/renderer/helpers/program.js.html",
+    "src/renderer/helpers/program.js",
+    "file"
+  ],
+  [
+    "src/renderer/helpers/vao.js",
+    "file/src/renderer/helpers/vao.js.html",
+    "src/renderer/helpers/vao.js",
+    "file"
+  ],
+  [
+    "src/renderer/helpers/vao.js~vao#bind",
+    "class/src/renderer/helpers/vao.js~Vao.html#instance-method-bind",
+    "src/renderer/helpers/vao.js~Vao#bind",
+    "method"
+  ],
+  [
+    "src/renderer/helpers/vao.js~vao#constructor",
+    "class/src/renderer/helpers/vao.js~Vao.html#instance-constructor-constructor",
+    "src/renderer/helpers/vao.js~Vao#constructor",
+    "method"
+  ],
+  [
+    "src/renderer/helpers/vao.js~vao#destroy",
+    "class/src/renderer/helpers/vao.js~Vao.html#instance-method-destroy",
+    "src/renderer/helpers/vao.js~Vao#destroy",
+    "method"
+  ],
+  [
+    "src/renderer/helpers/vao.js~vao#unbind",
+    "class/src/renderer/helpers/vao.js~Vao.html#instance-method-unbind",
+    "src/renderer/helpers/vao.js~Vao#unbind",
+    "method"
+  ],
+  [
+    "src/renderer/helpers/vao.js~vao#vao",
+    "class/src/renderer/helpers/vao.js~Vao.html#instance-member-vao",
+    "src/renderer/helpers/vao.js~Vao#vao",
+    "member"
+  ],
+  [
     "src/renderer/index.js",
     "file/src/renderer/index.js.html",
     "src/renderer/index.js",
     "file"
-  ],
-  [
-    "src/renderer/index.js~renderer#clear",
-    "class/src/renderer/index.js~Renderer.html#instance-method-clear",
-    "src/renderer/index.js~Renderer#clear",
-    "method"
   ],
   [
     "src/renderer/index.js~renderer#constructor",
@@ -612,10 +978,10 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/renderer/index.js~renderer#height",
-    "class/src/renderer/index.js~Renderer.html#instance-member-height",
-    "src/renderer/index.js~Renderer#height",
-    "member"
+    "src/renderer/index.js~renderer#createcanvas",
+    "class/src/renderer/index.js~Renderer.html#instance-method-createCanvas",
+    "src/renderer/index.js~Renderer#createCanvas",
+    "method"
   ],
   [
     "src/renderer/index.js~renderer#ratio",
@@ -640,18 +1006,6 @@ window.esdocSearchIndex = [
     "class/src/renderer/index.js~Renderer.html#instance-method-setSize",
     "src/renderer/index.js~Renderer#setSize",
     "method"
-  ],
-  [
-    "src/renderer/index.js~renderer#width",
-    "class/src/renderer/index.js~Renderer.html#instance-member-width",
-    "src/renderer/index.js~Renderer#width",
-    "member"
-  ],
-  [
-    "src/renderer/utils.js",
-    "file/src/renderer/utils.js.html",
-    "src/renderer/utils.js",
-    "file"
   ],
   [
     "src/session.js",

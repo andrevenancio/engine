@@ -32,14 +32,24 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-env">env</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getContext">getContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setContext">setContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-BASIC_MATERIAL">BASIC_MATERIAL</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-env">env</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-library">library</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-version">version</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/model.js~Model.html">Model</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">cameras</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/cameras/orthographic.js~OrthographicCamera.html">OrthographicCamera</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/cameras/perspective.js~PerspectiveCamera.html">PerspectiveCamera</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/material.js~Material.html">Material</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/model.js~Model.html">Model</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/object3.js~Object3.html">Object3</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/scene.js~Scene.html">Scene</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/vector3.js~Vector3.html">Vector3</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">loaders</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/loaders/obj.js~ObjLoader.html">ObjLoader</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">materials</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/materials/basic.js~Basic.html">Basic</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/index.js~Renderer.html">Renderer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer/helpers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/helpers/vao.js~Vao.html">Vao</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createProgram">createProgram</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-flatten">flatten</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateVertexNormals">generateVertexNormals</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-mergeVertices">mergeVertices</a></span></span></li>
@@ -50,24 +60,55 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/core/model.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Object3 from &apos;./object3&apos;;
+import { getContext } from &apos;../session&apos;;
 
 class Model extends Object3 {
 
-    constructor(props) {
+    constructor(geometry, material) {
         super();
 
         this.geometry = {
-            positions: new Float32Array(props.positions),
-            indices: new Uint16Array(props.indices),
-            normals: new Float32Array(props.normals),
-            uvs: new Float32Array(props.uvs),
+            positions: new Float32Array(geometry.positions),
+            indices: new Uint16Array(geometry.indices),
+            normals: new Float32Array(geometry.normals),
+            uvs: new Float32Array(geometry.uvs),
         };
+        this.material = material;
 
-        this.material = props.material;
+        // merge geometry to material attributes
+        Object.assign(this.material.attributes, {
+            a_position: {
+                type: &apos;vec3&apos;,
+                value: this.geometry.positions,
+            },
+            a_normal: {
+                type: &apos;vec3&apos;,
+                value: this.geometry.normals,
+            },
+            a_uv: {
+                type: &apos;vec2&apos;,
+                value: this.geometry.uvs,
+            },
+        });
+
+        // pass indices to material so we can bind buffers
+        Object.assign(this.material, { indices: this.geometry.indices });
     }
 
     destroy() {
         // destroys buffers
+        this.material.destroy();
+    }
+
+    update() {
+        const gl = getContext();
+
+        // everything is bind
+        // update material attributes or uniforms
+        this.material.update();
+
+        // draw
+        gl.drawElements(gl.TRIANGLES, this.geometry.indices.length, gl.UNSIGNED_SHORT, 0);
     }
 
 }

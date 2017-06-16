@@ -32,14 +32,24 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-env">env</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getContext">getContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setContext">setContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-BASIC_MATERIAL">BASIC_MATERIAL</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-env">env</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-library">library</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-version">version</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/model.js~Model.html">Model</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">cameras</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/cameras/orthographic.js~OrthographicCamera.html">OrthographicCamera</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/cameras/perspective.js~PerspectiveCamera.html">PerspectiveCamera</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/material.js~Material.html">Material</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/model.js~Model.html">Model</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/object3.js~Object3.html">Object3</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/scene.js~Scene.html">Scene</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/vector3.js~Vector3.html">Vector3</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">loaders</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/loaders/obj.js~ObjLoader.html">ObjLoader</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">materials</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/materials/basic.js~Basic.html">Basic</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/index.js~Renderer.html">Renderer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer/helpers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/helpers/vao.js~Vao.html">Vao</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createProgram">createProgram</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-flatten">flatten</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateVertexNormals">generateVertexNormals</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-mergeVertices">mergeVertices</a></span></span></li>
@@ -55,6 +65,22 @@
 <p>Run <code>npm start</code> for development.</p>
 <h2 id="production">Production</h2>
 <p>Run <code>npm run build</code> to generate the library and documentation.</p>
+<h2 id="implementation">Implementation</h2>
+<p>INIT TIME
+1) create all shaders and programs and look up locations
+2) create buffers and upload vertex data
+3) create a vertex array for each thing you want to draw.
+    3.1) for each attribute call gl.bindBuffer, gl.vertexAttribPointer, gl.enableVertexAttribArray
+    3.2) bind any indices to gl.ELEMENT_ARRAY_BUFFER
+4) create textures and upload texture data</p>
+<p>RENDER TIME
+1) clear and set the viewport and other global state.
+2) for each model you want to render
+    2.1) call gl.useProgram
+    2.2) bind the vertex array for that model
+    2.3) call gl.uniformXXX for each uniform
+    2.4) call gl.activeTexture and gl.bindTexture to assign textures to texture units
+    2.5) call gl.drawArrays or gl.drawElements</p>
 </div>
 </div>
 
