@@ -12,6 +12,22 @@ class Model extends Object3 {
             uvs: new Float32Array(geometry.uvs),
         };
         this.material = material;
+
+        // merge geometry to material attributes
+        Object.assign(this.material.attributes, {
+            a_position: {
+                type: 'vec3',
+                value: this.geometry.positions,
+            },
+            a_normal: {
+                type: 'vec3',
+                value: this.geometry.normals,
+            },
+            a_uv: {
+                type: 'vec2',
+                value: this.geometry.uvs,
+            },
+        });
     }
 
     destroy() {

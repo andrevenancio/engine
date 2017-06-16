@@ -33,14 +33,6 @@ class Material {
         }
         this.program = programs[key];
 
-        // const key = `shader-${material.type}`;
-        // if (programs[key] === undefined) {
-        //     const gl = getContext();
-        //     programs[key] = createProgram(gl, material.vertex, material.fragment);
-        // }
-        // return programs[key];
-        // this.program = program;
-
         // 2) bind attributes, uniforms
 
         // for (let prop in this.attributes) {
