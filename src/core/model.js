@@ -1,4 +1,5 @@
 import Object3 from './object3';
+import { getContext } from '../session';
 
 class Model extends Object3 {
 
@@ -28,6 +29,9 @@ class Model extends Object3 {
                 value: this.geometry.uvs,
             },
         });
+
+        // pass indices to material so we can bind buffers
+        Object.assign(this.material, { indices: this.geometry.indices });
     }
 
     destroy() {
@@ -36,9 +40,14 @@ class Model extends Object3 {
     }
 
     update() {
+        const gl = getContext();
+
         // everything is bind
         // update material attributes or uniforms
         this.material.update();
+
+        // draw
+        gl.drawElements(gl.TRIANGLES, this.geometry.indices.length, gl.UNSIGNED_SHORT, 0);
     }
 
 }

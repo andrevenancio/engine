@@ -20,33 +20,64 @@ class Material {
 
     init() {
         console.log('first time rendered by Renderer');
-        // 1) create shaders dynamicly
+        const gl = getContext();
+
+        // 1) create shaders dynamically
         this.vertex = this.generateVertexShader();
         this.fragment = this.generateFragmentShader();
 
         // 2) create program
         const key = `shader-${this.type}`;
         if (programs[key] === undefined) {
-            const gl = getContext();
             const program = createProgram(gl, this.vertex, this.fragment);
             programs[key] = program;
         }
         this.program = programs[key];
 
-        // 2) bind attributes, uniforms
+        // 2) binds buffers
+        for (let prop in this.attributes) {
+            const current = this.attributes[prop];
 
-        // for (let prop in this.attributes) {
-        //     console.log(prop);
-        // }
+            const location = gl.getAttribLocation(this.program, prop);
 
-        // // 3) bind vao
-        // this.vao.bind();
-        //
-        // // 4) bind attributes
-        //
-        // // 5) unbind vao
-        // this.vao.unbind();
-        //
+            const buffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+            gl.bufferData(gl.ARRAY_BUFFER, current.value, gl.STATIC_DRAW);
+            // unbind?
+
+            let size;
+            switch (current.type) {
+                case 'vec3':
+                    size = 3;
+                    break;
+                case 'vec2':
+                    size = 3;
+                    break;
+                default:
+                    size = 1;
+            }
+
+            Object.assign(current, {
+                location,
+                buffer,
+                size,
+                // value?
+            });
+        }
+
+        if (this.indices) {
+            this.indexBuffer = gl.createBuffer();
+        }
+
+        // 3) bind vao
+        this.vao.bind();
+
+        // 4) bind attributes
+        this.bind();
+
+        // 5) unbind vao
+        this.vao.unbind();
+        // unbind attributes?
     }
 
     destroy() {
@@ -77,15 +108,30 @@ class Material {
     }
 
     bind() {
-        // binds
+        const gl = getContext();
+        Object.keys(this.attributes).forEach(key => {
+            const { location, buffer, size } = this.attributes[key];
+            if (location !== -1) {
+                gl.enableVertexAttribArray(location);
+                gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+                gl.vertexAttribPointer(location, size, gl.FLOAT, false, 0, 0);
+                gl.bindBuffer(gl.ARRAY_BUFFER, null);
+            }
+        });
+
+        if (this.indices) {
+            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
+            gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.indices, gl.STATIC_DRAW);
+        }
     }
 
     update() {
-        // update uniforms
+        // update uniforms / buffers
     }
 
     unbind() {
-        // unbind
+        const gl = getContext();
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
     }
 
 }
