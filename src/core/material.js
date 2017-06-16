@@ -19,7 +19,6 @@ class Material {
     }
 
     init() {
-        console.log('first time rendered by Renderer');
         const gl = getContext();
 
         // 1) create shaders dynamically
