@@ -6,6 +6,7 @@ import Scene from './core/scene';
 import Model from './core/model';
 import * as materials from './materials';
 
+import * as controls from './controls';
 import * as utils from './utils';
 import * as loaders from './loaders';
 import * as constants from './constants';
@@ -20,6 +21,7 @@ export {
     Model,
     materials,
 
+    controls,
     utils,
     loaders,
 };

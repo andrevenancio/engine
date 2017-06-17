@@ -8,6 +8,7 @@ class Scene extends Object3 {
         this.lights = [];
 
         this.modelViewMatrix = mat4.create();
+        this.inversedViewMatrix = mat4.create();
     }
 
     addModel(model) {

@@ -3,14 +3,21 @@ import Object3 from '../core/object3';
 
 class PerspectiveCamera extends Object3 {
 
-    constructor(options) {
+    constructor(options = {}) {
         super();
 
         Object.assign(this, {
             near: 0.1,
             far: 1000,
             fov: 35,
-        }, options);
+        });
+
+        Object.assign(this.position, {
+            x: 0,
+            y: 100,
+            z: 500,
+            ...options.position,
+        });
 
         this.target = vec3.create();
         this.up = vec3.fromValues(0, 1, 0);

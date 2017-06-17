@@ -9,12 +9,12 @@ class Model extends Object3 {
         this.geometry = {
             positions: new Float32Array(geometry.positions),
             indices: new Uint16Array(geometry.indices),
-            normals: new Float32Array(geometry.normals),
-            uvs: new Float32Array(geometry.uvs),
+            normals: new Float32Array(geometry.normals || []),
+            uvs: new Float32Array(geometry.uvs || [1, 1]),
         };
         this.material = material;
 
-        // merge geometry to material attributes
+        // assign attributes
         Object.assign(this.material.attributes, {
             a_position: {
                 type: 'vec3',
@@ -27,6 +27,18 @@ class Model extends Object3 {
             a_uv: {
                 type: 'vec2',
                 value: this.geometry.uvs,
+            },
+        });
+
+        // assign uniforms
+        Object.assign(this.material.uniforms, {
+            modelMatrix: {
+                type: 'mat4',
+                value: this.modelMatrix,
+            },
+            normalMatrix: {
+                type: 'mat3',
+                value: this.normalMatrix,
             },
         });
 

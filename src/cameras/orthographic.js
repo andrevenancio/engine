@@ -3,14 +3,20 @@ import Object3 from '../core/object3';
 
 class OrthographicCamera extends Object3 {
 
-    constructor(options) {
+    constructor(options = {}) {
         super();
 
         Object.assign(this, {
             near: 0.1,
             far: 100,
+        });
+
+        Object.assign(this.position, {
+            x: 0,
+            y: 0,
             z: 99,
-        }, options);
+            ...options.position,
+        });
 
         this.target = vec3.create();
         this.up = vec3.fromValues(0, 1, 0);

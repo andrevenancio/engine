@@ -18,31 +18,29 @@ class Material {
         this.program = null;
     }
 
-    init() {
-        const gl = getContext();
-
-        // 1) create shaders dynamically
+    generateShaders() {
         this.vertex = this.generateVertexShader();
         this.fragment = this.generateFragmentShader();
+    }
 
-        // 2) create program
+    createProgram() {
+        const gl = getContext();
         const key = `shader-${this.type}`;
         if (programs[key] === undefined) {
             const program = createProgram(gl, this.vertex, this.fragment);
             programs[key] = program;
         }
         this.program = programs[key];
+    }
 
-        // 2) binds buffers
+    initAttributes() {
+        const gl = getContext();
         for (let prop in this.attributes) {
             const current = this.attributes[prop];
-
             const location = gl.getAttribLocation(this.program, prop);
-
             const buffer = gl.createBuffer();
             gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
             gl.bufferData(gl.ARRAY_BUFFER, current.value, gl.STATIC_DRAW);
-            // unbind?
 
             let size;
             switch (current.type) {
@@ -60,13 +58,43 @@ class Material {
                 location,
                 buffer,
                 size,
-                // value?
             });
         }
 
         if (this.indices) {
             this.indexBuffer = gl.createBuffer();
         }
+    }
+
+    initUniforms() {
+        const gl = getContext();
+        for (let prop in this.uniforms) {
+            const current = this.uniforms[prop];
+            const location = gl.getUniformLocation(this.program, prop);
+            Object.assign(current, {
+                location,
+            });
+        }
+
+        // TODO: maybe implement this on previous loop?
+        const textureIndices = [gl.TEXTURE0, gl.TEXTURE1, gl.TEXTURE2, gl.TEXTURE3, gl.TEXTURE4, gl.TEXTURE5];
+        Object.keys(this.uniforms).forEach((key, i) => {
+            switch (this.uniforms[key].type) {
+                case 'sampler2D': {
+                    this.uniforms[key].textureIndex = i;
+                    this.uniforms[key].activeTexture = textureIndices[i];
+                    break;
+                }
+            }
+        });
+    }
+
+    init() {
+        this.generateShaders();
+        this.createProgram();
+
+        this.initAttributes();
+        this.initUniforms();
 
         // 3) bind vao
         this.vao.bind();
@@ -76,7 +104,7 @@ class Material {
 
         // 5) unbind vao
         this.vao.unbind();
-        // unbind attributes?
+        this.unbind();
     }
 
     destroy() {
@@ -85,23 +113,42 @@ class Material {
 
     generateVertexShader() {
         return `#version 300 es
+            uniform projection {
+                mat4 projectionMatrix;
+                mat4 viewMatrix;
+            } u_pv;
+
+            uniform mat4 modelMatrix;
+
             in vec3 a_position;
+            in vec3 a_normal;
+
+            out vec3 v_normal;
 
             void main() {
-                gl_Position = vec4(a_position, 1.0);
+                mat4 projection = u_pv.projectionMatrix * u_pv.viewMatrix;
+                gl_Position = projection * modelMatrix * vec4(a_position, 1.0);
+
+                v_normal = normalize(mat3(u_pv.viewMatrix * modelMatrix) * a_normal);
             }
         `;
     }
 
     generateFragmentShader() {
         return `#version 300 es
-            precision highp float;
-            precision highp int;
+            precision mediump float;
+            precision mediump int;
+
+            in vec3 v_normal;
 
             out vec4 outColor;
 
             void main() {
-                outColor = vec4(1.0, 0.0, 1.0, 1.0);
+                vec4 c = vec4(1.0, 1.0, 1.0, 1.0);
+                vec3 light = vec3(dot(normalize(v_normal), vec3(0.0, 0.0, 1.0))); // position
+                // light /= vec3(1.0, 1.0, 1.0); // color
+                c *= vec4(light, 1.0);
+                outColor = c; // vec4(v_normal, 1.0);
             }
         `;
     }
@@ -124,13 +171,45 @@ class Material {
         }
     }
 
-    update() {
-        // update uniforms / buffers
-    }
-
     unbind() {
         const gl = getContext();
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
+    }
+
+    update() {
+        // update uniforms / buffers
+        const gl = getContext();
+
+        Object.keys(this.uniforms).forEach((key) => {
+            const uniform = this.uniforms[key];
+            switch(uniform.type) {
+                case 'mat4':
+                    gl.uniformMatrix4fv(uniform.location, false, uniform.value);
+                    break;
+                case 'mat3':
+                    gl.uniformMatrix3fv(uniform.location, false, uniform.value);
+                    break;
+                case 'vec4':
+                    gl.uniform4fv(uniform.location, uniform.value);
+                    break;
+                case 'vec3':
+                    gl.uniform3fv(uniform.location, uniform.value);
+                    break;
+                case 'vec2':
+                    gl.uniform2fv(uniform.location, uniform.value);
+                    break;
+                case 'float':
+                    gl.uniform1f(uniform.location, uniform.value);
+                    break;
+                case 'sampler2D':
+                    gl.uniform1i(uniform.location, uniform.textureIndex);
+                    gl.activeTexture(uniform.activeTexture);
+                    gl.bindTexture(gl.TEXTURE_2D, uniform.value);
+                    break;
+                default:
+                    console.warn('unknown', uniform.type);
+            }
+        });
     }
 
 }

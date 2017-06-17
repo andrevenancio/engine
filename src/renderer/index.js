@@ -1,10 +1,14 @@
 import { mat4 } from 'gl-matrix';
 import { library, version, getContext, setContext } from '../session';
+import * as UniformBuffers from './helpers/uniform-buffers';
 
 let supported = false;
 let child;
 
 let lastProgram;
+
+// let normalMatrix = mat3.create();
+// let inversedModelViewMatrix = mat4.create();
 
 class Renderer {
 
@@ -14,7 +18,7 @@ class Renderer {
         const canvas = props.canvas || this.createCanvas();
 
         const gl = canvas.getContext('webgl2', {
-            antialias: props.antialias || false,
+            antialias: false,
         });
 
         if (gl) {
@@ -31,6 +35,9 @@ class Renderer {
             }
 
             setContext(gl);
+
+            UniformBuffers.setup();
+
             supported = true;
         } else {
             alert('webgl2 not supported');
@@ -78,16 +85,30 @@ class Renderer {
             gl.enable(gl.DEPTH_TEST);
 
             camera.updateCameraMatrix(gl.canvas.width, gl.canvas.height);
+
+            // modelViewMatrix
             mat4.identity(scene.modelViewMatrix);
             mat4.lookAt(scene.modelViewMatrix, camera.position.data, camera.target, camera.up);
 
+            // Create normal normalMatrix
+            // Removes scale and translation
+            // mat3.identity(normalMatrix);
+            // mat3.fromMat4(normalMatrix, inversedModelViewMatrix);
+            // mat3.transpose(normalMatrix, normalMatrix);
+            // gl.uniformMatrix3fv(this.uniforms.uNormalMatrix.location, false, normalMatrix);
             scene.traverse();
+
+            UniformBuffers.updateProjectionView(
+                camera.projectionMatrix,
+                scene.modelViewMatrix,
+            );
 
             // TODO: sort by program?
             // TODO: sort opaque and transparent objects
 
             // render transparent objects (sorted by z);
             // TODO
+
             // render opaque objects
             // TODO
 

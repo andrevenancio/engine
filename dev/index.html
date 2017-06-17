@@ -17,6 +17,7 @@
         <script>
             var renderer, scene, camera;
             var model;
+            var controls;
 
             setup();
 
@@ -28,22 +29,13 @@
 
                 scene = new engine.Scene();
 
+                controls = new engine.controls.Orbit(camera, renderer);
+
                 engine.loaders.Obj.load('/dev/cube.obj', init);
             }
 
             function init(data) {
-                let geometry = engine.utils.geometry.mergeVertices(data);
-                // temporary
-                geometry = {
-                    positions: new Float32Array([
-                        -0.5, 0.5, 0,
-                        -0.5, -0.5, 0,
-                        0.5, 0.5, 0,
-                        0.5, -0.5, 0,
-                    ]),
-                    indices: new Uint16Array([0, 1, 2, 2, 1, 3]),
-                }
-
+                const geometry = engine.utils.geometry.mergeVertices(data);
                 const material = new engine.materials.Basic();
                 model = new engine.Model(geometry, material);
                 scene.addModel(model);
@@ -55,7 +47,7 @@
                 requestAnimationFrame(update);
                 renderer.render(scene, camera);
 
-                model.position.x = Math.cos(Date.now() / 500);
+                controls.update();
             }
 
         </script>
