@@ -1,6 +1,6 @@
 {
   "coverage": "0%",
-  "expectCount": 96,
+  "expectCount": 101,
   "actualCount": 0,
   "files": {
     "src/constants.js": {
@@ -20,24 +20,28 @@
       ]
     },
     "src/core/material.js": {
-      "expectCount": 17,
+      "expectCount": 21,
       "actualCount": 0,
       "undocumentLines": [
         7,
         11,
-        109,
+        156,
         9,
+        26,
         10,
-        82,
+        110,
         15,
-        96,
-        86,
-        68,
+        137,
         21,
+        114,
+        65,
+        92,
+        36,
+        69,
         18,
-        131,
+        174,
         12,
-        127,
+        179,
         17,
         14
       ]
@@ -48,10 +52,10 @@
       "undocumentLines": [
         4,
         6,
-        37,
+        49,
         9,
         15,
-        42
+        54
       ]
     },
     "src/loaders/obj.js": {
@@ -65,73 +69,62 @@
       ]
     },
     "src/core/object3.js": {
-      "expectCount": 12,
+      "expectCount": 15,
       "actualCount": 0,
       "undocumentLines": [
         8,
         19,
         10,
+        26,
+        25,
         21,
         22,
+        24,
         18,
         13,
         16,
         14,
         15,
         11,
-        25
-      ]
-    },
-    "src/cameras/orthographic.js": {
-      "expectCount": 7,
-      "actualCount": 0,
-      "undocumentLines": [
-        4,
-        6,
-        20,
-        17,
-        15,
-        16,
-        24
-      ]
-    },
-    "src/cameras/perspective.js": {
-      "expectCount": 7,
-      "actualCount": 0,
-      "undocumentLines": [
-        4,
-        6,
-        20,
-        17,
-        15,
-        16,
-        24
+        29
       ]
     },
     "src/renderer/index.js": {
       "expectCount": 7,
       "actualCount": 0,
       "undocumentLines": [
-        9,
-        11,
-        40,
-        12,
-        66,
-        62,
-        51
+        13,
+        15,
+        47,
+        16,
+        73,
+        69,
+        58
       ]
     },
     "src/core/scene.js": {
-      "expectCount": 7,
+      "expectCount": 8,
       "actualCount": 0,
       "undocumentLines": [
         4,
-        13,
+        14,
         6,
+        11,
         8,
         10,
-        18,
-        26
+        19,
+        27
+      ]
+    },
+    "src/renderer/helpers/uniform-buffer.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        9,
+        5,
+        8,
+        16
       ]
     },
     "src/renderer/helpers/vao.js": {
@@ -155,10 +148,19 @@
         6,
         9,
         13,
-        17,
         21,
+        17,
         29,
         25
+      ]
+    },
+    "src/utils/math.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        5,
+        9
       ]
     },
     "src/renderer/helpers/program.js": {
@@ -187,6 +189,15 @@
         29,
         85,
         17
+      ]
+    },
+    "src/renderer/helpers/uniform-buffers.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        9,
+        5,
+        19
       ]
     }
   }

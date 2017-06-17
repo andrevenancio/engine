@@ -38,8 +38,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-env">env</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-library">library</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-version">version</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">cameras</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/cameras/orthographic.js~OrthographicCamera.html">OrthographicCamera</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/cameras/perspective.js~PerspectiveCamera.html">PerspectiveCamera</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/material.js~Material.html">Material</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/model.js~Model.html">Model</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/object3.js~Object3.html">Object3</a></span></span></li>
@@ -48,12 +46,19 @@
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">loaders</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/loaders/obj.js~ObjLoader.html">ObjLoader</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">materials</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/materials/basic.js~Basic.html">Basic</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/index.js~Renderer.html">Renderer</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer/helpers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/helpers/vao.js~Vao.html">Vao</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer/helpers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/helpers/uniform-buffer.js~UniformBuffer.html">UniformBuffer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/helpers/vao.js~Vao.html">Vao</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createProgram">createProgram</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setup">setup</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateProjectionView">updateProjectionView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-uniformBuffers">uniformBuffers</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-flatten">flatten</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateVertexNormals">generateVertexNormals</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-mergeVertices">mergeVertices</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unflatten">unflatten</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clamp">clamp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isPowerOf2">isPowerOf2</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-randomRange">randomRange</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -61,11 +66,15 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/renderer/index.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { mat4 } from &apos;gl-matrix&apos;;
 import { library, version, getContext, setContext } from &apos;../session&apos;;
+import * as UniformBuffers from &apos;./helpers/uniform-buffers&apos;;
 
 let supported = false;
 let child;
 
 let lastProgram;
+
+// let normalMatrix = mat3.create();
+// let inversedModelViewMatrix = mat4.create();
 
 class Renderer {
 
@@ -75,7 +84,7 @@ class Renderer {
         const canvas = props.canvas || this.createCanvas();
 
         const gl = canvas.getContext(&apos;webgl2&apos;, {
-            antialias: props.antialias || false,
+            antialias: false,
         });
 
         if (gl) {
@@ -92,6 +101,9 @@ class Renderer {
             }
 
             setContext(gl);
+
+            UniformBuffers.setup();
+
             supported = true;
         } else {
             alert(&apos;webgl2 not supported&apos;);
@@ -139,16 +151,30 @@ class Renderer {
             gl.enable(gl.DEPTH_TEST);
 
             camera.updateCameraMatrix(gl.canvas.width, gl.canvas.height);
+
+            // modelViewMatrix
             mat4.identity(scene.modelViewMatrix);
             mat4.lookAt(scene.modelViewMatrix, camera.position.data, camera.target, camera.up);
 
+            // Create normal normalMatrix
+            // Removes scale and translation
+            // mat3.identity(normalMatrix);
+            // mat3.fromMat4(normalMatrix, inversedModelViewMatrix);
+            // mat3.transpose(normalMatrix, normalMatrix);
+            // gl.uniformMatrix3fv(this.uniforms.uNormalMatrix.location, false, normalMatrix);
             scene.traverse();
+
+            UniformBuffers.updateProjectionView(
+                camera.projectionMatrix,
+                scene.modelViewMatrix,
+            );
 
             // TODO: sort by program?
             // TODO: sort opaque and transparent objects
 
             // render transparent objects (sorted by z);
             // TODO
+
             // render opaque objects
             // TODO
 

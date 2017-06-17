@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/index.js | API Document</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/renderer/helpers/uniform-buffer.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -63,34 +63,29 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as session from &apos;./session&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">src/renderer/helpers/uniform-buffer.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { getContext } from &apos;../../session&apos;;
 
-import Renderer from &apos;./renderer&apos;;
-import * as cameras from &apos;./cameras&apos;;
-import Scene from &apos;./core/scene&apos;;
-import Model from &apos;./core/model&apos;;
-import * as materials from &apos;./materials&apos;;
+class UniformBuffer {
 
-import * as controls from &apos;./controls&apos;;
-import * as utils from &apos;./utils&apos;;
-import * as loaders from &apos;./loaders&apos;;
-import * as constants from &apos;./constants&apos;;
+    constructor(data) {
+        const gl = getContext();
 
-export {
-    session,
-    constants,
+        this.data = data;
+        this.buffer = gl.createBuffer();
 
-    Renderer,
-    cameras,
-    Scene,
-    Model,
-    materials,
+        gl.bindBuffer(gl.UNIFORM_BUFFER, this.buffer);
+        gl.bufferData(gl.UNIFORM_BUFFER, new Float32Array(this.data), gl.DYNAMIC_DRAW);
+        gl.bindBuffer(gl.UNIFORM_BUFFER, null);
+    }
 
-    controls,
-    utils,
-    loaders,
-};
+    setValues(values, offset = 0) {
+        this.data.set(values, offset);
+    }
+
+}
+
+export default UniformBuffer;
 </code></pre>
 
 </div>

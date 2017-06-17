@@ -36,18 +36,6 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "engine/src/cameras/orthographic.js~orthographiccamera",
-    "class/src/cameras/orthographic.js~OrthographicCamera.html",
-    "<span>OrthographicCamera</span> <span class=\"search-result-import-path\">engine/src/cameras/orthographic.js</span>",
-    "class"
-  ],
-  [
-    "engine/src/cameras/perspective.js~perspectivecamera",
-    "class/src/cameras/perspective.js~PerspectiveCamera.html",
-    "<span>PerspectiveCamera</span> <span class=\"search-result-import-path\">engine/src/cameras/perspective.js</span>",
-    "class"
-  ],
-  [
     "engine/src/renderer/index.js~renderer",
     "class/src/renderer/index.js~Renderer.html",
     "<span>Renderer</span> <span class=\"search-result-import-path\">engine/src/renderer/index.js</span>",
@@ -57,6 +45,12 @@ window.esdocSearchIndex = [
     "engine/src/core/scene.js~scene",
     "class/src/core/scene.js~Scene.html",
     "<span>Scene</span> <span class=\"search-result-import-path\">engine/src/core/scene.js</span>",
+    "class"
+  ],
+  [
+    "engine/src/renderer/helpers/uniform-buffer.js~uniformbuffer",
+    "class/src/renderer/helpers/uniform-buffer.js~UniformBuffer.html",
+    "<span>UniformBuffer</span> <span class=\"search-result-import-path\">engine/src/renderer/helpers/uniform-buffer.js</span>",
     "class"
   ],
   [
@@ -70,6 +64,12 @@ window.esdocSearchIndex = [
     "class/src/core/vector3.js~Vector3.html",
     "<span>Vector3</span> <span class=\"search-result-import-path\">engine/src/core/vector3.js</span>",
     "class"
+  ],
+  [
+    "engine/src/utils/math.js~clamp",
+    "function/index.html#static-function-clamp",
+    "<span>clamp</span> <span class=\"search-result-import-path\">engine/src/utils/math.js</span>",
+    "function"
   ],
   [
     "engine/src/renderer/helpers/program.js~createprogram",
@@ -102,6 +102,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "engine/src/utils/math.js~ispowerof2",
+    "function/index.html#static-function-isPowerOf2",
+    "<span>isPowerOf2</span> <span class=\"search-result-import-path\">engine/src/utils/math.js</span>",
+    "function"
+  ],
+  [
     "engine/src/session.js~library",
     "variable/index.html#static-variable-library",
     "<span>library</span> <span class=\"search-result-import-path\">engine/src/session.js</span>",
@@ -114,15 +120,39 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "engine/src/utils/math.js~randomrange",
+    "function/index.html#static-function-randomRange",
+    "<span>randomRange</span> <span class=\"search-result-import-path\">engine/src/utils/math.js</span>",
+    "function"
+  ],
+  [
     "engine/src/session.js~setcontext",
     "function/index.html#static-function-setContext",
     "<span>setContext</span> <span class=\"search-result-import-path\">engine/src/session.js</span>",
     "function"
   ],
   [
+    "engine/src/renderer/helpers/uniform-buffers.js~setup",
+    "function/index.html#static-function-setup",
+    "<span>setup</span> <span class=\"search-result-import-path\">engine/src/renderer/helpers/uniform-buffers.js</span>",
+    "function"
+  ],
+  [
     "engine/src/utils/geometry.js~unflatten",
     "function/index.html#static-function-unflatten",
     "<span>unflatten</span> <span class=\"search-result-import-path\">engine/src/utils/geometry.js</span>",
+    "function"
+  ],
+  [
+    "engine/src/renderer/helpers/uniform-buffers.js~uniformbuffers",
+    "variable/index.html#static-variable-uniformBuffers",
+    "<span>uniformBuffers</span> <span class=\"search-result-import-path\">engine/src/renderer/helpers/uniform-buffers.js</span>",
+    "variable"
+  ],
+  [
+    "engine/src/renderer/helpers/uniform-buffers.js~updateprojectionview",
+    "function/index.html#static-function-updateProjectionView",
+    "<span>updateProjectionView</span> <span class=\"search-result-import-path\">engine/src/renderer/helpers/uniform-buffers.js</span>",
     "function"
   ],
   [
@@ -468,93 +498,15 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/cameras/orthographic.js",
-    "file/src/cameras/orthographic.js.html",
-    "src/cameras/orthographic.js",
-    "file"
-  ],
-  [
-    "src/cameras/orthographic.js~orthographiccamera#constructor",
-    "class/src/cameras/orthographic.js~OrthographicCamera.html#instance-constructor-constructor",
-    "src/cameras/orthographic.js~OrthographicCamera#constructor",
-    "method"
-  ],
-  [
-    "src/cameras/orthographic.js~orthographiccamera#lookat",
-    "class/src/cameras/orthographic.js~OrthographicCamera.html#instance-method-lookAt",
-    "src/cameras/orthographic.js~OrthographicCamera#lookAt",
-    "method"
-  ],
-  [
-    "src/cameras/orthographic.js~orthographiccamera#projectionmatrix",
-    "class/src/cameras/orthographic.js~OrthographicCamera.html#instance-member-projectionMatrix",
-    "src/cameras/orthographic.js~OrthographicCamera#projectionMatrix",
-    "member"
-  ],
-  [
-    "src/cameras/orthographic.js~orthographiccamera#target",
-    "class/src/cameras/orthographic.js~OrthographicCamera.html#instance-member-target",
-    "src/cameras/orthographic.js~OrthographicCamera#target",
-    "member"
-  ],
-  [
-    "src/cameras/orthographic.js~orthographiccamera#up",
-    "class/src/cameras/orthographic.js~OrthographicCamera.html#instance-member-up",
-    "src/cameras/orthographic.js~OrthographicCamera#up",
-    "member"
-  ],
-  [
-    "src/cameras/orthographic.js~orthographiccamera#updatecameramatrix",
-    "class/src/cameras/orthographic.js~OrthographicCamera.html#instance-method-updateCameraMatrix",
-    "src/cameras/orthographic.js~OrthographicCamera#updateCameraMatrix",
-    "method"
-  ],
-  [
-    "src/cameras/perspective.js",
-    "file/src/cameras/perspective.js.html",
-    "src/cameras/perspective.js",
-    "file"
-  ],
-  [
-    "src/cameras/perspective.js~perspectivecamera#constructor",
-    "class/src/cameras/perspective.js~PerspectiveCamera.html#instance-constructor-constructor",
-    "src/cameras/perspective.js~PerspectiveCamera#constructor",
-    "method"
-  ],
-  [
-    "src/cameras/perspective.js~perspectivecamera#lookat",
-    "class/src/cameras/perspective.js~PerspectiveCamera.html#instance-method-lookAt",
-    "src/cameras/perspective.js~PerspectiveCamera#lookAt",
-    "method"
-  ],
-  [
-    "src/cameras/perspective.js~perspectivecamera#projectionmatrix",
-    "class/src/cameras/perspective.js~PerspectiveCamera.html#instance-member-projectionMatrix",
-    "src/cameras/perspective.js~PerspectiveCamera#projectionMatrix",
-    "member"
-  ],
-  [
-    "src/cameras/perspective.js~perspectivecamera#target",
-    "class/src/cameras/perspective.js~PerspectiveCamera.html#instance-member-target",
-    "src/cameras/perspective.js~PerspectiveCamera#target",
-    "member"
-  ],
-  [
-    "src/cameras/perspective.js~perspectivecamera#up",
-    "class/src/cameras/perspective.js~PerspectiveCamera.html#instance-member-up",
-    "src/cameras/perspective.js~PerspectiveCamera#up",
-    "member"
-  ],
-  [
-    "src/cameras/perspective.js~perspectivecamera#updatecameramatrix",
-    "class/src/cameras/perspective.js~PerspectiveCamera.html#instance-method-updateCameraMatrix",
-    "src/cameras/perspective.js~PerspectiveCamera#updateCameraMatrix",
-    "method"
-  ],
-  [
     "src/constants.js",
     "file/src/constants.js.html",
     "src/constants.js",
+    "file"
+  ],
+  [
+    "src/controls/index.js",
+    "file/src/controls/index.js.html",
+    "src/controls/index.js",
     "file"
   ],
   [
@@ -582,6 +534,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/core/material.js~material#createprogram",
+    "class/src/core/material.js~Material.html#instance-method-createProgram",
+    "src/core/material.js~Material#createProgram",
+    "method"
+  ],
+  [
     "src/core/material.js~material#defines",
     "class/src/core/material.js~Material.html#instance-member-defines",
     "src/core/material.js~Material#defines",
@@ -606,6 +564,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/core/material.js~material#generateshaders",
+    "class/src/core/material.js~Material.html#instance-method-generateShaders",
+    "src/core/material.js~Material#generateShaders",
+    "method"
+  ],
+  [
     "src/core/material.js~material#generatevertexshader",
     "class/src/core/material.js~Material.html#instance-method-generateVertexShader",
     "src/core/material.js~Material#generateVertexShader",
@@ -621,6 +585,18 @@ window.esdocSearchIndex = [
     "src/core/material.js~material#init",
     "class/src/core/material.js~Material.html#instance-method-init",
     "src/core/material.js~Material#init",
+    "method"
+  ],
+  [
+    "src/core/material.js~material#initattributes",
+    "class/src/core/material.js~Material.html#instance-method-initAttributes",
+    "src/core/material.js~Material#initAttributes",
+    "method"
+  ],
+  [
+    "src/core/material.js~material#inituniforms",
+    "class/src/core/material.js~Material.html#instance-method-initUniforms",
+    "src/core/material.js~Material#initUniforms",
     "method"
   ],
   [
@@ -714,6 +690,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/core/object3.js~object3#inversedmodelviewmatrix",
+    "class/src/core/object3.js~Object3.html#instance-member-inversedModelViewMatrix",
+    "src/core/object3.js~Object3#inversedModelViewMatrix",
+    "member"
+  ],
+  [
+    "src/core/object3.js~object3#inversedviewmatrix",
+    "class/src/core/object3.js~Object3.html#instance-member-inversedViewMatrix",
+    "src/core/object3.js~Object3#inversedViewMatrix",
+    "member"
+  ],
+  [
     "src/core/object3.js~object3#localmatrix",
     "class/src/core/object3.js~Object3.html#instance-member-localMatrix",
     "src/core/object3.js~Object3#localMatrix",
@@ -723,6 +711,12 @@ window.esdocSearchIndex = [
     "src/core/object3.js~object3#modelmatrix",
     "class/src/core/object3.js~Object3.html#instance-member-modelMatrix",
     "src/core/object3.js~Object3#modelMatrix",
+    "member"
+  ],
+  [
+    "src/core/object3.js~object3#normalmatrix",
+    "class/src/core/object3.js~Object3.html#instance-member-normalMatrix",
+    "src/core/object3.js~Object3#normalMatrix",
     "member"
   ],
   [
@@ -786,6 +780,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/core/scene.js~scene#inversedviewmatrix",
+    "class/src/core/scene.js~Scene.html#instance-member-inversedViewMatrix",
+    "src/core/scene.js~Scene#inversedViewMatrix",
+    "member"
+  ],
+  [
     "src/core/scene.js~scene#lights",
     "class/src/core/scene.js~Scene.html#instance-member-lights",
     "src/core/scene.js~Scene#lights",
@@ -829,13 +829,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/core/vector3.js~vector3#x",
-    "class/src/core/vector3.js~Vector3.html#instance-get-x",
+    "class/src/core/vector3.js~Vector3.html#instance-set-x",
     "src/core/vector3.js~Vector3#x",
     "member"
   ],
   [
     "src/core/vector3.js~vector3#x",
-    "class/src/core/vector3.js~Vector3.html#instance-set-x",
+    "class/src/core/vector3.js~Vector3.html#instance-get-x",
     "src/core/vector3.js~Vector3#x",
     "member"
   ],
@@ -927,6 +927,42 @@ window.esdocSearchIndex = [
     "src/renderer/helpers/program.js",
     "file/src/renderer/helpers/program.js.html",
     "src/renderer/helpers/program.js",
+    "file"
+  ],
+  [
+    "src/renderer/helpers/uniform-buffer.js",
+    "file/src/renderer/helpers/uniform-buffer.js.html",
+    "src/renderer/helpers/uniform-buffer.js",
+    "file"
+  ],
+  [
+    "src/renderer/helpers/uniform-buffer.js~uniformbuffer#buffer",
+    "class/src/renderer/helpers/uniform-buffer.js~UniformBuffer.html#instance-member-buffer",
+    "src/renderer/helpers/uniform-buffer.js~UniformBuffer#buffer",
+    "member"
+  ],
+  [
+    "src/renderer/helpers/uniform-buffer.js~uniformbuffer#constructor",
+    "class/src/renderer/helpers/uniform-buffer.js~UniformBuffer.html#instance-constructor-constructor",
+    "src/renderer/helpers/uniform-buffer.js~UniformBuffer#constructor",
+    "method"
+  ],
+  [
+    "src/renderer/helpers/uniform-buffer.js~uniformbuffer#data",
+    "class/src/renderer/helpers/uniform-buffer.js~UniformBuffer.html#instance-member-data",
+    "src/renderer/helpers/uniform-buffer.js~UniformBuffer#data",
+    "member"
+  ],
+  [
+    "src/renderer/helpers/uniform-buffer.js~uniformbuffer#setvalues",
+    "class/src/renderer/helpers/uniform-buffer.js~UniformBuffer.html#instance-method-setValues",
+    "src/renderer/helpers/uniform-buffer.js~UniformBuffer#setValues",
+    "method"
+  ],
+  [
+    "src/renderer/helpers/uniform-buffers.js",
+    "file/src/renderer/helpers/uniform-buffers.js.html",
+    "src/renderer/helpers/uniform-buffers.js",
     "file"
   ],
   [
@@ -1023,6 +1059,12 @@ window.esdocSearchIndex = [
     "src/utils/index.js",
     "file/src/utils/index.js.html",
     "src/utils/index.js",
+    "file"
+  ],
+  [
+    "src/utils/math.js",
+    "file/src/utils/math.js.html",
+    "src/utils/math.js",
     "file"
   ]
 ]

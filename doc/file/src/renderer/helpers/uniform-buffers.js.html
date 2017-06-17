@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/index.js | API Document</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/renderer/helpers/uniform-buffers.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -63,34 +63,43 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as session from &apos;./session&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">src/renderer/helpers/uniform-buffers.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { mat4 } from &apos;gl-matrix&apos;;
+import { getContext } from &apos;../../session&apos;;
+import UniformBuffer from &apos;./uniform-buffer&apos;;
 
-import Renderer from &apos;./renderer&apos;;
-import * as cameras from &apos;./cameras&apos;;
-import Scene from &apos;./core/scene&apos;;
-import Model from &apos;./core/model&apos;;
-import * as materials from &apos;./materials&apos;;
+const uniformBuffers = {};
 
-import * as controls from &apos;./controls&apos;;
-import * as utils from &apos;./utils&apos;;
-import * as loaders from &apos;./loaders&apos;;
-import * as constants from &apos;./constants&apos;;
+let projectionView;
 
-export {
-    session,
-    constants,
+export function setup() {
 
-    Renderer,
-    cameras,
-    Scene,
-    Model,
-    materials,
+    projectionView = new Float32Array([
+        ...mat4.create(),
+        ...mat4.create(),
+    ]);
 
-    controls,
-    utils,
-    loaders,
-};
+    uniformBuffers.projectionView = new UniformBuffer(projectionView);
+}
+
+export function updateProjectionView(projectionMatrix, modelViewMatrix) {
+    const gl = getContext();
+
+    gl.bindBufferBase(gl.UNIFORM_BUFFER, 0, uniformBuffers.projectionView.buffer);
+    gl.bindBuffer(gl.UNIFORM_BUFFER, uniformBuffers.projectionView.buffer);
+
+    projectionView = [
+        ...projectionMatrix,
+        ...modelViewMatrix,
+    ];
+
+    uniformBuffers.projectionView.setValues(projectionView, 0);
+
+    gl.bufferSubData(gl.UNIFORM_BUFFER, 0, uniformBuffers.projectionView.data);
+    gl.bindBuffer(gl.UNIFORM_BUFFER, null);
+}
+
+export default uniformBuffers;
 </code></pre>
 
 </div>
