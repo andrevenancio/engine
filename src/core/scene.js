@@ -1,4 +1,3 @@
-import { mat4 } from 'gl-matrix';
 import Object3 from './object3';
 
 class Scene extends Object3 {
@@ -6,9 +5,6 @@ class Scene extends Object3 {
     constructor() {
         super();
         this.lights = [];
-
-        this.modelViewMatrix = mat4.create();
-        this.inversedViewMatrix = mat4.create();
     }
 
     addModel(model) {

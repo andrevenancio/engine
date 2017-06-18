@@ -35,9 +35,10 @@
             }
 
             function init(data) {
-                const geometry = engine.utils.geometry.mergeVertices(data);
+                data = engine.utils.geometry.mergeVertices(data);
+
                 const material = new engine.materials.Basic();
-                model = new engine.Model(geometry, material);
+                model = new engine.Model(data, material);
                 scene.addModel(model);
 
                 update();
@@ -46,7 +47,8 @@
             function update() {
                 requestAnimationFrame(update);
                 renderer.render(scene, camera);
-
+                // model.rotation.y += 0.01;
+                // model.scale.x = 0.5 + 0.5 * Math.cos(Date.now() / 200) + 2;
                 controls.update();
             }
 

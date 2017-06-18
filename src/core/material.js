@@ -114,11 +114,11 @@ class Material {
     generateVertexShader() {
         return `#version 300 es
             uniform projection {
-                mat4 projectionMatrix;
-                mat4 viewMatrix;
-            } u_pv;
-
-            uniform mat4 modelMatrix;
+                mat4 projection;
+                mat4 view;
+                mat4 model;
+                mat4 normal;
+            } matrix;
 
             in vec3 a_position;
             in vec3 a_normal;
@@ -126,10 +126,9 @@ class Material {
             out vec3 v_normal;
 
             void main() {
-                mat4 projection = u_pv.projectionMatrix * u_pv.viewMatrix;
-                gl_Position = projection * modelMatrix * vec4(a_position, 1.0);
-
-                v_normal = normalize(mat3(u_pv.viewMatrix * modelMatrix) * a_normal);
+                mat4 mtx = matrix.projection * matrix.view * matrix.model;
+                gl_Position = mtx * vec4(a_position, 1.0);
+                v_normal = normalize(mat3(matrix.normal) * a_normal);
             }
         `;
     }
@@ -144,11 +143,11 @@ class Material {
             out vec4 outColor;
 
             void main() {
-                vec4 c = vec4(1.0, 1.0, 1.0, 1.0);
-                vec3 light = vec3(dot(normalize(v_normal), vec3(0.0, 0.0, 1.0))); // position
+                // vec4 c = vec4(1.0, 1.0, 1.0, 1.0);
+                // vec3 light = vec3(dot(normalize(v_normal), vec3(0.0, 0.0, 1.0))); // position
                 // light /= vec3(1.0, 1.0, 1.0); // color
-                c *= vec4(light, 1.0);
-                outColor = c; // vec4(v_normal, 1.0);
+                // c *= vec4(light, 1.0);
+                outColor = vec4(v_normal, 1.0);
             }
         `;
     }

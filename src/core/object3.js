@@ -1,4 +1,4 @@
-import { vec3, mat3, mat4, quat } from 'gl-matrix';
+import { vec3, mat4, quat } from 'gl-matrix';
 import Vector3 from './vector3';
 
 let uuid = 0;
@@ -18,22 +18,18 @@ class Object3 {
         this.parent = null;
         this.children = [];
 
-        this.localMatrix = mat4.create();
+        this.parentMatrix = mat4.create();
         this.modelMatrix = mat4.create();
-
-        this.normalMatrix = mat3.create();
-        this.inversedViewMatrix = mat4.create();
-        this.inversedModelViewMatrix = mat4.create();
     }
 
     updateMatrices() {
-        mat4.identity(this.localMatrix);
+        mat4.identity(this.parentMatrix);
         mat4.identity(this.modelMatrix);
         quat.identity(this.quaternion);
 
         if (this.parent) {
-            mat4.copy(this.localMatrix, this.parent.modelMatrix);
-            mat4.multiply(this.modelMatrix, this.modelMatrix, this.localMatrix);
+            mat4.copy(this.parentMatrix, this.parent.modelMatrix);
+            mat4.multiply(this.modelMatrix, this.modelMatrix, this.parentMatrix);
         }
 
         mat4.translate(this.modelMatrix, this.modelMatrix, this.position.data);

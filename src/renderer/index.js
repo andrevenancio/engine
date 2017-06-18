@@ -1,14 +1,15 @@
 import { mat4 } from 'gl-matrix';
 import { library, version, getContext, setContext } from '../session';
-import * as UniformBuffers from './helpers/uniform-buffers';
+import UniformBuffer from './helpers/uniform-buffer';
 
 let supported = false;
 let child;
 
 let lastProgram;
 
-// let normalMatrix = mat3.create();
-// let inversedModelViewMatrix = mat4.create();
+let modelViewMatrix = mat4.create();
+let invertedModelViewMatrix = mat4.create();
+let normalMatrix = mat4.create();
 
 class Renderer {
 
@@ -36,7 +37,12 @@ class Renderer {
 
             setContext(gl);
 
-            UniformBuffers.setup();
+            this.matrices = new UniformBuffer([
+                ...mat4.create(), // projection matrix
+                ...mat4.create(), // view matrix
+                ...mat4.create(), // model matrix
+                ...mat4.create(), // normal matrix
+            ]);
 
             supported = true;
         } else {
@@ -86,22 +92,19 @@ class Renderer {
 
             camera.updateCameraMatrix(gl.canvas.width, gl.canvas.height);
 
-            // modelViewMatrix
-            mat4.identity(scene.modelViewMatrix);
-            mat4.lookAt(scene.modelViewMatrix, camera.position.data, camera.target, camera.up);
+            // common matrices
+            mat4.identity(modelViewMatrix);
+            mat4.lookAt(modelViewMatrix, camera.position.data, camera.target, camera.up);
 
-            // Create normal normalMatrix
-            // Removes scale and translation
-            // mat3.identity(normalMatrix);
-            // mat3.fromMat4(normalMatrix, inversedModelViewMatrix);
-            // mat3.transpose(normalMatrix, normalMatrix);
-            // gl.uniformMatrix3fv(this.uniforms.uNormalMatrix.location, false, normalMatrix);
+            mat4.identity(invertedModelViewMatrix);
+            mat4.invert(invertedModelViewMatrix, modelViewMatrix);
+
             scene.traverse();
 
-            UniformBuffers.updateProjectionView(
-                camera.projectionMatrix,
-                scene.modelViewMatrix,
-            );
+            this.matrices.update([
+                ...camera.projectionMatrix,
+                ...modelViewMatrix,
+            ], 0);
 
             // TODO: sort by program?
             // TODO: sort opaque and transparent objects
@@ -114,20 +117,34 @@ class Renderer {
 
             // temporary render until I sort the "sort" :p
             for (let i = 0, len = scene.children.length; i < len; i++) {
-                child = scene.children[i]; // eslint-disable-line
+                child = scene.children[i];
+
+                // first time
                 if (!child.material.program) {
-                    child.material.init();
+                    child.init();
                     return;
                 }
 
+                // change program
                 if (lastProgram !== child.material.program) {
                     lastProgram = child.material.program;
                     gl.useProgram(lastProgram);
                 }
 
-                child.material.bind();
+                // update matrices per model
+                mat4.identity(normalMatrix);
+                mat4.copy(normalMatrix, invertedModelViewMatrix);
+                mat4.transpose(normalMatrix, normalMatrix);
+
+                this.matrices.update([
+                    ...child.modelMatrix, // update model matrix
+                    ...normalMatrix, // update normal matrix
+                ], 32);
+
+                // render child
+                child.bind();
                 child.update();
-                child.material.unbind();
+                child.unbind();
                 child = null;
             }
         }

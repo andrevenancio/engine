@@ -31,24 +31,19 @@ class Model extends Object3 {
         });
 
         // assign uniforms
-        Object.assign(this.material.uniforms, {
-            modelMatrix: {
-                type: 'mat4',
-                value: this.modelMatrix,
-            },
-            normalMatrix: {
-                type: 'mat3',
-                value: this.normalMatrix,
-            },
-        });
+        // Object.assign(this.material.uniforms, {
+        // });
 
         // pass indices to material so we can bind buffers
         Object.assign(this.material, { indices: this.geometry.indices });
     }
 
-    destroy() {
-        // destroys buffers
-        this.material.destroy();
+    init() {
+        this.material.init();
+    }
+
+    bind() {
+        this.material.bind();
     }
 
     update() {
@@ -60,6 +55,15 @@ class Model extends Object3 {
 
         // draw
         gl.drawElements(gl.TRIANGLES, this.geometry.indices.length, gl.UNSIGNED_SHORT, 0);
+    }
+
+    unbind() {
+        this.material.unbind();
+    }
+
+    destroy() {
+        // destroys buffers
+        this.material.destroy();
     }
 
 }
