@@ -120,6 +120,8 @@ class Material {
                 mat4 normal;
             } matrix;
 
+            uniform vec3 ambient;
+
             in vec3 a_position;
             in vec3 a_normal;
 
@@ -128,7 +130,11 @@ class Material {
             void main() {
                 mat4 mtx = matrix.projection * matrix.view * matrix.model;
                 gl_Position = mtx * vec4(a_position, 1.0);
-                v_normal = normalize(mat3(matrix.normal) * a_normal);
+                v_normal = mat3(matrix.normal) * a_normal;
+
+                // vec3 transformedNormal = uNMatrix * aVertexNormal;
+                // float directionalLightWeighting = max(dot(transformedNormal, uLightingDirection), 0.0);
+                // vLightWeighting = uAmbientColor + uDirectionalColor * directionalLightWeighting;
             }
         `;
     }
@@ -138,6 +144,7 @@ class Material {
             precision mediump float;
             precision mediump int;
 
+            uniform vec3 ambient;
             in vec3 v_normal;
 
             out vec4 outColor;
@@ -147,7 +154,7 @@ class Material {
                 // vec3 light = vec3(dot(normalize(v_normal), vec3(0.0, 0.0, 1.0))); // position
                 // light /= vec3(1.0, 1.0, 1.0); // color
                 // c *= vec4(light, 1.0);
-                outColor = vec4(v_normal, 1.0);
+                outColor = vec4(ambient, 1.0) * vec4(v_normal, 1.0);
             }
         `;
     }
@@ -181,6 +188,7 @@ class Material {
 
         Object.keys(this.uniforms).forEach((key) => {
             const uniform = this.uniforms[key];
+
             switch(uniform.type) {
                 case 'mat4':
                     gl.uniformMatrix4fv(uniform.location, false, uniform.value);
