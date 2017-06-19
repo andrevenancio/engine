@@ -45,7 +45,7 @@ class Renderer {
                 ...vec4.create(),
             ], 20);
 
-            this.perObject = new UniformBuffer([
+            this.perModel = new UniformBuffer([
                 ...vec4.create(),
             ], 1);
             // this.UB_matrices = new UniformBuffer([
@@ -122,7 +122,7 @@ class Renderer {
                 ...vec4.fromValues(0, 1, 0, 1),
             ]);
 
-            this.perObject.update([
+            this.perModel.update([
                 ...vec4.fromValues(0, 0, 1, 1),
             ]);
 
@@ -140,6 +140,12 @@ class Renderer {
                 if (lastProgram !== child.material.program) {
                     lastProgram = child.material.program;
                     gl.useProgram(lastProgram);
+
+                    // change progam, so bind UBO
+                    gl.uniformBlockBinding(lastProgram, gl.getUniformBlockIndex(lastProgram, "perScene"), this.perScene.boundLocation);
+                    gl.uniformBlockBinding(lastProgram, gl.getUniformBlockIndex(lastProgram, "perModel"), this.perModel.boundLocation);
+                    console.log('change program');
+                    // https://jsfiddle.net/andrevenancio/m9qchtdb/14/
                 }
 
                 // update matrices per model

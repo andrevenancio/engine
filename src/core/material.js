@@ -124,12 +124,12 @@ class Material {
             //     mat4 normal;
             // }
 
-            uniform block_scene {
+            uniform perScene {
                 vec4 color1;
                 vec4 color2;
             };
 
-            uniform block_object {
+            uniform perModel {
                 vec4 color3;
             };
 
