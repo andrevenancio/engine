@@ -21,3 +21,5 @@ Run `npm run build` to generate the library and documentation.
 * implement lights
 * implement render targets
 * implement post processing
+* avoid z-fighting using [glPolygonOffset](https://stackoverflow.com/questions/7836208/how-to-correctly-render-coincident-polygons-in-opengl-es)
+* add geometry generators

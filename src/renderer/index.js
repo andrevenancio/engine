@@ -131,7 +131,7 @@ class Renderer {
                     const modelLocation = gl.getUniformBlockIndex(lastProgram, 'perModel');
                     gl.uniformBlockBinding(lastProgram, sceneLocation, this.perScene.boundLocation);
                     gl.uniformBlockBinding(lastProgram, modelLocation, this.perModel.boundLocation);
-                    console.log('change program', sceneLocation, modelLocation);
+                    // console.log('change program', sceneLocation, modelLocation);
                     // https://jsfiddle.net/andrevenancio/m9qchtdb/14/
                 }
 
@@ -142,13 +142,6 @@ class Renderer {
 
                 // render child
                 child.bind();
-
-                // this.UB_matrices.update([
-                //     ...camera.projectionMatrix,
-                //     ...viewMatrix,
-                //     ...child.modelMatrix,
-                //     ...normalMatrix,
-                // ], 0);
 
                 this.perModel.update([
                     ...child.modelMatrix,
