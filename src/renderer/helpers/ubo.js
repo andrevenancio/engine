@@ -14,7 +14,7 @@ class UniformBuffer {
         gl.bufferData(gl.UNIFORM_BUFFER, this.data, gl.DYNAMIC_DRAW);
         gl.bindBuffer(gl.UNIFORM_BUFFER, null);
         gl.bindBufferBase(gl.UNIFORM_BUFFER, this.boundLocation, this.buffer);
-
+        console.log('generate', this.boundLocation);
     }
 
     update(data, offset = 0) {
@@ -26,6 +26,7 @@ class UniformBuffer {
         gl.bufferSubData(gl.UNIFORM_BUFFER, 0, this.data, 0, null);
         gl.bindBuffer(gl.UNIFORM_BUFFER, null);
         gl.bindBufferBase(gl.UNIFORM_BUFFER, this.boundLocation, this.buffer);
+        // console.log('update', this.boundLocation);
 
     }
 }

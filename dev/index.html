@@ -35,10 +35,22 @@
             }
 
             function init(data) {
-                data = engine.utils.geometry.mergeVertices(data);
+                // data = engine.utils.geometry.mergeVertices(data);
+                var geom = {
+                    positions: [
+                        -0.5, -0.5, 0,
+                        -0.5, 0.5, 0,
+                        0.5, -0.5, 0,
+                        0.5, 0.5, 0,
+                    ],
+                    indices: [
+                        0, 2, 1,
+                        1, 2, 3,
+                    ],
+                }
 
                 const material = new engine.materials.Basic();
-                model = new engine.Model(data, material);
+                model = new engine.Model(geom, material);
                 scene.addModel(model);
 
                 update();

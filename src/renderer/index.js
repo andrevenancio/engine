@@ -40,12 +40,20 @@ class Renderer {
 
             setContext(gl);
 
-            this.UB_matrices = new UniformBuffer([
-                ...mat4.create(), // projection matrix
-                ...mat4.create(), // view matrix
-                ...mat4.create(), // model matrix // should go to perModel ?
-                ...mat4.create(), // normal matrix // should go to perModel ?
-            ]);
+            this.perScene = new UniformBuffer([
+                ...vec4.create(),
+                ...vec4.create(),
+            ], 20);
+
+            this.perObject = new UniformBuffer([
+                ...vec4.create(),
+            ], 1);
+            // this.UB_matrices = new UniformBuffer([
+            //     ...mat4.create(), // projection matrix
+            //     ...mat4.create(), // view matrix
+            //     ...mat4.create(), // model matrix // should go to perModel ?
+            //     ...mat4.create(), // normal matrix // should go to perModel ?
+            // ]);
 
             supported = true;
         } else {
@@ -104,11 +112,19 @@ class Renderer {
 
             scene.traverse();
 
-            this.UB_matrices.update([
-                ...camera.projectionMatrix,
-                ...viewMatrix,
-            ], 0);
+            // this.UB_matrices.update([
+            //     ...camera.projectionMatrix,
+            //     ...viewMatrix,
+            // ], 0);
             // TODO: sort opaque and transparent objects
+            this.perScene.update([
+                ...vec4.fromValues(1, 0, 0, 1),
+                ...vec4.fromValues(0, 1, 0, 1),
+            ]);
+
+            this.perObject.update([
+                ...vec4.fromValues(0, 0, 1, 1),
+            ]);
 
             // temporary render until I sort the "sort" :p
             for (let i = 0, len = scene.children.length; i < len; i++) {
@@ -134,12 +150,12 @@ class Renderer {
                 // render child
                 child.bind();
 
-                this.UB_matrices.update([
-                    ...camera.projectionMatrix,
-                    ...viewMatrix,
-                    ...child.modelMatrix,
-                    ...normalMatrix,
-                ], 0);
+                // this.UB_matrices.update([
+                //     ...camera.projectionMatrix,
+                //     ...viewMatrix,
+                //     ...child.modelMatrix,
+                //     ...normalMatrix,
+                // ], 0);
 
                 child.update();
                 child.unbind();

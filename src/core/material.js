@@ -114,11 +114,23 @@ class Material {
     generateVertexShader() {
         return `#version 300 es
 
-            uniform matrices_block {
-                mat4 projection;
-                mat4 view;
-                mat4 model;
-                mat4 normal;
+            // uniform block_scene {
+            //     mat4 projection;
+            //     mat4 view;
+            // };
+            //
+            // uniform block_object {
+            //     mat4 model;
+            //     mat4 normal;
+            // }
+
+            uniform block_scene {
+                vec4 color1;
+                vec4 color2;
+            };
+
+            uniform block_object {
+                vec4 color3;
             };
 
             in vec3 a_position;
@@ -127,13 +139,15 @@ class Material {
             out vec3 v_color;
 
             void main() {
-                gl_Position = projection * view * model * vec4(a_position, 1.0);
+                gl_Position = vec4(a_position, 1.0);
+                v_color = color1.rgb + color2.rgb + color3.rgb;
+                // gl_Position = projection * view * model * vec4(a_position, 1.0);
 
-                vec3 normal = normalize(mat3(normal) * a_normal);
+                // vec3 normal = normalize(mat3(normal) * a_normal);
 
                 // directional light
-                float weight = max(dot(normal, vec3(0.0, 0.0, 1.0)), 0.0);
-                v_color = vec3(0.2) + vec3(0.8) * weight; // ambient * directional color
+                // float weight = max(dot(normal, vec3(0.0, 0.0, 1.0)), 0.0);
+                // v_color = vec3(0.2) + vec3(0.8) * weight; // ambient * directional color
             }
         `;
     }
