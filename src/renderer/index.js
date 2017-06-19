@@ -1,5 +1,4 @@
-/* eslint-disable */
-import { vec4, mat4 } from 'gl-matrix';
+import { mat4, vec4 } from 'gl-matrix';
 import { library, version, getContext, setContext } from '../session';
 import UniformBuffer from './helpers/ubo';
 
@@ -11,8 +10,6 @@ let lastProgram;
 let viewMatrix = mat4.create();
 let invertedViewMatrix = mat4.create();
 let normalMatrix = mat4.create();
-
-let firstTime = true;
 
 class Renderer {
 
@@ -41,19 +38,15 @@ class Renderer {
             setContext(gl);
 
             this.perScene = new UniformBuffer([
-                ...vec4.create(),
-                ...vec4.create(),
+                ...mat4.create(),
+                ...mat4.create(),
             ], 20);
 
             this.perModel = new UniformBuffer([
+                ...mat4.create(),
+                ...mat4.create(),
                 ...vec4.create(),
             ], 1);
-            // this.UB_matrices = new UniformBuffer([
-            //     ...mat4.create(), // projection matrix
-            //     ...mat4.create(), // view matrix
-            //     ...mat4.create(), // model matrix // should go to perModel ?
-            //     ...mat4.create(), // normal matrix // should go to perModel ?
-            // ]);
 
             supported = true;
         } else {
@@ -112,20 +105,12 @@ class Renderer {
 
             scene.traverse();
 
-            // this.UB_matrices.update([
-            //     ...camera.projectionMatrix,
-            //     ...viewMatrix,
-            // ], 0);
-            // TODO: sort opaque and transparent objects
             this.perScene.update([
-                ...vec4.fromValues(1, 0, 0, 1),
-                ...vec4.fromValues(0, 1, 0, 1),
+                ...camera.projectionMatrix,
+                ...viewMatrix,
             ]);
 
-            this.perModel.update([
-                ...vec4.fromValues(0, 0, 1, 1),
-            ]);
-
+            // TODO: sort opaque and transparent objects
             // temporary render until I sort the "sort" :p
             for (let i = 0, len = scene.children.length; i < len; i++) {
                 child = scene.children[i];
@@ -142,9 +127,11 @@ class Renderer {
                     gl.useProgram(lastProgram);
 
                     // change progam, so bind UBO
-                    gl.uniformBlockBinding(lastProgram, gl.getUniformBlockIndex(lastProgram, "perScene"), this.perScene.boundLocation);
-                    gl.uniformBlockBinding(lastProgram, gl.getUniformBlockIndex(lastProgram, "perModel"), this.perModel.boundLocation);
-                    console.log('change program');
+                    const sceneLocation = gl.getUniformBlockIndex(lastProgram, 'perScene');
+                    const modelLocation = gl.getUniformBlockIndex(lastProgram, 'perModel');
+                    gl.uniformBlockBinding(lastProgram, sceneLocation, this.perScene.boundLocation);
+                    gl.uniformBlockBinding(lastProgram, modelLocation, this.perModel.boundLocation);
+                    console.log('change program', sceneLocation, modelLocation);
                     // https://jsfiddle.net/andrevenancio/m9qchtdb/14/
                 }
 
@@ -162,6 +149,12 @@ class Renderer {
                 //     ...child.modelMatrix,
                 //     ...normalMatrix,
                 // ], 0);
+
+                this.perModel.update([
+                    ...child.modelMatrix,
+                    ...normalMatrix,
+                    ...child.material.color,
+                ]);
 
                 child.update();
                 child.unbind();
