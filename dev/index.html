@@ -16,8 +16,8 @@
         <script src="/lib/engine.js"></script>
         <script>
             var renderer, scene, camera;
-            var model;
             var controls;
+            var model;
 
             setup();
 
@@ -35,23 +35,17 @@
             }
 
             function init(data) {
-                // data = engine.utils.geometry.mergeVertices(data);
-                var geom = {
-                    positions: [
-                        -0.5, -0.5, 0,
-                        -0.5, 0.5, 0,
-                        0.5, -0.5, 0,
-                        0.5, 0.5, 0,
-                    ],
-                    indices: [
-                        0, 2, 1,
-                        1, 2, 3,
-                    ],
-                }
+                data = engine.utils.geometry.mergeVertices(data);
 
-                const material = new engine.materials.Basic();
-                model = new engine.Model(geom, material);
+                let material = new engine.materials.Basic({ color: 0xff0000 });
+                model = new engine.Model(data, material);
+                model.scale.x = model.scale.y = model.scale.z = 0.5;
                 scene.addModel(model);
+
+                material = new engine.materials.Basic({ color: 0x00ff00 });
+                const second = new engine.Model(data, material);
+                second.scale.x = second.scale.y = second.scale.z = 0.5;
+                scene.addModel(second);
 
                 update();
             }
@@ -59,8 +53,8 @@
             function update() {
                 requestAnimationFrame(update);
                 renderer.render(scene, camera);
-                // model.rotation.y += 0.01;
-                // model.scale.x = 0.5 + 0.5 * Math.cos(Date.now() / 200) + 2;
+                model.position.x = Math.cos(Date.now() / 500) * 50;
+                model.position.y = Math.sin(Date.now() / 500) * 50;
                 controls.update();
             }
 
