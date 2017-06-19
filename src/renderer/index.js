@@ -108,7 +108,6 @@ class Renderer {
                 ...camera.projectionMatrix,
                 ...viewMatrix,
             ], 0);
-
             // TODO: sort opaque and transparent objects
 
             // temporary render until I sort the "sort" :p
@@ -148,7 +147,6 @@ class Renderer {
             }
         }
     }
-
 }
 
 export default Renderer;

@@ -1,4 +1,4 @@
-import { vec3 } from 'gl-matrix';
+// import { vec3 } from 'gl-matrix';
 import Object3 from './object3';
 import { getContext } from '../session';
 
@@ -33,14 +33,7 @@ class Model extends Object3 {
 
         // assign uniforms
         Object.assign(this.material.uniforms, {
-            ambient: {
-                type: 'vec3',
-                value: vec3.fromValues(0.2, 0.2, 0.2),
-            },
-            directionalPos: {
-                type: 'vec3',
-                value: [0, 0, 1],
-            },
+
         });
 
         // pass indices to material so we can bind buffers

@@ -14,7 +14,7 @@ class PerspectiveCamera extends Object3 {
 
         Object.assign(this.position, {
             x: 0,
-            y: 0,
+            y: 100,
             z: 500,
             ...options.position,
         });
