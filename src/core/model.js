@@ -37,6 +37,10 @@ class Model extends Object3 {
                 type: 'vec3',
                 value: vec3.fromValues(0.2, 0.2, 0.2),
             },
+            directionalPos: {
+                type: 'vec3',
+                value: [0, 0, 1],
+            },
         });
 
         // pass indices to material so we can bind buffers

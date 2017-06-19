@@ -113,48 +113,42 @@ class Material {
 
     generateVertexShader() {
         return `#version 300 es
-            uniform projection {
+
+            uniform matrices_block {
                 mat4 projection;
                 mat4 view;
                 mat4 model;
                 mat4 normal;
-            } matrix;
-
-            uniform vec3 ambient;
+            };
 
             in vec3 a_position;
             in vec3 a_normal;
 
-            out vec3 v_normal;
+            out vec3 v_color;
 
             void main() {
-                mat4 mtx = matrix.projection * matrix.view * matrix.model;
-                gl_Position = mtx * vec4(a_position, 1.0);
-                v_normal = mat3(matrix.normal) * a_normal;
+                gl_Position = projection * view * model * vec4(a_position, 1.0);
 
-                // vec3 transformedNormal = uNMatrix * aVertexNormal;
-                // float directionalLightWeighting = max(dot(transformedNormal, uLightingDirection), 0.0);
-                // vLightWeighting = uAmbientColor + uDirectionalColor * directionalLightWeighting;
+                vec3 normal = normalize(mat3(normal) * a_normal);
+
+                // directional light
+                float weight = max(dot(normal, vec3(0.0, 0.0, 1.0)), 0.0);
+                v_color = vec3(0.2) + vec3(0.8) * weight; // ambient * directional color
             }
         `;
     }
 
     generateFragmentShader() {
         return `#version 300 es
-            precision mediump float;
-            precision mediump int;
+            precision highp float;
+            precision highp int;
 
-            uniform vec3 ambient;
-            in vec3 v_normal;
+            in vec3 v_color;
 
             out vec4 outColor;
 
             void main() {
-                // vec4 c = vec4(1.0, 1.0, 1.0, 1.0);
-                // vec3 light = vec3(dot(normalize(v_normal), vec3(0.0, 0.0, 1.0))); // position
-                // light /= vec3(1.0, 1.0, 1.0); // color
-                // c *= vec4(light, 1.0);
-                outColor = vec4(ambient, 1.0) * vec4(v_normal, 1.0);
+                outColor = vec4(v_color, 1.0);
             }
         `;
     }
