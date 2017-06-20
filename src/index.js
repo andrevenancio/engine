@@ -4,6 +4,7 @@ import Renderer from './renderer';
 import * as cameras from './cameras';
 import Scene from './core/scene';
 import Model from './core/model';
+import Texture from './core/texture';
 import * as materials from './materials';
 import * as geometry from './geometry';
 
@@ -18,8 +19,11 @@ export {
 
     Renderer,
     cameras,
+
     Scene,
     Model,
+    Texture,
+
     materials,
     geometry,
 
