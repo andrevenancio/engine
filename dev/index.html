@@ -34,11 +34,11 @@
             }
 
             function init() {
-                const material = new engine.materials.Basic({
+                const material = new engine.materials.Sem({
                     color: 0xffffff,
-                    map: '/dev/img/uv.png',
+                    map: '/dev/img/matcap/matcap.jpg',
                 });
-                const geometry = new engine.geometry.Icosahedron(50, 1);
+                const geometry = new engine.geometry.Icosahedron(50, 0);
                 const model = new engine.Model(geometry, material);
                 scene.addModel(model);
 
