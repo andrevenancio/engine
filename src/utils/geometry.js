@@ -126,6 +126,17 @@ export function mergeVertices(data) {
         }
     }
 
+    // remove duplicated uvs
+    for (let i = faceIndicesToRemove.length - 1; i >= 0; i--) {
+        const idx = faceIndicesToRemove[i];
+
+        faces.splice(idx, 1);
+
+        for (let j = 0; j < this.faceVertexUvs.length; j++) {
+            this.faceVertexUvs[j].splice(idx, 1);
+        }
+    }
+
     const p = flatten(unique, 3);
     const f = flatten(faces, 3);
 
