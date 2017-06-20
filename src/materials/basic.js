@@ -41,17 +41,11 @@ class Basic extends Material {
             in vec3 a_normal;
             in vec2 a_uv;
 
-            out vec3 v_color;
             out vec2 v_uv;
 
             void main() {
                 gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(a_position, 1.0);
                 v_uv = a_uv;
-
-                vec3 normal = normalize(mat3(normalMatrix) * a_normal);
-
-                float weight = max(dot(normal, vec3(0.0, 0.0, 1.0)), 0.0);
-                v_color = vec3(0.2) + vec3(0.8) * weight; // ambient * directional color
             }
         `;
 
@@ -67,7 +61,6 @@ class Basic extends Material {
             uniform vec3 color;
             uniform sampler2D map;
 
-            in vec3 v_color;
             in vec2 v_uv;
 
             out vec4 outColor;
@@ -75,7 +68,7 @@ class Basic extends Material {
             void main() {
                 vec4 base = vec4(0.0, 0.0, 0.0, 1.0);
                 base += texture(map, v_uv);
-                base *= vec4(color * v_color, 1.0);
+                base *= vec4(color, 1.0);
                 outColor = base;
             }
         `;

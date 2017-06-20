@@ -19,9 +19,9 @@ Run `npm run build` to generate the library and documentation.
 * implement texture maps                        ✔   20 Jun 2017
 * implement Spherical Environment Mapping       ✔   20 Jun 2017
 * implement JSON loader                         ✔   20 Jun 2017
+* implement normal helper                       ✔   20 Jun 2017
 * implement normal maps
 * implement OBJ loader to material
-* implement normal maps
 * implement instanced objects
 * implement lights
 * implement render targets
@@ -29,3 +29,4 @@ Run `npm run build` to generate the library and documentation.
 * avoid z-fighting
 * adding subdivision `utils/geometry`
 * implement shader-chunks across materials
+* implement ShaderToy material

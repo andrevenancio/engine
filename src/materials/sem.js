@@ -1,4 +1,4 @@
-import { BASIC_MATERIAL } from '../constants';
+import { SEM_MATERIAL } from '../constants';
 import Material from '../core/material';
 import Texture from '../core/texture';
 
@@ -6,7 +6,7 @@ class Sem extends Material {
 
     constructor(props) {
         super();
-        this.type = BASIC_MATERIAL;
+        this.type = SEM_MATERIAL;
 
         this.map = new Texture();
         if (props.map) {

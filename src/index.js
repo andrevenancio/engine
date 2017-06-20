@@ -11,6 +11,7 @@ import * as geometry from './geometry';
 import * as controls from './controls';
 import * as utils from './utils';
 import * as loaders from './loaders';
+import * as helpers from './helpers';
 import * as constants from './constants';
 
 export {
@@ -29,5 +30,6 @@ export {
 
     controls,
     utils,
+    helpers,
     loaders,
 };

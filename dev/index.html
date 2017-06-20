@@ -18,6 +18,8 @@
             var renderer, scene, camera;
             var controls;
 
+            window.addEventListener('resize', resize, false);
+
             setup();
 
             function setup() {
@@ -37,12 +39,18 @@
                 const material = new engine.materials.Sem({
                     map: '/dev/img/matcap/red.jpg',
                 });
-                const geometry = data; // engine.utils.geometry.mergeVertices(data);
-                // const geometry = new engine.geometry.Box(50, 50, 50);
+                const geometry = engine.utils.geometry.mergeVertices(data);
                 const model = new engine.Model(geometry, material);
                 scene.addModel(model);
 
+                const helper = new engine.helpers.Normal(model);
+                scene.addModel(helper);
+
                 update();
+            }
+
+            function resize() {
+                renderer.setSize(window.innerWidth, window.innerHeight);
             }
 
             function update() {
