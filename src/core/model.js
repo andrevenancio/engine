@@ -10,8 +10,8 @@ class Model extends Object3 {
         this.geometry = {
             positions: new Float32Array(geometry.positions),
             indices: new Uint16Array(geometry.indices),
-            normals: new Float32Array(geometry.normals || []),
-            uvs: new Float32Array(geometry.uvs || []),
+            normals: new Float32Array(geometry.normals),
+            uvs: new Float32Array(geometry.uvs),
         };
         this.material = material;
 

@@ -70,8 +70,8 @@ class Box {
         return {
             positions,
             indices,
-            uvs,
             normals,
+            uvs,
         };
     }
 

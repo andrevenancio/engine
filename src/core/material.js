@@ -1,4 +1,3 @@
-import { vec2, vec3 } from 'gl-matrix';
 import Vao from '../renderer/helpers/vao';
 import { createProgram } from '../renderer/helpers/program';
 import { getContext } from '../session';
@@ -8,22 +7,22 @@ const programs = {};
 class Material {
 
     constructor(props = {}) {
-        this.defines = Object.assign({}, props.defines);
+        this.defines = {};
         this.attributes = Object.assign({
             a_position: {
                 type: 'vec3',
-                value: vec3.create(),
+                value: null,
             },
             a_normal: {
                 type: 'vec3',
-                value: vec3.create(),
+                value: null,
             },
             a_uv: {
                 type: 'vec2',
-                value: vec2.create(),
+                value: null,
             },
-        }, props.attributes);
-        this.uniforms = Object.assign({}, props.uniforms);
+        });
+        this.uniforms = {};
 
         this.vertex = '';
         this.fragment = '';
@@ -58,7 +57,7 @@ class Material {
                     size = 3;
                     break;
                 case 'vec2':
-                    size = 3;
+                    size = 2;
                     break;
                 default:
                     size = 1;
@@ -165,7 +164,7 @@ class Material {
                     gl.bindTexture(gl.TEXTURE_2D, uniform.value);
                     break;
                 default:
-                    console.warn('unknown', uniform.type);
+                    console.warn('unknown uniform type', uniform.type);
             }
         });
     }

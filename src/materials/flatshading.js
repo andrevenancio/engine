@@ -6,15 +6,15 @@ import { color } from '../utils';
 class FlatShading extends Material {
 
     constructor(props) {
-        super({
-            uniforms: {
-                color: {
-                    type: 'vec3',
-                    value: color.convert(props && props.color || 0xffffff),
-                },
+        super();
+        this.type = FLATSHADING_MATERIAL;
+
+        Object.assign(this.uniforms, {
+            color: {
+                type: 'vec3',
+                value: color.convert(props && props.color || 0xffffff),
             },
         });
-        this.type = FLATSHADING_MATERIAL;
 
         this.vertex = `#version 300 es
 
@@ -60,8 +60,8 @@ class FlatShading extends Material {
             void main() {
                 vec3 normal = normalize(cross(dFdx(fragVertexEc), dFdy(fragVertexEc)));
 
-                float weight = max(dot(normal, vec3(0.0, 0.0, 1.0)), 0.0);
-                vec3 c = vec3(0.0) + (color * vec3(0.9)) * weight;
+                float weight = max(pow(dot(normal, vec3(0.0, 0.0, 1.0)), 3.5), 0.0);
+                vec3 c = vec3(0.2) + (color * vec3(0.8)) * weight;
                 outColor = vec4(c, 1.0);
             }
         `;
