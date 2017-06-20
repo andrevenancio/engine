@@ -1,11 +1,11 @@
-import { getContext } from '../renderer';
+import { getContext } from '../session';
 
 class Texture {
 
     constructor(props = {}) {
         const gl = getContext();
 
-        Object.assign({
+        Object.assign(this, {
             magFilter: gl.NEAREST,
             minFilter: gl.NEAREST,
             wrapS: gl.CLAMP_TO_EDGE,
