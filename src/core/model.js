@@ -15,29 +15,11 @@ class Model extends Object3 {
         };
         this.material = material;
 
-        // assign attributes
-        Object.assign(this.material.attributes, {
-            a_position: {
-                type: 'vec3',
-                value: this.geometry.positions,
-            },
-            a_normal: {
-                type: 'vec3',
-                value: this.geometry.normals,
-            },
-            a_uv: {
-                type: 'vec2',
-                value: this.geometry.uvs,
-            },
-        });
-
-        // assign uniforms
-        Object.assign(this.material.uniforms, {
-
-        });
-
-        // pass indices to material so we can bind buffers
-        Object.assign(this.material, { indices: this.geometry.indices });
+        // assign attributes and indices
+        this.material.attributes.a_position.value = this.geometry.positions;
+        this.material.attributes.a_normal.value = this.geometry.normals;
+        this.material.attributes.a_uv.value = this.geometry.uvs;
+        this.material.indices = this.geometry.indices;
     }
 
     init() {
@@ -49,22 +31,20 @@ class Model extends Object3 {
     }
 
     update() {
-        const gl = getContext();
-
-        // everything is bind
-        // update material attributes or uniforms
         this.material.update();
-
-        // draw
-        gl.drawElements(gl.TRIANGLES, this.geometry.indices.length, gl.UNSIGNED_SHORT, 0);
+        this.draw();
     }
 
     unbind() {
         this.material.unbind();
     }
 
+    draw() {
+        const gl = getContext();
+        gl.drawElements(gl.TRIANGLES, this.geometry.indices.length, gl.UNSIGNED_SHORT, 0);
+    }
+
     destroy() {
-        // destroys buffers
         this.material.destroy();
     }
 

@@ -1,9 +1,9 @@
-import { BASIC_MATERIAL } from '../constants';
+import { FLATSHADING_MATERIAL } from '../constants';
 import Material from '../core/material';
 
 import { color } from '../utils';
 
-class Basic extends Material {
+class FlatShading extends Material {
 
     constructor(props) {
         super({
@@ -14,7 +14,7 @@ class Basic extends Material {
                 },
             },
         });
-        this.type = BASIC_MATERIAL;
+        this.type = FLATSHADING_MATERIAL;
 
         this.vertex = `#version 300 es
 
@@ -31,16 +31,14 @@ class Basic extends Material {
             in vec3 a_position;
             in vec3 a_normal;
 
-            out vec3 v_color;
+            out vec3 fragVertexEc;
 
             void main() {
-                gl_Position = projection * view * model * vec4(a_position, 1.0);
+                vec4 position = projection * view * model * vec4(a_position, 1.0);
+                gl_Position = position;
 
                 vec3 normal = normalize(mat3(normal) * a_normal);
-
-                // directional light
-                float weight = max(dot(normal, vec3(0.0, 0.0, 1.0)), 0.0);
-                v_color = vec3(0.2) + vec3(0.8) * weight; // ambient * directional color
+                fragVertexEc = position.xyz;
             }
         `;
 
@@ -55,16 +53,22 @@ class Basic extends Material {
 
             uniform vec3 color;
 
-            in vec3 v_color;
+            in vec3 fragVertexEc;
 
             out vec4 outColor;
 
             void main() {
-                outColor = vec4(color * v_color, 1.0);
+                vec3 normal = normalize(cross(dFdx(fragVertexEc), dFdy(fragVertexEc)));
+
+                float intensity = 0.7;
+
+                float weight = max(dot(normal, vec3(0.0, 0.0, 1.0)), 0.0);
+                vec3 c = vec3(0.2) + vec3(0.9) * weight * intensity;
+                outColor = vec4(color * c, 1.0);
             }
         `;
     }
 
 }
 
-export default Basic;
+export default FlatShading;

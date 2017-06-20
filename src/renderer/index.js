@@ -1,4 +1,4 @@
-import { mat4, vec4 } from 'gl-matrix';
+import { mat4 } from 'gl-matrix';
 import { library, version, getContext, setContext } from '../session';
 import UniformBuffer from './helpers/ubo';
 
@@ -40,12 +40,11 @@ class Renderer {
             this.perScene = new UniformBuffer([
                 ...mat4.create(),
                 ...mat4.create(),
-            ], 20);
+            ], 0);
 
             this.perModel = new UniformBuffer([
                 ...mat4.create(),
                 ...mat4.create(),
-                ...vec4.create(),
             ], 1);
 
             supported = true;
@@ -146,7 +145,6 @@ class Renderer {
                 this.perModel.update([
                     ...child.modelMatrix,
                     ...normalMatrix,
-                    ...child.material.color,
                 ]);
 
                 child.update();

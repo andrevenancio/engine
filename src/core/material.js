@@ -1,3 +1,4 @@
+import { vec2, vec3 } from 'gl-matrix';
 import Vao from '../renderer/helpers/vao';
 import { createProgram } from '../renderer/helpers/program';
 import { getContext } from '../session';
@@ -6,21 +7,30 @@ const programs = {};
 
 class Material {
 
-    constructor() {
-        this.defines = {};
-        this.attributes = {};
-        this.uniforms = {};
+    constructor(props = {}) {
+        this.defines = Object.assign({}, props.defines);
+        this.attributes = Object.assign({
+            a_position: {
+                type: 'vec3',
+                value: vec3.create(),
+            },
+            a_normal: {
+                type: 'vec3',
+                value: vec3.create(),
+            },
+            a_uv: {
+                type: 'vec2',
+                value: vec2.create(),
+            },
+        }, props.attributes);
+        this.uniforms = Object.assign({}, props.uniforms);
 
         this.vertex = '';
         this.fragment = '';
 
         this.vao = new Vao();
         this.program = null;
-    }
-
-    generateShaders() {
-        this.vertex = this.generateVertexShader();
-        this.fragment = this.generateFragmentShader();
+        this.indices = null;
     }
 
     createProgram() {
@@ -68,99 +78,36 @@ class Material {
 
     initUniforms() {
         const gl = getContext();
-        for (let prop in this.uniforms) {
+
+        const textureIndices = [gl.TEXTURE0, gl.TEXTURE1, gl.TEXTURE2, gl.TEXTURE3, gl.TEXTURE4, gl.TEXTURE5];
+        Object.keys(this.uniforms).forEach((prop, i) => {
             const current = this.uniforms[prop];
             const location = gl.getUniformLocation(this.program, prop);
-            Object.assign(current, {
-                location,
-            });
-        }
 
-        // TODO: maybe implement this on previous loop?
-        const textureIndices = [gl.TEXTURE0, gl.TEXTURE1, gl.TEXTURE2, gl.TEXTURE3, gl.TEXTURE4, gl.TEXTURE5];
-        Object.keys(this.uniforms).forEach((key, i) => {
-            switch (this.uniforms[key].type) {
-                case 'sampler2D': {
-                    this.uniforms[key].textureIndex = i;
-                    this.uniforms[key].activeTexture = textureIndices[i];
-                    break;
-                }
+            if (current.type === 'sampler2D') {
+                current.textureIndex = i;
+                current.activeTexture = textureIndices[i];
             }
+
+            current.location = location;
         });
     }
 
     init() {
-        this.generateShaders();
         this.createProgram();
-
         this.initAttributes();
         this.initUniforms();
 
-        // 3) bind vao
         this.vao.bind();
 
-        // 4) bind attributes
         this.bind();
 
-        // 5) unbind vao
         this.vao.unbind();
         this.unbind();
     }
 
     destroy() {
         // destroy buffers
-    }
-
-    generateVertexShader() {
-        return `#version 300 es
-
-            uniform perScene {
-                mat4 projection;
-                mat4 view;
-            };
-
-            uniform perModel {
-                mat4 model;
-                mat4 normal;
-                vec4 color;
-            };
-
-            in vec3 a_position;
-            in vec3 a_normal;
-
-            out vec3 v_color;
-
-            void main() {
-                gl_Position = projection * view * model * vec4(a_position, 1.0);
-
-                vec3 normal = normalize(mat3(normal) * a_normal);
-
-                // directional light
-                float weight = max(dot(normal, vec3(0.0, 0.0, 1.0)), 0.0);
-                v_color = vec3(0.2) + vec3(0.8) * weight; // ambient * directional color
-            }
-        `;
-    }
-
-    generateFragmentShader() {
-        return `#version 300 es
-            precision highp float;
-            precision highp int;
-
-            uniform perModel {
-                mat4 model;
-                mat4 normal;
-                vec4 color;
-            };
-
-            in vec3 v_color;
-
-            out vec4 outColor;
-
-            void main() {
-                outColor = color * vec4(v_color, 1.0);
-            }
-        `;
     }
 
     bind() {

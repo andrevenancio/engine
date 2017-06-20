@@ -40,8 +40,8 @@
                 // model = new engine.Model(data, material);
                 // scene.addModel(model);
 
-                const material = new engine.materials.Basic({ color: 0xffffff });
-                const geometry = new engine.geometry.Icosahedron(50, 0);
+                const material = new engine.materials.FlatShading({ color: 0xffffff });
+                const geometry = new engine.geometry.Icosahedron(50, 1);
                 const model = new engine.Model(geometry, material);
                 scene.addModel(model);
 

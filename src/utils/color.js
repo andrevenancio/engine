@@ -1,4 +1,4 @@
-import { vec3, vec4 } from 'gl-matrix';
+import { vec3 } from 'gl-matrix';
 
 // pvt
 function normalize(array) {
@@ -40,5 +40,5 @@ export function convert(hex) {
     const color = vec3.create();
     const rgb = typeof hex === 'number' ? hexIntToRgb(hex) : hexStringToRgb(hex);
     vec3.copy(color, normalize(rgb));
-    return vec4.fromValues(color[0], color[1], color[2], 1);
+    return color;
 }
