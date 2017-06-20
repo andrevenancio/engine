@@ -60,11 +60,9 @@ class FlatShading extends Material {
             void main() {
                 vec3 normal = normalize(cross(dFdx(fragVertexEc), dFdy(fragVertexEc)));
 
-                float intensity = 0.7;
-
                 float weight = max(dot(normal, vec3(0.0, 0.0, 1.0)), 0.0);
-                vec3 c = vec3(0.2) + vec3(0.9) * weight * intensity;
-                outColor = vec4(color * c, 1.0);
+                vec3 c = vec3(0.0) + (color * vec3(0.9)) * weight;
+                outColor = vec4(c, 1.0);
             }
         `;
     }

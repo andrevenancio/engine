@@ -30,19 +30,15 @@
 
                 controls = new engine.controls.Orbit(camera, renderer);
 
-                engine.loaders.Obj.load('/dev/cube.obj', init);
+                engine.loaders.Obj.load('/dev/obj/tree/tree.obj', init);
             }
 
             function init(data) {
-                //data = engine.utils.geometry.mergeVertices(data);
-
-                // let material = new engine.materials.Basic();
-                // model = new engine.Model(data, material);
-                // scene.addModel(model);
+                data = engine.utils.geometry.mergeVertices(data);
 
                 const material = new engine.materials.FlatShading({ color: 0xffffff });
                 const geometry = new engine.geometry.Icosahedron(50, 1);
-                const model = new engine.Model(geometry, material);
+                const model = new engine.Model(data, material);
                 scene.addModel(model);
 
                 update();
