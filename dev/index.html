@@ -44,8 +44,8 @@
                 model = new engine.Model(geometry, material);
                 scene.addModel(model);
 
-                const helper = new engine.helpers.Normal(model);
-                // scene.addModel(helper);
+                const helper = new engine.helpers.Normal(model, 10);
+                scene.addModel(helper);
 
                 update();
             }
@@ -56,7 +56,9 @@
 
             function update() {
                 requestAnimationFrame(update);
-                model.rotation.y += 0.02;
+
+                // model.rotation.y += 0.02;
+
                 renderer.render(scene, camera);
                 controls.update();
             }

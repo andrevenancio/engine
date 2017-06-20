@@ -130,7 +130,7 @@ class Renderer {
                     const modelLocation = gl.getUniformBlockIndex(lastProgram, 'perModel');
                     gl.uniformBlockBinding(lastProgram, sceneLocation, this.perScene.boundLocation);
                     gl.uniformBlockBinding(lastProgram, modelLocation, this.perModel.boundLocation);
-                    // console.log('change program', sceneLocation, modelLocation);
+                    // console.log('change program', child.material.type);
                     // https://jsfiddle.net/andrevenancio/m9qchtdb/14/
                 }
 

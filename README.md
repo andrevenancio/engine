@@ -12,19 +12,19 @@ Run `npm run build` to generate the library and documentation.
 
 ## TODO
 * implement basic material                      ✔   19 Jun 2017
-* implement more UBO's.                         ✔   19 Jun 2017
-* implement flat shading material               ✔   20 Jun 2017
+* implement UBO's.                              ✔   19 Jun 2017
+* implement FlatShading material                ✔   20 Jun 2017
 * add geometry generators                       ✔   20 Jun 2017
 * implement textures                            ✔   20 Jun 2017
 * implement texture maps                        ✔   20 Jun 2017
 * implement Spherical Environment Mapping       ✔   20 Jun 2017
 * implement JSON loader                         ✔   20 Jun 2017
 * implement normal helper                       ✔   20 Jun 2017
+* implement render targets
 * implement normal maps
 * implement OBJ loader to material
 * implement instanced objects
 * implement lights
-* implement render targets
 * implement post processing
 * avoid z-fighting
 * adding subdivision `utils/geometry`

@@ -68,7 +68,7 @@ class Basic extends Material {
             void main() {
                 vec4 base = vec4(0.0, 0.0, 0.0, 1.0);
                 base += texture(map, v_uv);
-                base *= vec4(color, 1.0);
+                base += vec4(color, 1.0);
                 outColor = base;
             }
         `;

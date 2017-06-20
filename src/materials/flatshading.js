@@ -73,13 +73,8 @@ class FlatShading extends Material {
             void main() {
                 vec3 normal = normalize(cross(dFdx(fragVertexEc), dFdy(fragVertexEc)));
 
-                // directional
-                float weight = max(pow(dot(normal, vec3(0.0, 0.0, 1.0)), 3.5), 0.0);
-                vec3 directional = vec3(0.2) + (color * vec3(0.8)) * weight;
-
                 vec4 base = vec4(0.0, 0.0, 0.0, 1.0);
                 base += texture(map, v_uv);
-                base *= vec4(directional, 1.0);
 
                 outColor = base;
             }

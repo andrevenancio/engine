@@ -135,7 +135,6 @@ class Material {
     update() {
         // update uniforms / buffers
         const gl = getContext();
-
         Object.keys(this.uniforms).forEach((key) => {
             const uniform = this.uniforms[key];
 
