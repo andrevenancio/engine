@@ -7,19 +7,6 @@ class Scene extends Object3 {
         this.lights = [];
     }
 
-    addModel(model) {
-        model.parent = this;
-        this.children.push(model);
-    }
-
-    removeModel(model) {
-        const index = this.children.indexOf(model);
-        if (index !== -1) {
-            model.destroy();
-            this.children.splice(index, 1);
-        }
-    }
-
     traverse(object) {
         if (object === undefined) {
             object = this;

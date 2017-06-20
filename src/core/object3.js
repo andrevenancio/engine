@@ -22,6 +22,19 @@ class Object3 {
         this.modelMatrix = mat4.create();
     }
 
+    addModel(model) {
+        model.parent = this;
+        this.children.push(model);
+    }
+
+    removeModel(model) {
+        const index = this.children.indexOf(model);
+        if (index !== -1) {
+            model.destroy();
+            this.children.splice(index, 1);
+        }
+    }
+
     updateMatrices() {
         mat4.identity(this.parentMatrix);
         mat4.identity(this.modelMatrix);
