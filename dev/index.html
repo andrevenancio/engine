@@ -30,15 +30,15 @@
 
                 controls = new engine.controls.Orbit(camera, renderer);
 
-                init();
+                engine.loaders.Json.load('/dev/json/suzanne.json', init);
             }
 
-            function init() {
+            function init(data) {
                 const material = new engine.materials.Sem({
-                    color: 0xffffff,
-                    map: '/dev/img/matcap/matcap.jpg',
+                    map: '/dev/img/matcap/red.jpg',
                 });
-                const geometry = new engine.geometry.Icosahedron(50, 0);
+                const geometry = data; // engine.utils.geometry.mergeVertices(data);
+                // const geometry = new engine.geometry.Box(50, 50, 50);
                 const model = new engine.Model(geometry, material);
                 scene.addModel(model);
 

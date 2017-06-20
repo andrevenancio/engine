@@ -1,4 +1,12 @@
+import File from './file';
+
 class ObjLoader {
+
+    static load(url, callback) {
+        File.load(url).then((raw) => {
+            callback(ObjLoader.parse(raw));
+        });
+    }
 
     static parse(raw) {
         // credits: https://raw.githubusercontent.com/frenchtoast747/webgl-obj-loader/master/webgl-obj-loader.js
@@ -74,33 +82,6 @@ class ObjLoader {
             normals: unpacked.norms,
             uvs: unpacked.textures,
         };
-    }
-
-    static load(url, callback) {
-        ObjLoader.loadFile(url).then((raw) => {
-            callback(ObjLoader.parse(raw));
-        });
-    }
-
-    static loadFile(url) {
-        return new Promise(function (resolve, reject) {
-
-            var req = new XMLHttpRequest();
-            req.open('GET', url);
-            req.onload = function () {
-                if (req.status === 200) {
-                    resolve(req.response);
-                } else {
-                    reject(Error(req.statusText));
-                }
-            };
-
-            req.onerror = function () {
-                reject(Error('Network Error'));
-            };
-
-            req.send();
-        });
     }
 
 }

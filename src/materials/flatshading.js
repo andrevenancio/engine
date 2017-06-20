@@ -28,13 +28,13 @@ class FlatShading extends Material {
         this.vertex = `#version 300 es
 
             uniform perScene {
-                mat4 projection;
-                mat4 view;
+                mat4 projectionMatrix;
+                mat4 viewMatrix;
             };
 
             uniform perModel {
-                mat4 model;
-                mat4 normal;
+                mat4 modelMatrix;
+                mat4 normalMatrix;
             };
 
             in vec3 a_position;
@@ -45,7 +45,7 @@ class FlatShading extends Material {
             out vec2 v_uv;
 
             void main() {
-                vec4 position = projection * view * model * vec4(a_position, 1.0);
+                vec4 position = projectionMatrix * viewMatrix * modelMatrix * vec4(a_position, 1.0);
                 gl_Position = position;
 
                 fragVertexEc = position.xyz;
@@ -58,8 +58,8 @@ class FlatShading extends Material {
             precision highp int;
 
             uniform perModel {
-                mat4 model;
-                mat4 normal;
+                mat4 modelMatrix;
+                mat4 normalMatrix;
             };
 
             uniform vec3 color;

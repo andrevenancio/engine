@@ -28,13 +28,13 @@ class Basic extends Material {
         this.vertex = `#version 300 es
 
             uniform perScene {
-                mat4 projection;
-                mat4 view;
+                mat4 projectionMatrix;
+                mat4 viewMatrix;
             };
 
             uniform perModel {
-                mat4 model;
-                mat4 normal;
+                mat4 modelMatrix;
+                mat4 normalMatrix;
             };
 
             in vec3 a_position;
@@ -45,10 +45,10 @@ class Basic extends Material {
             out vec2 v_uv;
 
             void main() {
-                gl_Position = projection * view * model * vec4(a_position, 1.0);
+                gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(a_position, 1.0);
                 v_uv = a_uv;
 
-                vec3 normal = normalize(mat3(normal) * a_normal);
+                vec3 normal = normalize(mat3(normalMatrix) * a_normal);
 
                 float weight = max(dot(normal, vec3(0.0, 0.0, 1.0)), 0.0);
                 v_color = vec3(0.2) + vec3(0.8) * weight; // ambient * directional color
@@ -60,8 +60,8 @@ class Basic extends Material {
             precision highp int;
 
             uniform perModel {
-                mat4 model;
-                mat4 normal;
+                mat4 modelMatrix;
+                mat4 normalMatrix;
             };
 
             uniform vec3 color;

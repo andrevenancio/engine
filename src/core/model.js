@@ -11,8 +11,9 @@ class Model extends Object3 {
             positions: new Float32Array(geometry.positions),
             indices: new Uint16Array(geometry.indices),
             normals: new Float32Array(geometry.normals),
-            uvs: new Float32Array(geometry.uvs),
+            uvs: new Float32Array(geometry.uvs || geometry.positions.length / 1.5),
         };
+
         this.material = material;
 
         // assign attributes and indices
