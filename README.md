@@ -15,7 +15,7 @@ Run `npm run build` to generate the library and documentation.
 * implement more UBO's.                         ✔   19 Jun 2017
 * implement flat shading material               ✔   20 Jun 2017
 * add geometry generators                       ✔   20 Jun 2017
-* implement textures
+* implement textures                            ✔   20 Jun 2017
 * implement texture maps
 * implement normal maps
 * implement OBJ loader to material
