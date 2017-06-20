@@ -30,15 +30,16 @@
 
                 controls = new engine.controls.Orbit(camera, renderer);
 
-                engine.loaders.Obj.load('/dev/obj/tree/tree.obj', init);
+                init();
             }
 
-            function init(data) {
-                data = engine.utils.geometry.mergeVertices(data);
-
-                const material = new engine.materials.FlatShading({ color: 0xffffff });
-                const geometry = new engine.geometry.Icosahedron(50, 1);
-                const model = new engine.Model(data, material);
+            function init() {
+                const material = new engine.materials.Basic({
+                    // color: 0xffffff,
+                    map: '/dev/img/uv.png',
+                });
+                const geometry = new engine.geometry.Box(50, 50, 50);
+                const model = new engine.Model(geometry, material);
                 scene.addModel(model);
 
                 update();
