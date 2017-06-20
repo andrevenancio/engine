@@ -17,7 +17,6 @@
         <script>
             var renderer, scene, camera;
             var controls;
-            var model;
 
             setup();
 
@@ -35,17 +34,16 @@
             }
 
             function init(data) {
-                data = engine.utils.geometry.mergeVertices(data);
+                //data = engine.utils.geometry.mergeVertices(data);
 
-                let material = new engine.materials.Basic({ color: 0xff0000 });
-                model = new engine.Model(data, material);
-                model.scale.x = model.scale.y = model.scale.z = 0.5;
+                // let material = new engine.materials.Basic();
+                // model = new engine.Model(data, material);
+                // scene.addModel(model);
+
+                const material = new engine.materials.Basic({ color: 0xffffff });
+                const geometry = new engine.geometry.Icosahedron(50, 0);
+                const model = new engine.Model(geometry, material);
                 scene.addModel(model);
-
-                material = new engine.materials.Basic({ color: 0x00ff00 });
-                const second = new engine.Model(data, material);
-                second.scale.x = second.scale.y = second.scale.z = 0.5;
-                scene.addModel(second);
 
                 update();
             }
@@ -53,8 +51,6 @@
             function update() {
                 requestAnimationFrame(update);
                 renderer.render(scene, camera);
-                model.position.x = Math.cos(Date.now() / 500) * 50;
-                model.position.y = Math.sin(Date.now() / 500) * 50;
                 controls.update();
             }
 

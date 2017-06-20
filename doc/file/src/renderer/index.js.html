@@ -43,16 +43,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/object3.js~Object3.html">Object3</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/scene.js~Scene.html">Scene</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/vector3.js~Vector3.html">Vector3</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">geometry</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/geometry/box.js~Box.html">Box</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/geometry/icosahedron.js~Icosahedron.html">Icosahedron</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/geometry/plane.js~Plane.html">Plane</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">loaders</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/loaders/obj.js~ObjLoader.html">ObjLoader</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">materials</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/materials/basic.js~Basic.html">Basic</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/index.js~Renderer.html">Renderer</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer/helpers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/helpers/uniform-buffer.js~UniformBuffer.html">UniformBuffer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer/helpers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/helpers/ubo.js~UniformBuffer.html">UniformBuffer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/helpers/vao.js~Vao.html">Vao</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createProgram">createProgram</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setup">setup</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateProjectionView">updateProjectionView</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-uniformBuffers">uniformBuffers</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-flatten">flatten</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-componentToHex">componentToHex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hexIntToRgb">hexIntToRgb</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hexStringToRgb">hexStringToRgb</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rgbToHex">rgbToHex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-flatten">flatten</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateVertexNormals">generateVertexNormals</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-mergeVertices">mergeVertices</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unflatten">unflatten</a></span></span></li>
@@ -64,17 +69,18 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/renderer/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { mat4 } from &apos;gl-matrix&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { mat4, vec4 } from &apos;gl-matrix&apos;;
 import { library, version, getContext, setContext } from &apos;../session&apos;;
-import * as UniformBuffers from &apos;./helpers/uniform-buffers&apos;;
+import UniformBuffer from &apos;./helpers/ubo&apos;;
 
 let supported = false;
 let child;
 
 let lastProgram;
 
-// let normalMatrix = mat3.create();
-// let inversedModelViewMatrix = mat4.create();
+let viewMatrix = mat4.create();
+let invertedViewMatrix = mat4.create();
+let normalMatrix = mat4.create();
 
 class Renderer {
 
@@ -93,7 +99,7 @@ class Renderer {
                 const parameters = &apos;color:#777;font-size:x-small&apos;;
                 const values = &apos;color:#f33;font-size:x-small&apos;;
                 const args = [
-                    `%c${library}\n%cversion: %c${version} %crunning: %cwebgl 2.0`,
+                    `%c${library}\n%cversion: %c${version} %crunning: %c${gl.getParameter(gl.VERSION)}`,
                     lib, parameters, values, parameters, values,
                 ];
 
@@ -102,7 +108,16 @@ class Renderer {
 
             setContext(gl);
 
-            UniformBuffers.setup();
+            this.perScene = new UniformBuffer([
+                ...mat4.create(),
+                ...mat4.create(),
+            ], 20);
+
+            this.perModel = new UniformBuffer([
+                ...mat4.create(),
+                ...mat4.create(),
+                ...vec4.create(),
+            ], 1);
 
             supported = true;
         } else {
@@ -152,53 +167,65 @@ class Renderer {
 
             camera.updateCameraMatrix(gl.canvas.width, gl.canvas.height);
 
-            // modelViewMatrix
-            mat4.identity(scene.modelViewMatrix);
-            mat4.lookAt(scene.modelViewMatrix, camera.position.data, camera.target, camera.up);
+            // common matrices
+            mat4.identity(viewMatrix);
+            mat4.lookAt(viewMatrix, camera.position.data, camera.target, camera.up);
 
-            // Create normal normalMatrix
-            // Removes scale and translation
-            // mat3.identity(normalMatrix);
-            // mat3.fromMat4(normalMatrix, inversedModelViewMatrix);
-            // mat3.transpose(normalMatrix, normalMatrix);
-            // gl.uniformMatrix3fv(this.uniforms.uNormalMatrix.location, false, normalMatrix);
+            mat4.identity(invertedViewMatrix);
+            mat4.invert(invertedViewMatrix, viewMatrix);
+
             scene.traverse();
 
-            UniformBuffers.updateProjectionView(
-                camera.projectionMatrix,
-                scene.modelViewMatrix,
-            );
+            this.perScene.update([
+                ...camera.projectionMatrix,
+                ...viewMatrix,
+            ]);
 
-            // TODO: sort by program?
             // TODO: sort opaque and transparent objects
-
-            // render transparent objects (sorted by z);
-            // TODO
-
-            // render opaque objects
-            // TODO
-
             // temporary render until I sort the &quot;sort&quot; :p
             for (let i = 0, len = scene.children.length; i &lt; len; i++) {
-                child = scene.children[i]; // eslint-disable-line
+                child = scene.children[i];
+
+                // first time
                 if (!child.material.program) {
-                    child.material.init();
+                    child.init();
                     return;
                 }
 
+                // change program
                 if (lastProgram !== child.material.program) {
                     lastProgram = child.material.program;
                     gl.useProgram(lastProgram);
+
+                    // change progam, so bind UBO
+                    const sceneLocation = gl.getUniformBlockIndex(lastProgram, &apos;perScene&apos;);
+                    const modelLocation = gl.getUniformBlockIndex(lastProgram, &apos;perModel&apos;);
+                    gl.uniformBlockBinding(lastProgram, sceneLocation, this.perScene.boundLocation);
+                    gl.uniformBlockBinding(lastProgram, modelLocation, this.perModel.boundLocation);
+                    // console.log(&apos;change program&apos;, sceneLocation, modelLocation);
+                    // https://jsfiddle.net/andrevenancio/m9qchtdb/14/
                 }
 
-                child.material.bind();
+                // update matrices per model
+                mat4.identity(normalMatrix);
+                mat4.copy(normalMatrix, invertedViewMatrix);
+                mat4.transpose(normalMatrix, normalMatrix);
+
+                // render child
+                child.bind();
+
+                this.perModel.update([
+                    ...child.modelMatrix,
+                    ...normalMatrix,
+                    ...child.material.color,
+                ]);
+
                 child.update();
-                child.material.unbind();
+                child.unbind();
                 child = null;
             }
         }
     }
-
 }
 
 export default Renderer;

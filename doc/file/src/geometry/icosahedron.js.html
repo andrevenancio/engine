@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/geometry/icosahedron.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/andrevenancio/engine" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getContext">getContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setContext">setContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-BASIC_MATERIAL">BASIC_MATERIAL</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-env">env</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-library">library</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-version">version</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/material.js~Material.html">Material</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/model.js~Model.html">Model</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/object3.js~Object3.html">Object3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/scene.js~Scene.html">Scene</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/vector3.js~Vector3.html">Vector3</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">geometry</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/geometry/box.js~Box.html">Box</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/geometry/icosahedron.js~Icosahedron.html">Icosahedron</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/geometry/plane.js~Plane.html">Plane</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">loaders</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/loaders/obj.js~ObjLoader.html">ObjLoader</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">materials</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/materials/basic.js~Basic.html">Basic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/index.js~Renderer.html">Renderer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer/helpers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/helpers/ubo.js~UniformBuffer.html">UniformBuffer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/helpers/vao.js~Vao.html">Vao</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createProgram">createProgram</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-componentToHex">componentToHex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hexIntToRgb">hexIntToRgb</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hexStringToRgb">hexStringToRgb</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rgbToHex">rgbToHex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-flatten">flatten</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateVertexNormals">generateVertexNormals</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-mergeVertices">mergeVertices</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unflatten">unflatten</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clamp">clamp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isPowerOf2">isPowerOf2</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-randomRange">randomRange</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/geometry/icosahedron.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { generateVertexNormals } from &apos;../utils/geometry&apos;;
+import { flatten, unflatten } from &apos;../utils/geometry&apos;;
+
+class Icosahedron {
+
+    constructor(radius, detail = 0) {
+        const t = 0.5 + (Math.sqrt(5) / 2);
+        let positions = [
+            -1, +t, 0,
+            +1, +t, 0,
+            -1, -t, 0,
+            +1, -t, 0,
+            0, -1, +t,
+            0, +1, +t,
+            0, -1, -t,
+            0, +1, -t,
+            +t, 0, -1,
+            +t, 0, +1,
+            -t, 0, -1,
+            -t, 0, +1,
+        ];
+        const faces = [
+            0, 11, 5,
+            0, 5, 1,
+            0, 1, 7,
+            0, 7, 10,
+            0, 10, 11,
+            1, 5, 9,
+            5, 11, 4,
+            11, 10, 2,
+            10, 7, 6,
+            7, 1, 8,
+            3, 9, 4,
+            3, 4, 2,
+            3, 2, 6,
+            3, 6, 8,
+            3, 8, 9,
+            4, 9, 5,
+            2, 4, 11,
+            6, 2, 10,
+            8, 6, 7,
+            9, 8, 1,
+        ];
+
+        let complex = {
+            faces: unflatten(faces, 3),
+            positions: unflatten(positions, 3),
+        };
+
+        let d = Math.min(detail, 3);
+
+        while(d-- &gt; 0) {
+            complex = this.subdivide(complex);
+        }
+
+        positions = complex.positions;
+        for (let i = 0; i &lt; positions.length; i++) {
+            this.normalize(positions[i]);
+            this.scale(positions[i], radius);
+        }
+
+        const geometry = {
+            positions: flatten(complex.positions),
+            indices: flatten(complex.faces),
+            normals: null,
+        };
+
+        geometry.normals = generateVertexNormals(geometry.positions, geometry.indices);
+
+        return geometry;
+    }
+
+    normalize(vec) {
+        let mag = 0;
+        for (let n = 0; n &lt; vec.length; n++) {
+            mag += vec[n] * vec[n];
+        }
+        mag = Math.sqrt(mag);
+
+        // avoid dividing by zero
+        if (mag === 0) {
+            return Array.apply(null, new Array(vec.length)).map(Number.prototype.valueOf, 0);
+        }
+
+        for (let n = 0; n &lt; vec.length; n++) {
+            vec[n] /= mag;
+        }
+
+        return vec;
+    }
+
+    scale(vec, factor) {
+        for (let n = 0; n &lt; vec.length; n++) {
+            vec[n] *= factor;
+        }
+        return vec;
+    }
+
+    subdivide(complex) {
+        const positions = complex.positions;
+        const faces = complex.faces;
+
+        const newCells = [];
+        const newPositions = [];
+        const midpoints = {};
+        let l = 0;
+
+        function midpoint(a, b) {
+            return [
+                (a[0] + b[0]) / 2, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2,
+            ];
+        }
+
+        function pointToKey(point) {
+            return point[0].toPrecision(6) + &apos;,&apos; + point[1].toPrecision(6) + &apos;,&apos; + point[2].toPrecision(6);
+        }
+
+        function getMidpoint(a, b) {
+            const point = midpoint(a, b);
+            const pointKey = pointToKey(point);
+            const cachedPoint = midpoints[pointKey];
+            if (cachedPoint) {
+                return cachedPoint;
+            }
+            midpoints[pointKey] = point;
+            return midpoints[pointKey];
+        }
+
+        for (let i = 0; i &lt; faces.length; i++) {
+            const cell = faces[i];
+            const c0 = cell[0];
+            const c1 = cell[1];
+            const c2 = cell[2];
+            const v0 = positions[c0];
+            const v1 = positions[c1];
+            const v2 = positions[c2];
+
+            const a = getMidpoint(v0, v1);
+            const b = getMidpoint(v1, v2);
+            const c = getMidpoint(v2, v0);
+
+            let ai = newPositions.indexOf(a);
+            if (ai === -1) {
+                ai = l++;
+                newPositions.push(a);
+            }
+            let bi = newPositions.indexOf(b);
+            if (bi === -1) {
+                bi = l++;
+                newPositions.push(b);
+            }
+            let ci = newPositions.indexOf(c);
+            if (ci === -1) {
+                ci = l++;
+                newPositions.push(c);
+            }
+
+            let v0i = newPositions.indexOf(v0);
+            if (v0i === -1) {
+                v0i = l++;
+                newPositions.push(v0);
+            }
+            let v1i = newPositions.indexOf(v1);
+            if (v1i === -1) {
+                v1i = l++;
+                newPositions.push(v1);
+            }
+            let v2i = newPositions.indexOf(v2);
+            if (v2i === -1) {
+                v2i = l++;
+                newPositions.push(v2);
+            }
+
+            newCells.push([v0i, ai, ci]);
+            newCells.push([v1i, bi, ai]);
+            newCells.push([v2i, ci, bi]);
+            newCells.push([ai, bi, ci]);
+        }
+
+        return {
+            faces: newCells,
+            positions: newPositions,
+        };
+    }
+}
+
+export default Icosahedron;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

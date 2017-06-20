@@ -5,6 +5,7 @@ import * as cameras from './cameras';
 import Scene from './core/scene';
 import Model from './core/model';
 import * as materials from './materials';
+import * as geometry from './geometry';
 
 import * as controls from './controls';
 import * as utils from './utils';
@@ -20,6 +21,7 @@ export {
     Scene,
     Model,
     materials,
+    geometry,
 
     controls,
     utils,

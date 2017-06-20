@@ -27,12 +27,6 @@ export function unflatten(arr, amount) {
 }
 
 export function generateVertexNormals(positions, indices) {
-    // TODO: remove if I decide to make this generation of normals optional. (on Geometry.js)
-    if (indices === undefined) {
-        return;
-    }
-    // const output = flatten(vertexNormals(unflatten(indices, 3), unflatten(positions, 3)));
-
     const faces = unflatten(indices, 3);
     const vertices = unflatten(positions, 3);
 
@@ -79,7 +73,7 @@ export function generateVertexNormals(positions, indices) {
         vec3.normalize(temp[i], temp[i]);
     }
 
-    return new Float32Array(flatten(temp, 3));
+    return flatten(temp, 3)
 };
 
 export function mergeVertices(data) {

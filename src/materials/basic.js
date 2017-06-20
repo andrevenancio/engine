@@ -9,7 +9,7 @@ class Basic extends Material {
         super();
         this.type = BASIC_MATERIAL;
 
-        this.color = color.convert(props.color || 0xffffff);
+        this.color = color.convert(props && props.color || 0xffffff);
     }
 
 }

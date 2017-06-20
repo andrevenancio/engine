@@ -12,6 +12,18 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "engine/src/geometry/box.js~box",
+    "class/src/geometry/box.js~Box.html",
+    "<span>Box</span> <span class=\"search-result-import-path\">engine/src/geometry/box.js</span>",
+    "class"
+  ],
+  [
+    "engine/src/geometry/icosahedron.js~icosahedron",
+    "class/src/geometry/icosahedron.js~Icosahedron.html",
+    "<span>Icosahedron</span> <span class=\"search-result-import-path\">engine/src/geometry/icosahedron.js</span>",
+    "class"
+  ],
+  [
     "engine/src/core/material.js~material",
     "class/src/core/material.js~Material.html",
     "<span>Material</span> <span class=\"search-result-import-path\">engine/src/core/material.js</span>",
@@ -36,6 +48,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "engine/src/geometry/plane.js~plane",
+    "class/src/geometry/plane.js~Plane.html",
+    "<span>Plane</span> <span class=\"search-result-import-path\">engine/src/geometry/plane.js</span>",
+    "class"
+  ],
+  [
     "engine/src/renderer/index.js~renderer",
     "class/src/renderer/index.js~Renderer.html",
     "<span>Renderer</span> <span class=\"search-result-import-path\">engine/src/renderer/index.js</span>",
@@ -48,9 +66,9 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "engine/src/renderer/helpers/uniform-buffer.js~uniformbuffer",
-    "class/src/renderer/helpers/uniform-buffer.js~UniformBuffer.html",
-    "<span>UniformBuffer</span> <span class=\"search-result-import-path\">engine/src/renderer/helpers/uniform-buffer.js</span>",
+    "engine/src/renderer/helpers/ubo.js~uniformbuffer",
+    "class/src/renderer/helpers/ubo.js~UniformBuffer.html",
+    "<span>UniformBuffer</span> <span class=\"search-result-import-path\">engine/src/renderer/helpers/ubo.js</span>",
     "class"
   ],
   [
@@ -69,6 +87,18 @@ window.esdocSearchIndex = [
     "engine/src/utils/math.js~clamp",
     "function/index.html#static-function-clamp",
     "<span>clamp</span> <span class=\"search-result-import-path\">engine/src/utils/math.js</span>",
+    "function"
+  ],
+  [
+    "engine/src/utils/color.js~componenttohex",
+    "function/index.html#static-function-componentToHex",
+    "<span>componentToHex</span> <span class=\"search-result-import-path\">engine/src/utils/color.js</span>",
+    "function"
+  ],
+  [
+    "engine/src/utils/color.js~convert",
+    "function/index.html#static-function-convert",
+    "<span>convert</span> <span class=\"search-result-import-path\">engine/src/utils/color.js</span>",
     "function"
   ],
   [
@@ -102,6 +132,18 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "engine/src/utils/color.js~hexinttorgb",
+    "function/index.html#static-function-hexIntToRgb",
+    "<span>hexIntToRgb</span> <span class=\"search-result-import-path\">engine/src/utils/color.js</span>",
+    "function"
+  ],
+  [
+    "engine/src/utils/color.js~hexstringtorgb",
+    "function/index.html#static-function-hexStringToRgb",
+    "<span>hexStringToRgb</span> <span class=\"search-result-import-path\">engine/src/utils/color.js</span>",
+    "function"
+  ],
+  [
     "engine/src/utils/math.js~ispowerof2",
     "function/index.html#static-function-isPowerOf2",
     "<span>isPowerOf2</span> <span class=\"search-result-import-path\">engine/src/utils/math.js</span>",
@@ -126,33 +168,21 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "engine/src/utils/color.js~rgbtohex",
+    "function/index.html#static-function-rgbToHex",
+    "<span>rgbToHex</span> <span class=\"search-result-import-path\">engine/src/utils/color.js</span>",
+    "function"
+  ],
+  [
     "engine/src/session.js~setcontext",
     "function/index.html#static-function-setContext",
     "<span>setContext</span> <span class=\"search-result-import-path\">engine/src/session.js</span>",
     "function"
   ],
   [
-    "engine/src/renderer/helpers/uniform-buffers.js~setup",
-    "function/index.html#static-function-setup",
-    "<span>setup</span> <span class=\"search-result-import-path\">engine/src/renderer/helpers/uniform-buffers.js</span>",
-    "function"
-  ],
-  [
     "engine/src/utils/geometry.js~unflatten",
     "function/index.html#static-function-unflatten",
     "<span>unflatten</span> <span class=\"search-result-import-path\">engine/src/utils/geometry.js</span>",
-    "function"
-  ],
-  [
-    "engine/src/renderer/helpers/uniform-buffers.js~uniformbuffers",
-    "variable/index.html#static-variable-uniformBuffers",
-    "<span>uniformBuffers</span> <span class=\"search-result-import-path\">engine/src/renderer/helpers/uniform-buffers.js</span>",
-    "variable"
-  ],
-  [
-    "engine/src/renderer/helpers/uniform-buffers.js~updateprojectionview",
-    "function/index.html#static-function-updateProjectionView",
-    "<span>updateProjectionView</span> <span class=\"search-result-import-path\">engine/src/renderer/helpers/uniform-buffers.js</span>",
     "function"
   ],
   [
@@ -642,6 +672,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/core/model.js~model#bind",
+    "class/src/core/model.js~Model.html#instance-method-bind",
+    "src/core/model.js~Model#bind",
+    "method"
+  ],
+  [
     "src/core/model.js~model#constructor",
     "class/src/core/model.js~Model.html#instance-constructor-constructor",
     "src/core/model.js~Model#constructor",
@@ -660,10 +696,22 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/core/model.js~model#init",
+    "class/src/core/model.js~Model.html#instance-method-init",
+    "src/core/model.js~Model#init",
+    "method"
+  ],
+  [
     "src/core/model.js~model#material",
     "class/src/core/model.js~Model.html#instance-member-material",
     "src/core/model.js~Model#material",
     "member"
+  ],
+  [
+    "src/core/model.js~model#unbind",
+    "class/src/core/model.js~Model.html#instance-method-unbind",
+    "src/core/model.js~Model#unbind",
+    "method"
   ],
   [
     "src/core/model.js~model#update",
@@ -690,39 +738,21 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/core/object3.js~object3#inversedmodelviewmatrix",
-    "class/src/core/object3.js~Object3.html#instance-member-inversedModelViewMatrix",
-    "src/core/object3.js~Object3#inversedModelViewMatrix",
-    "member"
-  ],
-  [
-    "src/core/object3.js~object3#inversedviewmatrix",
-    "class/src/core/object3.js~Object3.html#instance-member-inversedViewMatrix",
-    "src/core/object3.js~Object3#inversedViewMatrix",
-    "member"
-  ],
-  [
-    "src/core/object3.js~object3#localmatrix",
-    "class/src/core/object3.js~Object3.html#instance-member-localMatrix",
-    "src/core/object3.js~Object3#localMatrix",
-    "member"
-  ],
-  [
     "src/core/object3.js~object3#modelmatrix",
     "class/src/core/object3.js~Object3.html#instance-member-modelMatrix",
     "src/core/object3.js~Object3#modelMatrix",
     "member"
   ],
   [
-    "src/core/object3.js~object3#normalmatrix",
-    "class/src/core/object3.js~Object3.html#instance-member-normalMatrix",
-    "src/core/object3.js~Object3#normalMatrix",
-    "member"
-  ],
-  [
     "src/core/object3.js~object3#parent",
     "class/src/core/object3.js~Object3.html#instance-member-parent",
     "src/core/object3.js~Object3#parent",
+    "member"
+  ],
+  [
+    "src/core/object3.js~object3#parentmatrix",
+    "class/src/core/object3.js~Object3.html#instance-member-parentMatrix",
+    "src/core/object3.js~Object3#parentMatrix",
     "member"
   ],
   [
@@ -780,21 +810,9 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/core/scene.js~scene#inversedviewmatrix",
-    "class/src/core/scene.js~Scene.html#instance-member-inversedViewMatrix",
-    "src/core/scene.js~Scene#inversedViewMatrix",
-    "member"
-  ],
-  [
     "src/core/scene.js~scene#lights",
     "class/src/core/scene.js~Scene.html#instance-member-lights",
     "src/core/scene.js~Scene#lights",
-    "member"
-  ],
-  [
-    "src/core/scene.js~scene#modelviewmatrix",
-    "class/src/core/scene.js~Scene.html#instance-member-modelViewMatrix",
-    "src/core/scene.js~Scene#modelViewMatrix",
     "member"
   ],
   [
@@ -853,15 +871,75 @@ window.esdocSearchIndex = [
   ],
   [
     "src/core/vector3.js~vector3#z",
-    "class/src/core/vector3.js~Vector3.html#instance-get-z",
+    "class/src/core/vector3.js~Vector3.html#instance-set-z",
     "src/core/vector3.js~Vector3#z",
     "member"
   ],
   [
     "src/core/vector3.js~vector3#z",
-    "class/src/core/vector3.js~Vector3.html#instance-set-z",
+    "class/src/core/vector3.js~Vector3.html#instance-get-z",
     "src/core/vector3.js~Vector3#z",
     "member"
+  ],
+  [
+    "src/geometry/box.js",
+    "file/src/geometry/box.js.html",
+    "src/geometry/box.js",
+    "file"
+  ],
+  [
+    "src/geometry/box.js~box#constructor",
+    "class/src/geometry/box.js~Box.html#instance-constructor-constructor",
+    "src/geometry/box.js~Box#constructor",
+    "method"
+  ],
+  [
+    "src/geometry/icosahedron.js",
+    "file/src/geometry/icosahedron.js.html",
+    "src/geometry/icosahedron.js",
+    "file"
+  ],
+  [
+    "src/geometry/icosahedron.js~icosahedron#constructor",
+    "class/src/geometry/icosahedron.js~Icosahedron.html#instance-constructor-constructor",
+    "src/geometry/icosahedron.js~Icosahedron#constructor",
+    "method"
+  ],
+  [
+    "src/geometry/icosahedron.js~icosahedron#normalize",
+    "class/src/geometry/icosahedron.js~Icosahedron.html#instance-method-normalize",
+    "src/geometry/icosahedron.js~Icosahedron#normalize",
+    "method"
+  ],
+  [
+    "src/geometry/icosahedron.js~icosahedron#scale",
+    "class/src/geometry/icosahedron.js~Icosahedron.html#instance-method-scale",
+    "src/geometry/icosahedron.js~Icosahedron#scale",
+    "method"
+  ],
+  [
+    "src/geometry/icosahedron.js~icosahedron#subdivide",
+    "class/src/geometry/icosahedron.js~Icosahedron.html#instance-method-subdivide",
+    "src/geometry/icosahedron.js~Icosahedron#subdivide",
+    "method"
+  ],
+  [
+    "src/geometry/index.js",
+    "file/src/geometry/index.js.html",
+    "src/geometry/index.js",
+    "file"
+  ],
+  [
+    "src/geometry/plane.js",
+    "file/src/geometry/plane.js.html",
+    "src/geometry/plane.js",
+    "file"
+  ],
+  [
+    "src/geometry/plane.js~plane#constructor",
+    "class/src/geometry/plane.js~Plane.html#instance-constructor-constructor",
+    "src/geometry/plane.js~Plane#constructor",
+    "method"
   ],
   [
     "src/index.js",
@@ -906,6 +984,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/materials/basic.js~basic#color",
+    "class/src/materials/basic.js~Basic.html#instance-member-color",
+    "src/materials/basic.js~Basic#color",
+    "member"
+  ],
+  [
     "src/materials/basic.js~basic#constructor",
     "class/src/materials/basic.js~Basic.html#instance-constructor-constructor",
     "src/materials/basic.js~Basic#constructor",
@@ -930,40 +1014,40 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/renderer/helpers/uniform-buffer.js",
-    "file/src/renderer/helpers/uniform-buffer.js.html",
-    "src/renderer/helpers/uniform-buffer.js",
+    "src/renderer/helpers/ubo.js",
+    "file/src/renderer/helpers/ubo.js.html",
+    "src/renderer/helpers/ubo.js",
     "file"
   ],
   [
-    "src/renderer/helpers/uniform-buffer.js~uniformbuffer#buffer",
-    "class/src/renderer/helpers/uniform-buffer.js~UniformBuffer.html#instance-member-buffer",
-    "src/renderer/helpers/uniform-buffer.js~UniformBuffer#buffer",
+    "src/renderer/helpers/ubo.js~uniformbuffer#boundlocation",
+    "class/src/renderer/helpers/ubo.js~UniformBuffer.html#instance-member-boundLocation",
+    "src/renderer/helpers/ubo.js~UniformBuffer#boundLocation",
     "member"
   ],
   [
-    "src/renderer/helpers/uniform-buffer.js~uniformbuffer#constructor",
-    "class/src/renderer/helpers/uniform-buffer.js~UniformBuffer.html#instance-constructor-constructor",
-    "src/renderer/helpers/uniform-buffer.js~UniformBuffer#constructor",
-    "method"
-  ],
-  [
-    "src/renderer/helpers/uniform-buffer.js~uniformbuffer#data",
-    "class/src/renderer/helpers/uniform-buffer.js~UniformBuffer.html#instance-member-data",
-    "src/renderer/helpers/uniform-buffer.js~UniformBuffer#data",
+    "src/renderer/helpers/ubo.js~uniformbuffer#buffer",
+    "class/src/renderer/helpers/ubo.js~UniformBuffer.html#instance-member-buffer",
+    "src/renderer/helpers/ubo.js~UniformBuffer#buffer",
     "member"
   ],
   [
-    "src/renderer/helpers/uniform-buffer.js~uniformbuffer#setvalues",
-    "class/src/renderer/helpers/uniform-buffer.js~UniformBuffer.html#instance-method-setValues",
-    "src/renderer/helpers/uniform-buffer.js~UniformBuffer#setValues",
+    "src/renderer/helpers/ubo.js~uniformbuffer#constructor",
+    "class/src/renderer/helpers/ubo.js~UniformBuffer.html#instance-constructor-constructor",
+    "src/renderer/helpers/ubo.js~UniformBuffer#constructor",
     "method"
   ],
   [
-    "src/renderer/helpers/uniform-buffers.js",
-    "file/src/renderer/helpers/uniform-buffers.js.html",
-    "src/renderer/helpers/uniform-buffers.js",
-    "file"
+    "src/renderer/helpers/ubo.js~uniformbuffer#data",
+    "class/src/renderer/helpers/ubo.js~UniformBuffer.html#instance-member-data",
+    "src/renderer/helpers/ubo.js~UniformBuffer#data",
+    "member"
+  ],
+  [
+    "src/renderer/helpers/ubo.js~uniformbuffer#update",
+    "class/src/renderer/helpers/ubo.js~UniformBuffer.html#instance-method-update",
+    "src/renderer/helpers/ubo.js~UniformBuffer#update",
+    "method"
   ],
   [
     "src/renderer/helpers/vao.js",
@@ -1020,6 +1104,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/renderer/index.js~renderer#permodel",
+    "class/src/renderer/index.js~Renderer.html#instance-member-perModel",
+    "src/renderer/index.js~Renderer#perModel",
+    "member"
+  ],
+  [
+    "src/renderer/index.js~renderer#perscene",
+    "class/src/renderer/index.js~Renderer.html#instance-member-perScene",
+    "src/renderer/index.js~Renderer#perScene",
+    "member"
+  ],
+  [
     "src/renderer/index.js~renderer#ratio",
     "class/src/renderer/index.js~Renderer.html#instance-member-ratio",
     "src/renderer/index.js~Renderer#ratio",
@@ -1047,6 +1143,12 @@ window.esdocSearchIndex = [
     "src/session.js",
     "file/src/session.js.html",
     "src/session.js",
+    "file"
+  ],
+  [
+    "src/utils/color.js",
+    "file/src/utils/color.js.html",
+    "src/utils/color.js",
     "file"
   ],
   [

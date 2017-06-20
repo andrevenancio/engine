@@ -43,16 +43,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/object3.js~Object3.html">Object3</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/scene.js~Scene.html">Scene</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/vector3.js~Vector3.html">Vector3</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">geometry</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/geometry/box.js~Box.html">Box</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/geometry/icosahedron.js~Icosahedron.html">Icosahedron</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/geometry/plane.js~Plane.html">Plane</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">loaders</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/loaders/obj.js~ObjLoader.html">ObjLoader</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">materials</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/materials/basic.js~Basic.html">Basic</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/index.js~Renderer.html">Renderer</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer/helpers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/helpers/uniform-buffer.js~UniformBuffer.html">UniformBuffer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderer/helpers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/helpers/ubo.js~UniformBuffer.html">UniformBuffer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/renderer/helpers/vao.js~Vao.html">Vao</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createProgram">createProgram</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setup">setup</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateProjectionView">updateProjectionView</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-uniformBuffers">uniformBuffers</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-flatten">flatten</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-componentToHex">componentToHex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hexIntToRgb">hexIntToRgb</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hexStringToRgb">hexStringToRgb</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rgbToHex">rgbToHex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-flatten">flatten</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateVertexNormals">generateVertexNormals</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-mergeVertices">mergeVertices</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unflatten">unflatten</a></span></span></li>
@@ -179,42 +184,52 @@ class Material {
 
     generateVertexShader() {
         return `#version 300 es
-            uniform projection {
-                mat4 projectionMatrix;
-                mat4 viewMatrix;
-            } u_pv;
 
-            uniform mat4 modelMatrix;
+            uniform perScene {
+                mat4 projection;
+                mat4 view;
+            };
+
+            uniform perModel {
+                mat4 model;
+                mat4 normal;
+                vec4 color;
+            };
 
             in vec3 a_position;
             in vec3 a_normal;
 
-            out vec3 v_normal;
+            out vec3 v_color;
 
             void main() {
-                mat4 projection = u_pv.projectionMatrix * u_pv.viewMatrix;
-                gl_Position = projection * modelMatrix * vec4(a_position, 1.0);
+                gl_Position = projection * view * model * vec4(a_position, 1.0);
 
-                v_normal = normalize(mat3(u_pv.viewMatrix * modelMatrix) * a_normal);
+                vec3 normal = normalize(mat3(normal) * a_normal);
+
+                // directional light
+                float weight = max(dot(normal, vec3(0.0, 0.0, 1.0)), 0.0);
+                v_color = vec3(0.2) + vec3(0.8) * weight; // ambient * directional color
             }
         `;
     }
 
     generateFragmentShader() {
         return `#version 300 es
-            precision mediump float;
-            precision mediump int;
+            precision highp float;
+            precision highp int;
 
-            in vec3 v_normal;
+            uniform perModel {
+                mat4 model;
+                mat4 normal;
+                vec4 color;
+            };
+
+            in vec3 v_color;
 
             out vec4 outColor;
 
             void main() {
-                vec4 c = vec4(1.0, 1.0, 1.0, 1.0);
-                vec3 light = vec3(dot(normalize(v_normal), vec3(0.0, 0.0, 1.0))); // position
-                // light /= vec3(1.0, 1.0, 1.0); // color
-                c *= vec4(light, 1.0);
-                outColor = c; // vec4(v_normal, 1.0);
+                outColor = color * vec4(v_color, 1.0);
             }
         `;
     }
@@ -248,6 +263,7 @@ class Material {
 
         Object.keys(this.uniforms).forEach((key) =&gt; {
             const uniform = this.uniforms[key];
+
             switch(uniform.type) {
                 case &apos;mat4&apos;:
                     gl.uniformMatrix4fv(uniform.location, false, uniform.value);
