@@ -38,7 +38,7 @@
                     color: 0xffffff,
                     map: '/dev/img/uv.png',
                 });
-                const geometry = new engine.geometry.Box(50, 50, 50);
+                const geometry = new engine.geometry.Icosahedron(50, 2);
                 const model = new engine.Model(geometry, material);
                 scene.addModel(model);
 

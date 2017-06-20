@@ -42,6 +42,8 @@ class Icosahedron {
             9, 8, 1,
         ];
 
+        const uvs = [];
+
         let complex = {
             faces: unflatten(faces, 3),
             positions: unflatten(positions, 3),
@@ -53,9 +55,21 @@ class Icosahedron {
             complex = this.subdivide(complex);
         }
 
+        // generate uvs
+        for (let i = 0; i < complex.positions.length; i++) {
+            const position = this.normalize(complex.positions[i]);
+            const u = 0.5 * (-(Math.atan2(position[2], -position[0]) / Math.PI) + 1.0);
+            const v = 0.5 + Math.asin(position[1]) / Math.PI;
+            uvs.push([ 1 - u, 1 - v ]);
+        }
+
+        // http://mft-dev.dk/uv-mapping-sphere/
+        // this.fixPoleUVs(complex.positions, complex.faces, uvs);
+
+        // scale positions
         positions = complex.positions;
         for (let i = 0; i < positions.length; i++) {
-            this.normalize(positions[i]);
+            // this.normalize(positions[i]);
             this.scale(positions[i], radius);
         }
 
@@ -63,11 +77,62 @@ class Icosahedron {
             positions: flatten(complex.positions),
             indices: flatten(complex.faces),
             normals: null,
+            uvs: flatten(uvs, 2),
         };
 
         geometry.normals = generateVertexNormals(geometry.positions, geometry.indices);
 
         return geometry;
+    }
+
+    fixPoleUVs(positions, cells, uvs) {
+        let northIndex = this.firstYIndex(positions, 1);
+        let southIndex = this.firstYIndex(positions, -1);
+
+        if (northIndex === -1 || southIndex === -1) {
+            // could not find any poles, bail early
+            return;
+        }
+
+        const newVertices = positions.slice();
+        const newUvs = uvs.slice();
+        let verticeIndex = newVertices.length - 1;
+
+        function visit(cell, poleIndex, b, c) {
+            const uv1 = uvs[b];
+            const uv2 = uvs[c];
+            uvs[poleIndex][0] = (uv1[0] + uv2[0]) / 2;
+            verticeIndex++;
+            newVertices.push(positions[poleIndex].slice());
+            newUvs.push(uvs[poleIndex].slice());
+            cell[0] = verticeIndex;
+        }
+
+        for (let i = 0; i < cells.length; i++) {
+            const cell = cells[i];
+            const a = cell[0];
+            const b = cell[1];
+            const c = cell[2];
+
+            if (a === northIndex) {
+                visit(cell, northIndex, b, c);
+            } else if (a === southIndex) {
+                visit(cell, southIndex, b, c);
+            }
+        }
+
+        positions = newVertices;
+        uvs = newUvs;
+    }
+
+    firstYIndex(list, value) {
+        for (let i = 0; i < list.length; i++) {
+            const vec = list[i];
+            if (Math.abs(vec[1] - value) <= 1e-4) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     normalize(vec) {
