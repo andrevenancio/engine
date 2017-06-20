@@ -34,11 +34,11 @@
             }
 
             function init() {
-                const material = new engine.materials.FlatShading({
+                const material = new engine.materials.Basic({
                     color: 0xffffff,
                     map: '/dev/img/uv.png',
                 });
-                const geometry = new engine.geometry.Icosahedron(50, 2);
+                const geometry = new engine.geometry.Icosahedron(50, 1);
                 const model = new engine.Model(geometry, material);
                 scene.addModel(model);
 
