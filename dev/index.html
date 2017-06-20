@@ -17,6 +17,7 @@
         <script>
             var renderer, scene, camera;
             var controls;
+            var model, geometry, material;
 
             window.addEventListener('resize', resize, false);
 
@@ -36,15 +37,15 @@
             }
 
             function init(data) {
-                const material = new engine.materials.Sem({
-                    map: '/dev/img/matcap/red.jpg',
+                material = new engine.materials.Sem({
+                    map: '/dev/img/matcap/gloss.jpg',
                 });
-                const geometry = engine.utils.geometry.mergeVertices(data);
-                const model = new engine.Model(geometry, material);
+                geometry = data; // engine.utils.geometry.mergeVertices(data);
+                model = new engine.Model(geometry, material);
                 scene.addModel(model);
 
                 const helper = new engine.helpers.Normal(model);
-                scene.addModel(helper);
+                // scene.addModel(helper);
 
                 update();
             }
@@ -55,6 +56,7 @@
 
             function update() {
                 requestAnimationFrame(update);
+                model.rotation.y += 0.02;
                 renderer.render(scene, camera);
                 controls.update();
             }

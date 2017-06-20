@@ -43,7 +43,7 @@ class Sem extends Material {
                 gl_Position = projectionMatrix * position;
 
                 vec3 v_e = vec3(position);
-                vec3 v_n = mat3(normalMatrix) * a_normal;
+                vec3 v_n = mat3(viewMatrix * modelMatrix) * a_normal;
                 vec3 r = reflect(normalize(v_e), normalize(v_n));
                 float m = 2.0 * sqrt(pow(r.x, 2.0) + pow(r.y, 2.0) + pow(r.z + 1.0, 2.0));
                 v_uv = r.xy / m + 0.5;

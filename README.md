@@ -30,3 +30,4 @@ Run `npm run build` to generate the library and documentation.
 * adding subdivision `utils/geometry`
 * implement shader-chunks across materials
 * implement ShaderToy material
+* loaders should export geometry and material
