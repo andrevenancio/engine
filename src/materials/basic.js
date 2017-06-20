@@ -1,8 +1,7 @@
 import { BASIC_MATERIAL } from '../constants';
+import { color } from '../utils';
 import Material from '../core/material';
 import Texture from '../core/texture';
-
-import { color } from '../utils';
 
 class Basic extends Material {
 
@@ -75,8 +74,9 @@ class Basic extends Material {
 
             void main() {
                 vec4 base = vec4(0.0, 0.0, 0.0, 1.0);
-                base = texture(map, v_uv);
-                outColor = base * vec4(color * v_color, 1.0);
+                base += texture(map, v_uv);
+                base *= color * v_color
+                outColor = base;
             }
         `;
     }
