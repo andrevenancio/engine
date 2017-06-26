@@ -9,7 +9,6 @@ Run `npm start` for development.
 ## Production
 Run `npm run build` to generate the library and documentation.
 
-
 ## TODO
 * implement basic material                      ✔   19 Jun 2017
 * implement UBO's.                              ✔   19 Jun 2017
@@ -20,7 +19,7 @@ Run `npm run build` to generate the library and documentation.
 * implement Spherical Environment Mapping       ✔   20 Jun 2017
 * implement JSON loader                         ✔   20 Jun 2017
 * implement normal helper                       ✔   20 Jun 2017
-* implement render targets
+* implement render targets                      ✔   26 Jun 2017
 * implement normal maps
 * implement OBJ loader to material
 * implement instanced objects
