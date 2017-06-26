@@ -66,7 +66,6 @@ class Renderer {
 
         this.rttwidth = width;
         this.rttheight = height;
-        console.log('update RTT', this.rttwidth, this.rttheight);
 
         this.frameBuffer = gl.createFramebuffer();
         gl.bindFramebuffer(gl.FRAMEBUFFER, this.frameBuffer);
@@ -198,6 +197,7 @@ class Renderer {
 
         if (width !== this.rttwidth || height !== this.rttheight) {
             // TODO: is there a better way?
+            console.log('update RTT', width, height);
             this.updateRTT(width, height);
         }
 

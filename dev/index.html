@@ -41,8 +41,6 @@
                     map: '/dev/img/matcap/red.jpg',
                 });
                 geometry = data; // option 1
-                // geometry = engine.utils.geometry.mergeVertices(data); // option 2
-                // geometry = new engine.geometry.Box(50, 50, 50); // option 3
                 model = new engine.Model(geometry, material);
                 scene.addModel(model);
 
@@ -56,7 +54,7 @@
             function update() {
                 requestAnimationFrame(update);
 
-                renderer.rtt(scene, camera);
+                renderer.render(scene, camera);
                 controls.update();
             }
 
