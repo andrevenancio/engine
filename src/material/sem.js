@@ -1,13 +1,12 @@
-import { BASIC_MATERIAL } from '../constants';
-import { color } from '../utils';
+import { SEM_MATERIAL } from '../constants';
 import Material from '../core/material';
 import Texture from '../core/texture';
 
-class Basic extends Material {
+class Sem extends Material {
 
-    constructor(props) {
+    constructor(props = {}) {
         super();
-        this.type = BASIC_MATERIAL;
+        this.type = SEM_MATERIAL;
 
         this.map = new Texture();
         if (props.map) {
@@ -15,10 +14,6 @@ class Basic extends Material {
         }
 
         Object.assign(this.uniforms, {
-            color: {
-                type: 'vec3',
-                value: color.convert(props && props.color || 0xffffff),
-            },
             map: {
                 type: 'sampler2D',
                 value: this.map.texture,
@@ -30,6 +25,7 @@ class Basic extends Material {
             uniform perScene {
                 mat4 projectionMatrix;
                 mat4 viewMatrix;
+                float iGlobalTime;
             };
 
             uniform perModel {
@@ -44,8 +40,14 @@ class Basic extends Material {
             out vec2 v_uv;
 
             void main() {
-                gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(a_position, 1.0);
-                v_uv = a_uv;
+                vec4 position = viewMatrix * modelMatrix * vec4(a_position, 1.0);
+                gl_Position = projectionMatrix * position;
+
+                vec3 v_e = vec3(position);
+                vec3 v_n = mat3(viewMatrix * modelMatrix) * a_normal;
+                vec3 r = reflect(normalize(v_e), normalize(v_n));
+                float m = 2.0 * sqrt(pow(r.x, 2.0) + pow(r.y, 2.0) + pow(r.z + 1.0, 2.0));
+                v_uv = r.xy / m + 0.5;
             }
         `;
 
@@ -58,7 +60,6 @@ class Basic extends Material {
                 mat4 normalMatrix;
             };
 
-            uniform vec3 color;
             uniform sampler2D map;
 
             in vec2 v_uv;
@@ -68,7 +69,6 @@ class Basic extends Material {
             void main() {
                 vec4 base = vec4(0.0, 0.0, 0.0, 1.0);
                 base += texture(map, v_uv);
-                base += vec4(color, 1.0);
                 outColor = base;
             }
         `;
@@ -76,4 +76,4 @@ class Basic extends Material {
 
 }
 
-export default Basic;
+export default Sem;

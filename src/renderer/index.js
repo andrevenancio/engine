@@ -1,6 +1,8 @@
-import { mat4 } from 'gl-matrix';
+/* eslint-disable */
+import { mat4, vec4 } from 'gl-matrix';
 import { library, version, getContext, setContext } from '../session';
 import UniformBuffer from './helpers/ubo';
+// import Texture from '../core/texture';
 
 let supported = false;
 let child;
@@ -10,6 +12,8 @@ let lastProgram;
 let viewMatrix = mat4.create();
 let invertedViewMatrix = mat4.create();
 let normalMatrix = mat4.create();
+
+const startTime = Date.now();
 
 class Renderer {
 
@@ -40,6 +44,7 @@ class Renderer {
             this.perScene = new UniformBuffer([
                 ...mat4.create(),
                 ...mat4.create(),
+                ...vec4.create(),
             ], 0);
 
             this.perModel = new UniformBuffer([
@@ -47,10 +52,40 @@ class Renderer {
                 ...mat4.create(),
             ], 1);
 
+            // rtt
+            this.updateRTT(global.innerWidth, global.innerHeight);
+
             supported = true;
         } else {
             alert('webgl2 not supported');
         }
+    }
+
+    updateRTT(width, height) {
+        const gl = getContext();
+
+        this.rttwidth = width;
+        this.rttheight = height;
+        console.log('update RTT', this.rttwidth, this.rttheight);
+
+        this.frameBuffer = gl.createFramebuffer();
+        gl.bindFramebuffer(gl.FRAMEBUFFER, this.frameBuffer);
+
+        this.texture = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, this.texture);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, this.rttwidth * this.ratio, this.rttheight * this.ratio, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+
+        this.renderBuffer = gl.createRenderbuffer();
+        gl.bindRenderbuffer(gl.RENDERBUFFER, this.renderBuffer);
+        gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, this.rttwidth * this.ratio, this.rttheight * this.ratio);
+        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.texture, 0);
+        gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, this.renderBuffer);
+
+        gl.bindTexture(gl.TEXTURE_2D, null);
+        gl.bindRenderbuffer(gl.RENDERBUFFER, null);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
     }
 
     createCanvas() {
@@ -79,10 +114,9 @@ class Renderer {
         this.ratio = ratio;
     }
 
-    render(scene, camera, clear = true) {
+    draw(scene, camera, clear = true) {
         if (supported) {
             const gl = getContext();
-
             gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 
             if (clear) {
@@ -107,6 +141,7 @@ class Renderer {
             this.perScene.update([
                 ...camera.projectionMatrix,
                 ...viewMatrix,
+                ...[(Date.now() - startTime) / 1000, 0, 0, 0],
             ]);
 
             // TODO: sort opaque and transparent objects
@@ -152,6 +187,33 @@ class Renderer {
                 child = null;
             }
         }
+    }
+
+    render(scene, camera, clear) {
+        this.draw(scene, camera, clear);
+    }
+
+    rtt(scene, camera, clear, width, height) {
+        const gl = getContext();
+
+        if (width !== this.rttwidth || height !== this.rttheight) {
+            // TODO: is there a better way?
+            this.updateRTT(width, height);
+        }
+
+        gl.bindFramebuffer(gl.FRAMEBUFFER, this.frameBuffer);
+
+        this.draw(scene, camera, clear);
+
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, this.texture);
+        gl.generateMipmap(gl.TEXTURE_2D);
+
+        gl.bindTexture(gl.TEXTURE_2D, null);
+        gl.bindRenderbuffer(gl.RENDERBUFFER, null);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+
+        return this.texture;
     }
 }
 

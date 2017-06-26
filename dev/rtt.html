@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>engine</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            html, body {
+                margin: 0;
+                background-color: #000;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="/webpack-dev-server.js"></script>
+        <script src="/lib/engine.js"></script>
+        <script>
+            var renderer, scene, camera;
+            var model, geometry, material;
+            var controls;
+            var sceneRTT, cameraRTT, target, plane;
+            var startTime = Date.now();
+
+            window.addEventListener('resize', resize, false);
+
+            setup();
+
+            function setup() {
+                renderer = new engine.Renderer();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+
+                // 3D
+                camera = new engine.cameras.Perspective();
+                scene = new engine.Scene();
+                controls = new engine.controls.Orbit(camera, renderer);
+
+                // 2D
+                cameraRTT = new engine.cameras.Orthographic();
+                sceneRTT = new engine.Scene();
+                target = new engine.Texture();
+
+                engine.loaders.Json.load('/dev/json/suzanne.json', init);
+            }
+
+            function init(data) {
+                // 3D
+                material = new engine.material.Sem({
+                    map: '/dev/img/matcap/red.jpg',
+                });
+                geometry = data;
+                model = new engine.Model(geometry, material);
+                scene.addModel(model);
+
+                // 2D
+                const geom = new engine.geometry.Plane(1, 1);
+                const mat = new engine.material.Raw({
+                    uniforms: {
+                        iGlobalTime: {
+                            type: 'float',
+                            value: 0,
+                        },
+                        iChannel0: {
+                            type: 'sampler2D',
+                            value: target.texture,
+                        },
+                    },
+                    fragment: `#version 300 es
+                        precision highp float;
+                        precision highp int;
+
+                        uniform perScene {
+                            mat4 projectionMatrix;
+                            mat4 viewMatrix;
+                            float iGlobalTime;
+                        };
+
+                        uniform sampler2D iChannel0;
+                        in vec2 v_uv;
+
+                        out vec4 outColor;
+
+                        void main() {
+                            outColor = vec4(v_uv, 0.5 + 0.5 * cos(iGlobalTime), 1.0) + texture(iChannel0, v_uv);
+                        }
+                    `,
+                });
+                plane = new engine.Model(geom, mat);
+                sceneRTT.addModel(plane);
+
+                update();
+            }
+
+            function resize() {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            function update() {
+                requestAnimationFrame(update);
+
+                target.texture = renderer.rtt(scene, camera, true, innerWidth, innerHeight);
+                renderer.render(sceneRTT, cameraRTT);
+
+                plane.material.uniforms.iChannel0.value = target.texture;
+
+                controls.update();
+            }
+
+        </script>
+    </body>
+</html>

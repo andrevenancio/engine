@@ -37,15 +37,14 @@
             }
 
             function init(data) {
-                material = new engine.materials.Sem({
-                    map: '/dev/img/matcap/gloss.jpg',
+                material = new engine.material.Sem({
+                    map: '/dev/img/matcap/red.jpg',
                 });
-                geometry = data; // engine.utils.geometry.mergeVertices(data);
+                geometry = data; // option 1
+                // geometry = engine.utils.geometry.mergeVertices(data); // option 2
+                // geometry = new engine.geometry.Box(50, 50, 50); // option 3
                 model = new engine.Model(geometry, material);
                 scene.addModel(model);
-
-                const helper = new engine.helpers.Normal(model, 10);
-                scene.addModel(helper);
 
                 update();
             }
@@ -57,9 +56,7 @@
             function update() {
                 requestAnimationFrame(update);
 
-                // model.rotation.y += 0.02;
-
-                renderer.render(scene, camera);
+                renderer.rtt(scene, camera);
                 controls.update();
             }
 

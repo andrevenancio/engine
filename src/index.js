@@ -5,7 +5,7 @@ import * as cameras from './cameras';
 import Scene from './core/scene';
 import Model from './core/model';
 import Texture from './core/texture';
-import * as materials from './materials';
+import * as material from './material';
 import * as geometry from './geometry';
 
 import * as controls from './controls';
@@ -25,7 +25,7 @@ export {
     Model,
     Texture,
 
-    materials,
+    material,
     geometry,
 
     controls,
