@@ -53,38 +53,31 @@ class Renderer {
             ], 1);
 
             // rtt
-            this.updateRTT(global.innerWidth, global.innerHeight);
+            // this.updateRTT(global.innerWidth, global.innerHeight);
+
+            this.frameBuffer = gl.createFramebuffer();
+            gl.bindFramebuffer(gl.FRAMEBUFFER, this.frameBuffer);
+
+            this.texture = gl.createTexture();
+            gl.bindTexture(gl.TEXTURE_2D, this.texture);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 256, 256, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+
+            this.renderBuffer = gl.createRenderbuffer();
+            gl.bindRenderbuffer(gl.RENDERBUFFER, this.renderBuffer);
+            gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, 256, 256);
+            gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.texture, 0);
+            gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, this.renderBuffer);
+
+            gl.bindTexture(gl.TEXTURE_2D, null);
+            gl.bindRenderbuffer(gl.RENDERBUFFER, null);
+            gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
             supported = true;
         } else {
             alert('webgl2 not supported');
         }
-    }
-
-    updateRTT(width, height) {
-        const gl = getContext();
-
-        this.rttwidth = width;
-        this.rttheight = height;
-
-        this.frameBuffer = gl.createFramebuffer();
-        gl.bindFramebuffer(gl.FRAMEBUFFER, this.frameBuffer);
-
-        this.texture = gl.createTexture();
-        gl.bindTexture(gl.TEXTURE_2D, this.texture);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, this.rttwidth * this.ratio, this.rttheight * this.ratio, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
-
-        this.renderBuffer = gl.createRenderbuffer();
-        gl.bindRenderbuffer(gl.RENDERBUFFER, this.renderBuffer);
-        gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, this.rttwidth * this.ratio, this.rttheight * this.ratio);
-        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.texture, 0);
-        gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, this.renderBuffer);
-
-        gl.bindTexture(gl.TEXTURE_2D, null);
-        gl.bindRenderbuffer(gl.RENDERBUFFER, null);
-        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
     }
 
     createCanvas() {
@@ -188,22 +181,30 @@ class Renderer {
         }
     }
 
-    render(scene, camera, clear) {
-        this.draw(scene, camera, clear);
+    render(scene, camera) {
+        this.draw(scene, camera);
     }
 
-    rtt(scene, camera, clear, width, height) {
+    rtt(scene, camera, width, height) {
         const gl = getContext();
 
         if (width !== this.rttwidth || height !== this.rttheight) {
-            // TODO: is there a better way?
-            console.log('update RTT', width, height);
-            this.updateRTT(width, height);
+            gl.bindTexture(gl.TEXTURE_2D, this.texture);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width * this.ratio, height * this.ratio, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+            gl.bindTexture(gl.TEXTURE_2D, null);
+
+            // resize depth attachment
+            gl.bindRenderbuffer(gl.RENDERBUFFER, this.renderBuffer);
+            gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, width * this.ratio, height * this.ratio);
+            gl.bindRenderbuffer(gl.RENDERBUFFER, null);
+
+            this.rttwidth = width;
+            this.rttheight = height;
         }
 
         gl.bindFramebuffer(gl.FRAMEBUFFER, this.frameBuffer);
 
-        this.draw(scene, camera, clear);
+        this.draw(scene, camera);
 
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, this.texture);
