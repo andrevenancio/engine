@@ -97,7 +97,7 @@
             function update() {
                 requestAnimationFrame(update);
 
-                target.texture = renderer.rtt(scene, camera, true, innerWidth, innerHeight);
+                target.texture = renderer.rtt(scene, camera, innerWidth, innerHeight);
                 renderer.render(sceneRTT, cameraRTT);
 
                 plane.material.uniforms.iChannel0.value = target.texture;
