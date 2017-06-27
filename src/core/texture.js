@@ -27,6 +27,7 @@ class Texture {
 
     fromImage(url) {
         const img = new Image();
+        img.crossOrigin = '';
         img.onload = () => {
             this.update(img);
         };
