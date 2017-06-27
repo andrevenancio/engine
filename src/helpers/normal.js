@@ -1,5 +1,5 @@
 import Model from '../core/model';
-import Basic from '../materials/basic';
+import Basic from '../material/basic';
 import { getContext } from '../session';
 
 class NormalHelper extends Model {
