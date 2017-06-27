@@ -6,9 +6,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "engine/src/materials/basic.js~basic",
-    "class/src/materials/basic.js~Basic.html",
-    "<span>Basic</span> <span class=\"search-result-import-path\">engine/src/materials/basic.js</span>",
+    "engine/src/material/basic.js~basic",
+    "class/src/material/basic.js~Basic.html",
+    "<span>Basic</span> <span class=\"search-result-import-path\">engine/src/material/basic.js</span>",
     "class"
   ],
   [
@@ -18,9 +18,33 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "engine/src/constants.js~flatshading_material",
+    "variable/index.html#static-variable-FLATSHADING_MATERIAL",
+    "<span>FLATSHADING_MATERIAL</span> <span class=\"search-result-import-path\">engine/src/constants.js</span>",
+    "variable"
+  ],
+  [
+    "engine/src/loaders/file.js~file",
+    "class/src/loaders/file.js~File.html",
+    "<span>File</span> <span class=\"search-result-import-path\">engine/src/loaders/file.js</span>",
+    "class"
+  ],
+  [
+    "engine/src/material/flatshading.js~flatshading",
+    "class/src/material/flatshading.js~FlatShading.html",
+    "<span>FlatShading</span> <span class=\"search-result-import-path\">engine/src/material/flatshading.js</span>",
+    "class"
+  ],
+  [
     "engine/src/geometry/icosahedron.js~icosahedron",
     "class/src/geometry/icosahedron.js~Icosahedron.html",
     "<span>Icosahedron</span> <span class=\"search-result-import-path\">engine/src/geometry/icosahedron.js</span>",
+    "class"
+  ],
+  [
+    "engine/src/loaders/json.js~jsonloader",
+    "class/src/loaders/json.js~JsonLoader.html",
+    "<span>JsonLoader</span> <span class=\"search-result-import-path\">engine/src/loaders/json.js</span>",
     "class"
   ],
   [
@@ -33,6 +57,12 @@ window.esdocSearchIndex = [
     "engine/src/core/model.js~model",
     "class/src/core/model.js~Model.html",
     "<span>Model</span> <span class=\"search-result-import-path\">engine/src/core/model.js</span>",
+    "class"
+  ],
+  [
+    "engine/src/helpers/normal.js~normalhelper",
+    "class/src/helpers/normal.js~NormalHelper.html",
+    "<span>NormalHelper</span> <span class=\"search-result-import-path\">engine/src/helpers/normal.js</span>",
     "class"
   ],
   [
@@ -54,15 +84,45 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "engine/src/constants.js~raw_material",
+    "variable/index.html#static-variable-RAW_MATERIAL",
+    "<span>RAW_MATERIAL</span> <span class=\"search-result-import-path\">engine/src/constants.js</span>",
+    "variable"
+  ],
+  [
+    "engine/src/material/raw.js~raw",
+    "class/src/material/raw.js~Raw.html",
+    "<span>Raw</span> <span class=\"search-result-import-path\">engine/src/material/raw.js</span>",
+    "class"
+  ],
+  [
     "engine/src/renderer/index.js~renderer",
     "class/src/renderer/index.js~Renderer.html",
     "<span>Renderer</span> <span class=\"search-result-import-path\">engine/src/renderer/index.js</span>",
     "class"
   ],
   [
+    "engine/src/constants.js~sem_material",
+    "variable/index.html#static-variable-SEM_MATERIAL",
+    "<span>SEM_MATERIAL</span> <span class=\"search-result-import-path\">engine/src/constants.js</span>",
+    "variable"
+  ],
+  [
     "engine/src/core/scene.js~scene",
     "class/src/core/scene.js~Scene.html",
     "<span>Scene</span> <span class=\"search-result-import-path\">engine/src/core/scene.js</span>",
+    "class"
+  ],
+  [
+    "engine/src/material/sem.js~sem",
+    "class/src/material/sem.js~Sem.html",
+    "<span>Sem</span> <span class=\"search-result-import-path\">engine/src/material/sem.js</span>",
+    "class"
+  ],
+  [
+    "engine/src/core/texture.js~texture",
+    "class/src/core/texture.js~Texture.html",
+    "<span>Texture</span> <span class=\"search-result-import-path\">engine/src/core/texture.js</span>",
     "class"
   ],
   [
@@ -588,27 +648,15 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/core/material.js~material#generatefragmentshader",
-    "class/src/core/material.js~Material.html#instance-method-generateFragmentShader",
-    "src/core/material.js~Material#generateFragmentShader",
-    "method"
-  ],
-  [
-    "src/core/material.js~material#generateshaders",
-    "class/src/core/material.js~Material.html#instance-method-generateShaders",
-    "src/core/material.js~Material#generateShaders",
-    "method"
-  ],
-  [
-    "src/core/material.js~material#generatevertexshader",
-    "class/src/core/material.js~Material.html#instance-method-generateVertexShader",
-    "src/core/material.js~Material#generateVertexShader",
-    "method"
-  ],
-  [
     "src/core/material.js~material#indexbuffer",
     "class/src/core/material.js~Material.html#instance-member-indexBuffer",
     "src/core/material.js~Material#indexBuffer",
+    "member"
+  ],
+  [
+    "src/core/material.js~material#indices",
+    "class/src/core/material.js~Material.html#instance-member-indices",
+    "src/core/material.js~Material#indices",
     "member"
   ],
   [
@@ -690,6 +738,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/core/model.js~model#draw",
+    "class/src/core/model.js~Model.html#instance-method-draw",
+    "src/core/model.js~Model#draw",
+    "method"
+  ],
+  [
     "src/core/model.js~model#geometry",
     "class/src/core/model.js~Model.html#instance-member-geometry",
     "src/core/model.js~Model#geometry",
@@ -724,6 +778,12 @@ window.esdocSearchIndex = [
     "file/src/core/object3.js.html",
     "src/core/object3.js",
     "file"
+  ],
+  [
+    "src/core/object3.js~object3#addmodel",
+    "class/src/core/object3.js~Object3.html#instance-method-addModel",
+    "src/core/object3.js~Object3#addModel",
+    "method"
   ],
   [
     "src/core/object3.js~object3#children",
@@ -768,6 +828,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/core/object3.js~object3#removemodel",
+    "class/src/core/object3.js~Object3.html#instance-method-removeModel",
+    "src/core/object3.js~Object3#removeModel",
+    "method"
+  ],
+  [
     "src/core/object3.js~object3#rotation",
     "class/src/core/object3.js~Object3.html#instance-member-rotation",
     "src/core/object3.js~Object3#rotation",
@@ -798,12 +864,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/core/scene.js~scene#addmodel",
-    "class/src/core/scene.js~Scene.html#instance-method-addModel",
-    "src/core/scene.js~Scene#addModel",
-    "method"
-  ],
-  [
     "src/core/scene.js~scene#constructor",
     "class/src/core/scene.js~Scene.html#instance-constructor-constructor",
     "src/core/scene.js~Scene#constructor",
@@ -816,15 +876,39 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/core/scene.js~scene#removemodel",
-    "class/src/core/scene.js~Scene.html#instance-method-removeModel",
-    "src/core/scene.js~Scene#removeModel",
-    "method"
-  ],
-  [
     "src/core/scene.js~scene#traverse",
     "class/src/core/scene.js~Scene.html#instance-method-traverse",
     "src/core/scene.js~Scene#traverse",
+    "method"
+  ],
+  [
+    "src/core/texture.js",
+    "file/src/core/texture.js.html",
+    "src/core/texture.js",
+    "file"
+  ],
+  [
+    "src/core/texture.js~texture#constructor",
+    "class/src/core/texture.js~Texture.html#instance-constructor-constructor",
+    "src/core/texture.js~Texture#constructor",
+    "method"
+  ],
+  [
+    "src/core/texture.js~texture#fromimage",
+    "class/src/core/texture.js~Texture.html#instance-method-fromImage",
+    "src/core/texture.js~Texture#fromImage",
+    "method"
+  ],
+  [
+    "src/core/texture.js~texture#texture",
+    "class/src/core/texture.js~Texture.html#instance-member-texture",
+    "src/core/texture.js~Texture#texture",
+    "member"
+  ],
+  [
+    "src/core/texture.js~texture#update",
+    "class/src/core/texture.js~Texture.html#instance-method-update",
+    "src/core/texture.js~Texture#update",
     "method"
   ],
   [
@@ -859,25 +943,25 @@ window.esdocSearchIndex = [
   ],
   [
     "src/core/vector3.js~vector3#y",
-    "class/src/core/vector3.js~Vector3.html#instance-set-y",
-    "src/core/vector3.js~Vector3#y",
-    "member"
-  ],
-  [
-    "src/core/vector3.js~vector3#y",
     "class/src/core/vector3.js~Vector3.html#instance-get-y",
     "src/core/vector3.js~Vector3#y",
     "member"
   ],
   [
-    "src/core/vector3.js~vector3#z",
-    "class/src/core/vector3.js~Vector3.html#instance-set-z",
-    "src/core/vector3.js~Vector3#z",
+    "src/core/vector3.js~vector3#y",
+    "class/src/core/vector3.js~Vector3.html#instance-set-y",
+    "src/core/vector3.js~Vector3#y",
     "member"
   ],
   [
     "src/core/vector3.js~vector3#z",
     "class/src/core/vector3.js~Vector3.html#instance-get-z",
+    "src/core/vector3.js~Vector3#z",
+    "member"
+  ],
+  [
+    "src/core/vector3.js~vector3#z",
+    "class/src/core/vector3.js~Vector3.html#instance-set-z",
     "src/core/vector3.js~Vector3#z",
     "member"
   ],
@@ -903,6 +987,18 @@ window.esdocSearchIndex = [
     "src/geometry/icosahedron.js~icosahedron#constructor",
     "class/src/geometry/icosahedron.js~Icosahedron.html#instance-constructor-constructor",
     "src/geometry/icosahedron.js~Icosahedron#constructor",
+    "method"
+  ],
+  [
+    "src/geometry/icosahedron.js~icosahedron#firstyindex",
+    "class/src/geometry/icosahedron.js~Icosahedron.html#instance-method-firstYIndex",
+    "src/geometry/icosahedron.js~Icosahedron#firstYIndex",
+    "method"
+  ],
+  [
+    "src/geometry/icosahedron.js~icosahedron#fixpoleuvs",
+    "class/src/geometry/icosahedron.js~Icosahedron.html#instance-method-fixPoleUVs",
+    "src/geometry/icosahedron.js~Icosahedron#fixPoleUVs",
     "method"
   ],
   [
@@ -942,16 +1038,70 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/helpers/index.js",
+    "file/src/helpers/index.js.html",
+    "src/helpers/index.js",
+    "file"
+  ],
+  [
+    "src/helpers/normal.js",
+    "file/src/helpers/normal.js.html",
+    "src/helpers/normal.js",
+    "file"
+  ],
+  [
+    "src/helpers/normal.js~normalhelper#constructor",
+    "class/src/helpers/normal.js~NormalHelper.html#instance-constructor-constructor",
+    "src/helpers/normal.js~NormalHelper#constructor",
+    "method"
+  ],
+  [
+    "src/helpers/normal.js~normalhelper#draw",
+    "class/src/helpers/normal.js~NormalHelper.html#instance-method-draw",
+    "src/helpers/normal.js~NormalHelper#draw",
+    "method"
+  ],
+  [
     "src/index.js",
     "file/src/index.js.html",
     "src/index.js",
     "file"
   ],
   [
+    "src/loaders/file.js",
+    "file/src/loaders/file.js.html",
+    "src/loaders/file.js",
+    "file"
+  ],
+  [
+    "src/loaders/file.js~file.load",
+    "class/src/loaders/file.js~File.html#static-method-load",
+    "src/loaders/file.js~File.load",
+    "method"
+  ],
+  [
     "src/loaders/index.js",
     "file/src/loaders/index.js.html",
     "src/loaders/index.js",
     "file"
+  ],
+  [
+    "src/loaders/json.js",
+    "file/src/loaders/json.js.html",
+    "src/loaders/json.js",
+    "file"
+  ],
+  [
+    "src/loaders/json.js~jsonloader.load",
+    "class/src/loaders/json.js~JsonLoader.html#static-method-load",
+    "src/loaders/json.js~JsonLoader.load",
+    "method"
+  ],
+  [
+    "src/loaders/json.js~jsonloader.parse",
+    "class/src/loaders/json.js~JsonLoader.html#static-method-parse",
+    "src/loaders/json.js~JsonLoader.parse",
+    "method"
   ],
   [
     "src/loaders/obj.js",
@@ -966,46 +1116,154 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/loaders/obj.js~objloader.loadfile",
-    "class/src/loaders/obj.js~ObjLoader.html#static-method-loadFile",
-    "src/loaders/obj.js~ObjLoader.loadFile",
-    "method"
-  ],
-  [
     "src/loaders/obj.js~objloader.parse",
     "class/src/loaders/obj.js~ObjLoader.html#static-method-parse",
     "src/loaders/obj.js~ObjLoader.parse",
     "method"
   ],
   [
-    "src/materials/basic.js",
-    "file/src/materials/basic.js.html",
-    "src/materials/basic.js",
+    "src/material/basic.js",
+    "file/src/material/basic.js.html",
+    "src/material/basic.js",
     "file"
   ],
   [
-    "src/materials/basic.js~basic#color",
-    "class/src/materials/basic.js~Basic.html#instance-member-color",
-    "src/materials/basic.js~Basic#color",
-    "member"
-  ],
-  [
-    "src/materials/basic.js~basic#constructor",
-    "class/src/materials/basic.js~Basic.html#instance-constructor-constructor",
-    "src/materials/basic.js~Basic#constructor",
+    "src/material/basic.js~basic#constructor",
+    "class/src/material/basic.js~Basic.html#instance-constructor-constructor",
+    "src/material/basic.js~Basic#constructor",
     "method"
   ],
   [
-    "src/materials/basic.js~basic#type",
-    "class/src/materials/basic.js~Basic.html#instance-member-type",
-    "src/materials/basic.js~Basic#type",
+    "src/material/basic.js~basic#fragment",
+    "class/src/material/basic.js~Basic.html#instance-member-fragment",
+    "src/material/basic.js~Basic#fragment",
     "member"
   ],
   [
-    "src/materials/index.js",
-    "file/src/materials/index.js.html",
-    "src/materials/index.js",
+    "src/material/basic.js~basic#map",
+    "class/src/material/basic.js~Basic.html#instance-member-map",
+    "src/material/basic.js~Basic#map",
+    "member"
+  ],
+  [
+    "src/material/basic.js~basic#type",
+    "class/src/material/basic.js~Basic.html#instance-member-type",
+    "src/material/basic.js~Basic#type",
+    "member"
+  ],
+  [
+    "src/material/basic.js~basic#vertex",
+    "class/src/material/basic.js~Basic.html#instance-member-vertex",
+    "src/material/basic.js~Basic#vertex",
+    "member"
+  ],
+  [
+    "src/material/flatshading.js",
+    "file/src/material/flatshading.js.html",
+    "src/material/flatshading.js",
     "file"
+  ],
+  [
+    "src/material/flatshading.js~flatshading#constructor",
+    "class/src/material/flatshading.js~FlatShading.html#instance-constructor-constructor",
+    "src/material/flatshading.js~FlatShading#constructor",
+    "method"
+  ],
+  [
+    "src/material/flatshading.js~flatshading#fragment",
+    "class/src/material/flatshading.js~FlatShading.html#instance-member-fragment",
+    "src/material/flatshading.js~FlatShading#fragment",
+    "member"
+  ],
+  [
+    "src/material/flatshading.js~flatshading#map",
+    "class/src/material/flatshading.js~FlatShading.html#instance-member-map",
+    "src/material/flatshading.js~FlatShading#map",
+    "member"
+  ],
+  [
+    "src/material/flatshading.js~flatshading#type",
+    "class/src/material/flatshading.js~FlatShading.html#instance-member-type",
+    "src/material/flatshading.js~FlatShading#type",
+    "member"
+  ],
+  [
+    "src/material/flatshading.js~flatshading#vertex",
+    "class/src/material/flatshading.js~FlatShading.html#instance-member-vertex",
+    "src/material/flatshading.js~FlatShading#vertex",
+    "member"
+  ],
+  [
+    "src/material/index.js",
+    "file/src/material/index.js.html",
+    "src/material/index.js",
+    "file"
+  ],
+  [
+    "src/material/raw.js",
+    "file/src/material/raw.js.html",
+    "src/material/raw.js",
+    "file"
+  ],
+  [
+    "src/material/raw.js~raw#constructor",
+    "class/src/material/raw.js~Raw.html#instance-constructor-constructor",
+    "src/material/raw.js~Raw#constructor",
+    "method"
+  ],
+  [
+    "src/material/raw.js~raw#fragment",
+    "class/src/material/raw.js~Raw.html#instance-member-fragment",
+    "src/material/raw.js~Raw#fragment",
+    "member"
+  ],
+  [
+    "src/material/raw.js~raw#type",
+    "class/src/material/raw.js~Raw.html#instance-member-type",
+    "src/material/raw.js~Raw#type",
+    "member"
+  ],
+  [
+    "src/material/raw.js~raw#vertex",
+    "class/src/material/raw.js~Raw.html#instance-member-vertex",
+    "src/material/raw.js~Raw#vertex",
+    "member"
+  ],
+  [
+    "src/material/sem.js",
+    "file/src/material/sem.js.html",
+    "src/material/sem.js",
+    "file"
+  ],
+  [
+    "src/material/sem.js~sem#constructor",
+    "class/src/material/sem.js~Sem.html#instance-constructor-constructor",
+    "src/material/sem.js~Sem#constructor",
+    "method"
+  ],
+  [
+    "src/material/sem.js~sem#fragment",
+    "class/src/material/sem.js~Sem.html#instance-member-fragment",
+    "src/material/sem.js~Sem#fragment",
+    "member"
+  ],
+  [
+    "src/material/sem.js~sem#map",
+    "class/src/material/sem.js~Sem.html#instance-member-map",
+    "src/material/sem.js~Sem#map",
+    "member"
+  ],
+  [
+    "src/material/sem.js~sem#type",
+    "class/src/material/sem.js~Sem.html#instance-member-type",
+    "src/material/sem.js~Sem#type",
+    "member"
+  ],
+  [
+    "src/material/sem.js~sem#vertex",
+    "class/src/material/sem.js~Sem.html#instance-member-vertex",
+    "src/material/sem.js~Sem#vertex",
+    "member"
   ],
   [
     "src/renderer/helpers/program.js",
@@ -1104,6 +1362,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/renderer/index.js~renderer#draw",
+    "class/src/renderer/index.js~Renderer.html#instance-method-draw",
+    "src/renderer/index.js~Renderer#draw",
+    "method"
+  ],
+  [
+    "src/renderer/index.js~renderer#framebuffer",
+    "class/src/renderer/index.js~Renderer.html#instance-member-frameBuffer",
+    "src/renderer/index.js~Renderer#frameBuffer",
+    "member"
+  ],
+  [
     "src/renderer/index.js~renderer#permodel",
     "class/src/renderer/index.js~Renderer.html#instance-member-perModel",
     "src/renderer/index.js~Renderer#perModel",
@@ -1128,6 +1398,30 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/renderer/index.js~renderer#renderbuffer",
+    "class/src/renderer/index.js~Renderer.html#instance-member-renderBuffer",
+    "src/renderer/index.js~Renderer#renderBuffer",
+    "member"
+  ],
+  [
+    "src/renderer/index.js~renderer#rtt",
+    "class/src/renderer/index.js~Renderer.html#instance-method-rtt",
+    "src/renderer/index.js~Renderer#rtt",
+    "method"
+  ],
+  [
+    "src/renderer/index.js~renderer#rttheight",
+    "class/src/renderer/index.js~Renderer.html#instance-member-rttheight",
+    "src/renderer/index.js~Renderer#rttheight",
+    "member"
+  ],
+  [
+    "src/renderer/index.js~renderer#rttwidth",
+    "class/src/renderer/index.js~Renderer.html#instance-member-rttwidth",
+    "src/renderer/index.js~Renderer#rttwidth",
+    "member"
+  ],
+  [
     "src/renderer/index.js~renderer#setratio",
     "class/src/renderer/index.js~Renderer.html#instance-method-setRatio",
     "src/renderer/index.js~Renderer#setRatio",
@@ -1138,6 +1432,12 @@ window.esdocSearchIndex = [
     "class/src/renderer/index.js~Renderer.html#instance-method-setSize",
     "src/renderer/index.js~Renderer#setSize",
     "method"
+  ],
+  [
+    "src/renderer/index.js~renderer#texture",
+    "class/src/renderer/index.js~Renderer.html#instance-member-texture",
+    "src/renderer/index.js~Renderer#texture",
+    "member"
   ],
   [
     "src/session.js",

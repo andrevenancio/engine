@@ -7295,7 +7295,7 @@
                         {
                           "type": "ObjectProperty",
                           "start": 2480,
-                          "end": 2483,
+                          "end": 2487,
                           "loc": {
                             "start": {
                               "line": 73,
@@ -7303,61 +7303,6 @@
                             },
                             "end": {
                               "line": 73,
-                              "column": 15
-                            }
-                          },
-                          "method": false,
-                          "shorthand": true,
-                          "computed": false,
-                          "key": {
-                            "type": "Identifier",
-                            "start": 2480,
-                            "end": 2483,
-                            "loc": {
-                              "start": {
-                                "line": 73,
-                                "column": 12
-                              },
-                              "end": {
-                                "line": 73,
-                                "column": 15
-                              },
-                              "identifierName": "uvs"
-                            },
-                            "name": "uvs"
-                          },
-                          "value": {
-                            "type": "Identifier",
-                            "start": 2480,
-                            "end": 2483,
-                            "loc": {
-                              "start": {
-                                "line": 73,
-                                "column": 12
-                              },
-                              "end": {
-                                "line": 73,
-                                "column": 15
-                              },
-                              "identifierName": "uvs"
-                            },
-                            "name": "uvs"
-                          },
-                          "extra": {
-                            "shorthand": true
-                          }
-                        },
-                        {
-                          "type": "ObjectProperty",
-                          "start": 2497,
-                          "end": 2504,
-                          "loc": {
-                            "start": {
-                              "line": 74,
-                              "column": 12
-                            },
-                            "end": {
-                              "line": 74,
                               "column": 19
                             }
                           },
@@ -7366,15 +7311,15 @@
                           "computed": false,
                           "key": {
                             "type": "Identifier",
-                            "start": 2497,
-                            "end": 2504,
+                            "start": 2480,
+                            "end": 2487,
                             "loc": {
                               "start": {
-                                "line": 74,
+                                "line": 73,
                                 "column": 12
                               },
                               "end": {
-                                "line": 74,
+                                "line": 73,
                                 "column": 19
                               },
                               "identifierName": "normals"
@@ -7383,7 +7328,45 @@
                           },
                           "value": {
                             "type": "Identifier",
-                            "start": 2497,
+                            "start": 2480,
+                            "end": 2487,
+                            "loc": {
+                              "start": {
+                                "line": 73,
+                                "column": 12
+                              },
+                              "end": {
+                                "line": 73,
+                                "column": 19
+                              },
+                              "identifierName": "normals"
+                            },
+                            "name": "normals"
+                          },
+                          "extra": {
+                            "shorthand": true
+                          }
+                        },
+                        {
+                          "type": "ObjectProperty",
+                          "start": 2501,
+                          "end": 2504,
+                          "loc": {
+                            "start": {
+                              "line": 74,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 74,
+                              "column": 15
+                            }
+                          },
+                          "method": false,
+                          "shorthand": true,
+                          "computed": false,
+                          "key": {
+                            "type": "Identifier",
+                            "start": 2501,
                             "end": 2504,
                             "loc": {
                               "start": {
@@ -7392,11 +7375,28 @@
                               },
                               "end": {
                                 "line": 74,
-                                "column": 19
+                                "column": 15
                               },
-                              "identifierName": "normals"
+                              "identifierName": "uvs"
                             },
-                            "name": "normals"
+                            "name": "uvs"
+                          },
+                          "value": {
+                            "type": "Identifier",
+                            "start": 2501,
+                            "end": 2504,
+                            "loc": {
+                              "start": {
+                                "line": 74,
+                                "column": 12
+                              },
+                              "end": {
+                                "line": 74,
+                                "column": 15
+                              },
+                              "identifierName": "uvs"
+                            },
+                            "name": "uvs"
                           },
                           "extra": {
                             "shorthand": true
@@ -14731,7 +14731,7 @@
                           {
                             "type": "ObjectProperty",
                             "start": 2480,
-                            "end": 2483,
+                            "end": 2487,
                             "loc": {
                               "start": {
                                 "line": 73,
@@ -14739,61 +14739,6 @@
                               },
                               "end": {
                                 "line": 73,
-                                "column": 15
-                              }
-                            },
-                            "method": false,
-                            "shorthand": true,
-                            "computed": false,
-                            "key": {
-                              "type": "Identifier",
-                              "start": 2480,
-                              "end": 2483,
-                              "loc": {
-                                "start": {
-                                  "line": 73,
-                                  "column": 12
-                                },
-                                "end": {
-                                  "line": 73,
-                                  "column": 15
-                                },
-                                "identifierName": "uvs"
-                              },
-                              "name": "uvs"
-                            },
-                            "value": {
-                              "type": "Identifier",
-                              "start": 2480,
-                              "end": 2483,
-                              "loc": {
-                                "start": {
-                                  "line": 73,
-                                  "column": 12
-                                },
-                                "end": {
-                                  "line": 73,
-                                  "column": 15
-                                },
-                                "identifierName": "uvs"
-                              },
-                              "name": "uvs"
-                            },
-                            "extra": {
-                              "shorthand": true
-                            }
-                          },
-                          {
-                            "type": "ObjectProperty",
-                            "start": 2497,
-                            "end": 2504,
-                            "loc": {
-                              "start": {
-                                "line": 74,
-                                "column": 12
-                              },
-                              "end": {
-                                "line": 74,
                                 "column": 19
                               }
                             },
@@ -14802,15 +14747,15 @@
                             "computed": false,
                             "key": {
                               "type": "Identifier",
-                              "start": 2497,
-                              "end": 2504,
+                              "start": 2480,
+                              "end": 2487,
                               "loc": {
                                 "start": {
-                                  "line": 74,
+                                  "line": 73,
                                   "column": 12
                                 },
                                 "end": {
-                                  "line": 74,
+                                  "line": 73,
                                   "column": 19
                                 },
                                 "identifierName": "normals"
@@ -14819,7 +14764,45 @@
                             },
                             "value": {
                               "type": "Identifier",
-                              "start": 2497,
+                              "start": 2480,
+                              "end": 2487,
+                              "loc": {
+                                "start": {
+                                  "line": 73,
+                                  "column": 12
+                                },
+                                "end": {
+                                  "line": 73,
+                                  "column": 19
+                                },
+                                "identifierName": "normals"
+                              },
+                              "name": "normals"
+                            },
+                            "extra": {
+                              "shorthand": true
+                            }
+                          },
+                          {
+                            "type": "ObjectProperty",
+                            "start": 2501,
+                            "end": 2504,
+                            "loc": {
+                              "start": {
+                                "line": 74,
+                                "column": 12
+                              },
+                              "end": {
+                                "line": 74,
+                                "column": 15
+                              }
+                            },
+                            "method": false,
+                            "shorthand": true,
+                            "computed": false,
+                            "key": {
+                              "type": "Identifier",
+                              "start": 2501,
                               "end": 2504,
                               "loc": {
                                 "start": {
@@ -14828,11 +14811,28 @@
                                 },
                                 "end": {
                                   "line": 74,
-                                  "column": 19
+                                  "column": 15
                                 },
-                                "identifierName": "normals"
+                                "identifierName": "uvs"
                               },
-                              "name": "normals"
+                              "name": "uvs"
+                            },
+                            "value": {
+                              "type": "Identifier",
+                              "start": 2501,
+                              "end": 2504,
+                              "loc": {
+                                "start": {
+                                  "line": 74,
+                                  "column": 12
+                                },
+                                "end": {
+                                  "line": 74,
+                                  "column": 15
+                                },
+                                "identifierName": "uvs"
+                              },
+                              "name": "uvs"
                             },
                             "extra": {
                               "shorthand": true
@@ -31494,9 +31494,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "uvs",
+      "value": "normals",
       "start": 2480,
-      "end": 2483,
+      "end": 2487,
       "loc": {
         "start": {
           "line": 73,
@@ -31504,7 +31504,7 @@
         },
         "end": {
           "line": 73,
-          "column": 15
+          "column": 19
         }
       }
     },
@@ -31521,16 +31521,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2483,
-      "end": 2484,
+      "start": 2487,
+      "end": 2488,
       "loc": {
         "start": {
           "line": 73,
-          "column": 15
+          "column": 19
         },
         "end": {
           "line": 73,
-          "column": 16
+          "column": 20
         }
       }
     },
@@ -31546,8 +31546,8 @@
         "postfix": false,
         "binop": null
       },
-      "value": "normals",
-      "start": 2497,
+      "value": "uvs",
+      "start": 2501,
       "end": 2504,
       "loc": {
         "start": {
@@ -31556,7 +31556,7 @@
         },
         "end": {
           "line": 74,
-          "column": 19
+          "column": 15
         }
       }
     },
@@ -31578,11 +31578,11 @@
       "loc": {
         "start": {
           "line": 74,
-          "column": 19
+          "column": 15
         },
         "end": {
           "line": 74,
-          "column": 20
+          "column": 16
         }
       }
     },
