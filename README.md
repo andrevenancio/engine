@@ -1,6 +1,6 @@
 
 <p align="center">
-    <img src="https://cdn.rawgit.com/andrevenancio/engine/develop/logo-engine.svg" width="150px" />
+    <img src="https://cdn.rawgit.com/andrevenancio/engine/develop/logo.svg" width="60px" />
 </p>
 <p align="center">webgl2 rendering engine</p>
 
