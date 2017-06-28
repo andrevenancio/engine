@@ -24,6 +24,7 @@
   "homepage": "https://github.com/andrevenancio/engine",
   "scripts": {
     "build": "webpack --env build && esdoc",
+    "ci": "webpack --env build",
     "start": "npm run dev",
     "dev": "webpack-dev-server --env dev --progress --colors --watch --host 0.0.0.0 --open",
     "docs": "esdoc"
