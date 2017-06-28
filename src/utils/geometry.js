@@ -1,6 +1,4 @@
-/* eslint-disable */
 import { vec3 } from 'gl-matrix';
-import { vertexNormals } from 'normals';
 
 export function flatten(arr) {
     let output = [];

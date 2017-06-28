@@ -44,7 +44,6 @@
     "yargs": "^6.6.0"
   },
   "dependencies": {
-    "gl-matrix": "^2.3.2",
-    "normals": "^1.1.0"
+    "gl-matrix": "^2.3.2"
   }
 }
