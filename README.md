@@ -1,11 +1,14 @@
-# engine
-WebGL2 engine
-
+engine
+========
 <p align="center">
+    <a href="https://github.com/andrevenancio/engine/blob/develop/LICENCE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="licence"/></a>
+    <a href="https://travis-ci.org/andrevenancio/engine"><img src="https://travis-ci.org/andrevenancio/engine.svg" alt="Travis Status"></a>
     <a href="https://david-dm.org/andrevenancio/engine"><img src="https://david-dm.org/andrevenancio/engine.svg" alt="Dependency Status"></a>
     <a href="https://david-dm.org/andrevenancio/engine/?type=dev"><img src="https://david-dm.org/andrevenancio/engine/dev-status.svg" alt="devDependency Status"></a>
 </p>
 
+## WebGL 2.0
+`engine` is a WebGL 2 **only** 3d engine.
 
 [Examples](https://andrevenancio.github.io/engine/examples/) | [Documentation](https://andrevenancio.github.io/engine/docs/)
 
