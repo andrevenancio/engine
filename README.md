@@ -1,5 +1,8 @@
 # engine
 WebGL2 engine
+[![License][license-badge]][license-badge-url]
+[![Dependencies][dependencies-badge]][dependencies-badge-url]
+[![Dev Dependencies][devDependencies-badge]][devDependencies-badge-url]
 
 [Examples](https://andrevenancio.github.io/engine/examples/) | [Documentation](https://andrevenancio.github.io/engine/docs/)
 
