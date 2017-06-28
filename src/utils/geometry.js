@@ -67,11 +67,11 @@ export function generateVertexNormals(positions, indices) {
         vec3.add(temp[c], temp[c], cross);
     }
 
-    for (var i = 0; i < temp.length; i++) {
+    for (let i = 0; i < temp.length; i++) {
         vec3.normalize(temp[i], temp[i]);
     }
 
-    return flatten(temp, 3)
+    return flatten(temp, 3);
 };
 
 export function mergeVertices(data) {
@@ -142,5 +142,5 @@ export function mergeVertices(data) {
         positions: new Float32Array(p),
         indices: new Uint16Array(f),
         normals: new Float32Array(generateVertexNormals(p, f)),
-    }
+    };
 }

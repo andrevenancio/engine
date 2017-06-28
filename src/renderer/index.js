@@ -1,8 +1,6 @@
-/* eslint-disable */
 import { mat4, vec4 } from 'gl-matrix';
 import { library, version, getContext, setContext } from '../session';
 import UniformBuffer from './helpers/ubo';
-// import Texture from '../core/texture';
 
 let supported = false;
 let child;
@@ -189,8 +187,10 @@ class Renderer {
         const gl = getContext();
 
         if (width !== this.rttwidth || height !== this.rttheight) {
+            const w = width * this.ratio;
+            const h = height * this.ratio;
             gl.bindTexture(gl.TEXTURE_2D, this.texture);
-            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width * this.ratio, height * this.ratio, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
             gl.bindTexture(gl.TEXTURE_2D, null);
 
             // resize depth attachment
