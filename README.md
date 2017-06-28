@@ -1,9 +1,11 @@
 # engine
 WebGL2 engine
 
-[![License][license-badge]][license-badge-url]
-[![Dependencies][dependencies-badge]][dependencies-badge-url]
-[![Dev Dependencies][devDependencies-badge]][devDependencies-badge-url]
+<p align="center">
+    <a href="https://david-dm.org/andrevenancio/engine"><img src="https://david-dm.org/andrevenancio/engine.svg" alt="Dependency Status"></a>
+    <a href="https://david-dm.org/andrevenancio/engine/?type=dev"><img src="https://david-dm.org/alanshaw/david-www/dev-status.svg" alt="devDependency Status"></a>
+</p>
+
 
 [Examples](https://andrevenancio.github.io/engine/examples/) | [Documentation](https://andrevenancio.github.io/engine/docs/)
 
