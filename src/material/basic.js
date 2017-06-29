@@ -2,7 +2,7 @@ import { BASIC_MATERIAL, MAX_DIRECTIONAL } from '../constants';
 import { color } from '../utils';
 import Material from '../core/material';
 import Texture from '../core/texture';
-// import { linear } from '../renderer/chunks/fog';
+import { linear } from '../renderer/chunks/fog';
 import { directional } from '../renderer/chunks/light';
 
 class Basic extends Material {
@@ -103,13 +103,12 @@ float whenGreaterThan(float x, float y) {
 
 void main() {
     vec4 base = vec4(0.0, 0.0, 0.0, 1.0);
-    // base += texture(map, v_uv);
-    // base += vec4(color, 1.0);
+    base += texture(map, v_uv);
+    base += vec4(color, 1.0); // color
     ${directional()}
-
+    ${linear()}
     outColor = base;
 }`;
-        // console.log(linear());
     }
 
 }
