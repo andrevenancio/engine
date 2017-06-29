@@ -7,6 +7,7 @@ import Model from './core/model';
 import Texture from './core/texture';
 import * as material from './material';
 import * as geometry from './geometry';
+import * as lights from './lights';
 
 import * as controls from './controls';
 import * as utils from './utils';
@@ -27,6 +28,7 @@ export {
 
     material,
     geometry,
+    lights,
 
     controls,
     utils,

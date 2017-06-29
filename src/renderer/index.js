@@ -18,6 +18,13 @@ class Renderer {
     constructor(props = {}) {
         this.ratio = global.devicePixelRatio;
 
+        this.fog = {
+            start: 500,
+            end: 1000,
+            color: vec4.fromValues(0, 0, 0, 1),
+            density: 0.002,
+        };
+
         const canvas = props.canvas || this.createCanvas();
 
         const gl = canvas.getContext('webgl2', {
@@ -40,9 +47,11 @@ class Renderer {
             setContext(gl);
 
             this.perScene = new UniformBuffer([
-                ...mat4.create(),
-                ...mat4.create(),
-                ...vec4.create(),
+                ...mat4.create(), // projectionMatrix
+                ...mat4.create(), // viewMatrix
+                ...vec4.create(), // fog start, fog end, fog density, 0
+                ...vec4.create(), // fog color
+                ...vec4.create(), // iGlobalTime, 0, 0, 0
             ], 0);
 
             this.perModel = new UniformBuffer([
@@ -50,8 +59,11 @@ class Renderer {
                 ...mat4.create(),
             ], 1);
 
-            // rtt
-            // this.updateRTT(global.innerWidth, global.innerHeight);
+            this.directional = new UniformBuffer([
+                ...vec4.create(), // position
+                ...vec4.create(), // color
+                ...vec4.create(), // intensity
+            ]);
 
             this.frameBuffer = gl.createFramebuffer();
             gl.bindFramebuffer(gl.FRAMEBUFFER, this.frameBuffer);
@@ -131,8 +143,14 @@ class Renderer {
             this.perScene.update([
                 ...camera.projectionMatrix,
                 ...viewMatrix,
+                ...[this.fog.start, this.fog.end, this.fog.density, 0],
+                ...this.fog.color,
                 ...[(Date.now() - startTime) / 1000, 0, 0, 0],
             ]);
+
+            // this.directional.update([
+            //
+            // ]);
 
             // TODO: sort opaque and transparent objects
             // temporary render until I sort the "sort" :p
