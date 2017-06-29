@@ -1,8 +1,9 @@
-import { BASIC_MATERIAL } from '../constants';
+import { BASIC_MATERIAL, MAX_DIRECTIONAL } from '../constants';
 import { color } from '../utils';
 import Material from '../core/material';
 import Texture from '../core/texture';
-import { linear } from '../renderer/chunks/fog';
+// import { linear } from '../renderer/chunks/fog';
+import { directional } from '../renderer/chunks/light';
 
 class Basic extends Material {
 
@@ -32,6 +33,8 @@ uniform perScene {
     mat4 viewMatrix;
     vec4 fogSettings;
     vec4 fogColor;
+    float currentDirectionalLight;
+    float currentPointLight;
     float iGlobalTime;
 };
 
@@ -45,14 +48,19 @@ in vec3 a_normal;
 in vec2 a_uv;
 
 out vec2 v_uv;
+out vec3 v_normal;
 
 void main() {
     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(a_position, 1.0);
     v_uv = a_uv;
+    v_normal = normalize(mat3(normalMatrix) * a_normal);
 }
 `;
 
         this.fragment = `#version 300 es
+
+#define MAX_DIRECTIONAL ${MAX_DIRECTIONAL}
+
 precision highp float;
 precision highp int;
 
@@ -61,6 +69,8 @@ uniform perScene {
     mat4 viewMatrix;
     vec4 fogSettings;
     vec4 fogColor;
+    float currentDirectionalLight;
+    float currentPointLight;
     float iGlobalTime;
 };
 
@@ -69,21 +79,37 @@ uniform perModel {
     mat4 normalMatrix;
 };
 
+struct Directional {
+    vec4 dlPosition;
+    vec4 dlColor;
+    float flIntensity;
+};
+
+uniform directional {
+    Directional directionalLights[MAX_DIRECTIONAL];
+};
+
 uniform vec3 color;
 uniform sampler2D map;
 
 in vec2 v_uv;
+in vec3 v_normal;
 
 out vec4 outColor;
 
+float whenGreaterThan(float x, float y) {
+    return max(sign(x - y), 0.0);
+}
+
 void main() {
     vec4 base = vec4(0.0, 0.0, 0.0, 1.0);
-    base += texture(map, v_uv);
-    base += vec4(color, 1.0);
+    // base += texture(map, v_uv);
+    // base += vec4(color, 1.0);
+    ${directional()}
 
     outColor = base;
-    ${linear()};
 }`;
+        // console.log(linear());
     }
 
 }

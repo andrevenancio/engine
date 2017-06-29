@@ -1,6 +1,8 @@
+/* eslint-disable */
 import { mat4, vec4 } from 'gl-matrix';
 import { library, version, getContext, setContext } from '../session';
 import UniformBuffer from './helpers/ubo';
+import { MAX_DIRECTIONAL } from '../constants';
 
 let supported = false;
 let child;
@@ -51,6 +53,8 @@ class Renderer {
                 ...mat4.create(), // viewMatrix
                 ...vec4.create(), // fog start, fog end, fog density, 0
                 ...vec4.create(), // fog color
+                ...vec4.create(), // currently used directional light legth
+                ...vec4.create(), // currently used point light legth
                 ...vec4.create(), // iGlobalTime, 0, 0, 0
             ], 0);
 
@@ -59,11 +63,7 @@ class Renderer {
                 ...mat4.create(),
             ], 1);
 
-            this.directional = new UniformBuffer([
-                ...vec4.create(), // position
-                ...vec4.create(), // color
-                ...vec4.create(), // intensity
-            ]);
+            this.directional = new UniformBuffer(new Float32Array(MAX_DIRECTIONAL * 12), 2);
 
             this.frameBuffer = gl.createFramebuffer();
             gl.bindFramebuffer(gl.FRAMEBUFFER, this.frameBuffer);
@@ -145,12 +145,18 @@ class Renderer {
                 ...viewMatrix,
                 ...[this.fog.start, this.fog.end, this.fog.density, 0],
                 ...this.fog.color,
+                ...[scene.directional.length, 0, 0, 0],
+                ...[scene.point.length, 0, 0, 0],
                 ...[(Date.now() - startTime) / 1000, 0, 0, 0],
             ]);
 
-            // this.directional.update([
-            //
-            // ]);
+            for (let i = 0; i < scene.directional.length; i++) {
+                this.directional.update([
+                    ...[...scene.directional[i].position.data, 0],
+                    ...[...scene.directional[i].color, 0],
+                    ...[scene.directional[i].intensity, 0, 0, 0],
+                ], i * 12);
+            }
 
             // TODO: sort opaque and transparent objects
             // temporary render until I sort the "sort" :p
@@ -171,8 +177,13 @@ class Renderer {
                     // change progam, so bind UBO
                     const sceneLocation = gl.getUniformBlockIndex(lastProgram, 'perScene');
                     const modelLocation = gl.getUniformBlockIndex(lastProgram, 'perModel');
+                    const directionalLocation = gl.getUniformBlockIndex(lastProgram, 'directional');
                     gl.uniformBlockBinding(lastProgram, sceneLocation, this.perScene.boundLocation);
                     gl.uniformBlockBinding(lastProgram, modelLocation, this.perModel.boundLocation);
+                    gl.uniformBlockBinding(lastProgram, directionalLocation, this.directional.boundLocation);
+                    // TODO: we need this?
+                    gl.bindBufferBase(gl.UNIFORM_BUFFER, directionalLocation, this.directional.buffer);
+
                     // console.log('change program', child.material.type);
                     // https://jsfiddle.net/andrevenancio/m9qchtdb/14/
                 }

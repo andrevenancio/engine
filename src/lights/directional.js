@@ -1,4 +1,5 @@
 import Object3 from '../core/object3';
+import { color } from '../utils';
 import { DIRECTIONAL_LIGHT } from '../constants';
 
 class DirectionalLight extends Object3 {
@@ -6,7 +7,19 @@ class DirectionalLight extends Object3 {
         super();
 
         this.type = DIRECTIONAL_LIGHT;
-        console.log('directional', props);
+
+        this.guiColor = props && props.color || 0xffffff;
+        this._color = color.convert(this.guiColor);
+
+        this.intensity = props.intensity || 1;
+    }
+
+    set color(value) {
+        this._color = color.convert(value);
+    }
+
+    get color() {
+        return this._color;
     }
 
     destroy() {

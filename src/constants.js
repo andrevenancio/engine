@@ -6,3 +6,5 @@ export const RAW_MATERIAL = 103;
 export const AMBIENT_LIGHT = 200;
 export const DIRECTIONAL_LIGHT = 201;
 export const POINT_LIGHT = 202;
+
+export const MAX_DIRECTIONAL = 2;

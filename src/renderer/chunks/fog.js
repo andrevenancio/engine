@@ -14,19 +14,19 @@ export function linear() {
 
     fogFactor = (fogEnd - dist) / (fogEnd - fogStart);
     fogFactor = clamp(fogFactor, 0.0, 1.0);
-    outColor = mix(fogColor, outColor, fogFactor);`;
+    base = mix(fogColor, base, fogFactor);`;
 };
 
 export function exponential() {
     return `${base()}
     fogFactor = 1.0 / exp(dist * fogDensity);
     fogFactor = clamp(fogFactor, 0.0, 1.0);
-    outColor = mix(fogColor, outColor, fogFactor);`;
+    base = mix(fogColor, base, fogFactor);`;
 };
 
 export function exponential2() {
     return `${base()}
     fogFactor = 1.0 /exp( (dist * fogDensity) * (dist * fogDensity) );
     fogFactor = clamp(fogFactor, 0.0, 1.0);
-    outColor = mix(fogColor, outColor, fogFactor);`;
+    base = mix(fogColor, base, fogFactor);`;
 };
