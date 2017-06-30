@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { color } from '../utils';
 import { FLATSHADING_MATERIAL, MAX_DIRECTIONAL } from '../constants';
 import Material from '../core/material';
@@ -19,7 +20,7 @@ class FlatShading extends Material {
         Object.assign(this.uniforms, {
             color: {
                 type: 'vec3',
-                value: color.convert(props && props.color || 0xffffff),
+                value: color.convert(props && props.color),
             },
             map: {
                 type: 'sampler2D',
@@ -104,13 +105,15 @@ in vec3 v_normal;
 out vec4 outColor;
 
 void main() {
-    vec3 normal = normalize(cross(dFdx(fragVertexEc), dFdy(fragVertexEc)));
+    vec3 v_normal = normalize(cross(dFdx(fragVertexEc), dFdy(fragVertexEc)));
 
     vec4 base = vec4(0.0, 0.0, 0.0, 1.0);
     base += texture(map, v_uv);
+    base += vec4(color, 1.0);
 
     ${directional()}
     ${linear()}
+
     outColor = base;
 }
         `;
