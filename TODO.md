@@ -11,10 +11,10 @@ TODO
 * implement JSON loader                         ✔   20 Jun 2017
 * implement normal helper                       ✔   20 Jun 2017
 * implement render targets                      ✔   26 Jun 2017
+* implement directional light                   ✔   4 Jul 2017
 * implement normal maps
 * implement OBJ loader to material
 * implement instanced objects
-* implement lights
 * implement post processing
 * avoid z-fighting
 * adding subdivision `utils/geometry`

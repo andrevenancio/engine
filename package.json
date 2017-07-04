@@ -1,6 +1,6 @@
 {
   "name": "engine",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "WebGL Engine",
   "main": "lib/engine.js",
   "author": "Andre Venancio (info@andrevenancio.com)",
