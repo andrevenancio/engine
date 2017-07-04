@@ -6,6 +6,12 @@ class Vector3 {
         this.data = vec3.fromValues(x, y, z);
     }
 
+    set(x, y, z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
     set x(value) {
         vec3.set(this.data, value, this.data[1], this.data[2]);
     }
