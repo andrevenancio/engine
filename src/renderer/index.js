@@ -53,8 +53,6 @@ class Renderer {
                 ...mat4.create(), // viewMatrix
                 ...vec4.create(), // fog start, fog end, fog density, 0
                 ...vec4.create(), // fog color
-                ...vec4.create(), // currently used directional light legth
-                ...vec4.create(), // currently used point light legth
                 ...vec4.create(), // iGlobalTime, 0, 0, 0
             ], 0);
 
@@ -145,8 +143,6 @@ class Renderer {
                 ...viewMatrix,
                 ...[this.fog.start, this.fog.end, this.fog.density, 0],
                 ...this.fog.color,
-                ...[scene.directional.length, 0, 0, 0],
-                ...[scene.point.length, 0, 0, 0],
                 ...[(Date.now() - startTime) / 1000, 0, 0, 0],
             ]);
 
@@ -184,7 +180,7 @@ class Renderer {
                     gl.uniformBlockBinding(lastProgram, modelLocation, this.perModel.boundLocation);
                     gl.uniformBlockBinding(lastProgram, directionalLocation, this.directional.boundLocation);
                     // TODO: we need this?
-                    gl.bindBufferBase(gl.UNIFORM_BUFFER, directionalLocation, this.directional.buffer);
+                    // gl.bindBufferBase(gl.UNIFORM_BUFFER, directionalLocation, this.directional.buffer);
 
                     // console.log('change program', child.material.type);
                     // https://jsfiddle.net/andrevenancio/m9qchtdb/14/

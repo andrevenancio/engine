@@ -6,8 +6,6 @@ const UBO = {
             mat4 viewMatrix;
             vec4 fogSettings;
             vec4 fogColor;
-            float currentDirectionalLight;
-            float currentPointLight;
             float iGlobalTime;
         };`;
     },
