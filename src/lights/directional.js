@@ -8,10 +8,10 @@ class DirectionalLight extends Object3 {
 
         this.type = DIRECTIONAL_LIGHT;
 
-        this.guiColor = props && props.color || 0xffffff;
+        this.guiColor = (props && props.color) || 0xdedede;
         this._color = color.convert(this.guiColor);
 
-        this.intensity = props.intensity || 0.7;
+        this.intensity = props.intensity || 0.4;
     }
 
     set color(value) {

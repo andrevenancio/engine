@@ -3,8 +3,7 @@ import { color } from '../utils';
 import { FLATSHADING_MATERIAL, MAX_DIRECTIONAL } from '../constants';
 import Material from '../core/material';
 import Texture from '../core/texture';
-import { linear } from '../renderer/chunks/fog';
-import { directional } from '../renderer/chunks/light';
+import { UBO, DIRECTIONAL, FOG } from '../renderer/chunks';
 
 class FlatShading extends Material {
 
@@ -20,7 +19,7 @@ class FlatShading extends Material {
         Object.assign(this.uniforms, {
             color: {
                 type: 'vec3',
-                value: color.convert(props && props.color),
+                value: color.convert((props && props.color) || 0x111111),
             },
             map: {
                 type: 'sampler2D',
@@ -29,21 +28,8 @@ class FlatShading extends Material {
         });
 
         this.vertex = `#version 300 es
-
-uniform perScene {
-    mat4 projectionMatrix;
-    mat4 viewMatrix;
-    vec4 fogSettings;
-    vec4 fogColor;
-    float currentDirectionalLight;
-    float currentPointLight;
-    float iGlobalTime;
-};
-
-uniform perModel {
-    mat4 modelMatrix;
-    mat4 normalMatrix;
-};
+${UBO.scene()}
+${UBO.model()}
 
 in vec3 a_position;
 in vec3 a_normal;
@@ -70,30 +56,10 @@ void main() {
 precision highp float;
 precision highp int;
 
-uniform perScene {
-    mat4 projectionMatrix;
-    mat4 viewMatrix;
-    vec4 fogSettings;
-    vec4 fogColor;
-    float currentDirectionalLight;
-    float currentPointLight;
-    float iGlobalTime;
-};
+${UBO.scene()}
+${UBO.model()}
 
-uniform perModel {
-    mat4 modelMatrix;
-    mat4 normalMatrix;
-};
-
-struct Directional {
-    vec4 dlPosition;
-    vec4 dlColor;
-    float flIntensity;
-};
-
-uniform directional {
-    Directional directionalLights[MAX_DIRECTIONAL];
-};
+${DIRECTIONAL.before()}
 
 uniform vec3 color;
 uniform sampler2D map;
@@ -111,8 +77,8 @@ void main() {
     base += texture(map, v_uv);
     base += vec4(color, 1.0);
 
-    ${directional()}
-    ${linear()}
+    ${DIRECTIONAL.main()}
+    ${FOG.linear()}
 
     outColor = base;
 }

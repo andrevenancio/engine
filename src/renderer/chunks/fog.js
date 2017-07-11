@@ -9,24 +9,28 @@ function base() {
     dist = gl_FragCoord.z / gl_FragCoord.w;`;
 };
 
-export function linear() {
-    return `${base()}
+const FOG = {
+    linear: () => {
+        return `${base()}
 
-    fogFactor = (fogEnd - dist) / (fogEnd - fogStart);
-    fogFactor = clamp(fogFactor, 0.0, 1.0);
-    base = mix(fogColor, base, fogFactor);`;
+        fogFactor = (fogEnd - dist) / (fogEnd - fogStart);
+        fogFactor = clamp(fogFactor, 0.0, 1.0);
+        base = mix(fogColor, base, fogFactor);`;
+    },
+    exponential: () => {
+        return `${base()}
+        fogFactor = 1.0 / exp(dist * fogDensity);
+        fogFactor = clamp(fogFactor, 0.0, 1.0);
+        base = mix(fogColor, base, fogFactor);`;
+    },
+    exponential2: () => {
+        return `${base()}
+        fogFactor = 1.0 /exp( (dist * fogDensity) * (dist * fogDensity) );
+        fogFactor = clamp(fogFactor, 0.0, 1.0);
+        base = mix(fogColor, base, fogFactor);`;
+    },
 };
 
-export function exponential() {
-    return `${base()}
-    fogFactor = 1.0 / exp(dist * fogDensity);
-    fogFactor = clamp(fogFactor, 0.0, 1.0);
-    base = mix(fogColor, base, fogFactor);`;
-};
-
-export function exponential2() {
-    return `${base()}
-    fogFactor = 1.0 /exp( (dist * fogDensity) * (dist * fogDensity) );
-    fogFactor = clamp(fogFactor, 0.0, 1.0);
-    base = mix(fogColor, base, fogFactor);`;
+export {
+    FOG,
 };

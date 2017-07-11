@@ -21,3 +21,4 @@ TODO
 * implement shader-chunks across materials
 * implement ShaderToy material
 * loaders should export geometry and material
+* add debug mode to renderer

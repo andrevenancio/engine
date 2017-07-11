@@ -1,5 +1,6 @@
 import { RAW_MATERIAL, MAX_DIRECTIONAL } from '../constants';
 import Material from '../core/material';
+import { UBO, DIRECTIONAL } from '../renderer/chunks';
 
 class Raw extends Material {
 
@@ -10,21 +11,8 @@ class Raw extends Material {
         Object.assign(this.uniforms, props.uniforms);
 
         this.vertex = props.vertex || `#version 300 es
-
-uniform perScene {
-    mat4 projectionMatrix;
-    mat4 viewMatrix;
-    vec4 fogSettings;
-    vec4 fogColor;
-    float currentDirectionalLight;
-    float currentPointLight;
-    float iGlobalTime;
-};
-
-uniform perModel {
-    mat4 modelMatrix;
-    mat4 normalMatrix;
-};
+${UBO.scene()}
+${UBO.model()}
 
 in vec3 a_position;
 in vec3 a_normal;
@@ -48,30 +36,10 @@ void main() {
 precision highp float;
 precision highp int;
 
-uniform perScene {
-    mat4 projectionMatrix;
-    mat4 viewMatrix;
-    vec4 fogSettings;
-    vec4 fogColor;
-    float currentDirectionalLight;
-    float currentPointLight;
-    float iGlobalTime;
-};
+${UBO.scene()}
+${UBO.model()}
 
-uniform perModel {
-    mat4 modelMatrix;
-    mat4 normalMatrix;
-};
-
-struct Directional {
-    vec4 dlPosition;
-    vec4 dlColor;
-    float flIntensity;
-};
-
-uniform directional {
-    Directional directionalLights[MAX_DIRECTIONAL];
-};
+${DIRECTIONAL.before()}
 
 in vec2 v_uv;
 in vec3 v_normal;
@@ -79,7 +47,7 @@ in vec3 v_normal;
 out vec4 outColor;
 
 void main() {
-    outColor = vec4(1.0, 1.0, 0.0, 1.0);
+    outColor = vec4(v_normal, 1.0);
 }
         `;
     }

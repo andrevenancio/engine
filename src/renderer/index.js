@@ -158,6 +158,8 @@ class Renderer {
                 ], i * 12);
             }
 
+            // console.log(this.directional.data);
+
             // TODO: sort opaque and transparent objects
             // temporary render until I sort the "sort" :p
             for (let i = 0, len = scene.children.length; i < len; i++) {

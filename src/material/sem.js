@@ -1,7 +1,7 @@
 import { SEM_MATERIAL, MAX_DIRECTIONAL } from '../constants';
 import Material from '../core/material';
 import Texture from '../core/texture';
-import { linear } from '../renderer/chunks/fog';
+import { UBO, DIRECTIONAL, FOG } from '../renderer/chunks';
 
 class Sem extends Material {
 
@@ -22,21 +22,8 @@ class Sem extends Material {
         });
 
         this.vertex = `#version 300 es
-
-uniform perScene {
-    mat4 projectionMatrix;
-    mat4 viewMatrix;
-    vec4 fogSettings;
-    vec4 fogColor;
-    float currentDirectionalLight;
-    float currentPointLight;
-    float iGlobalTime;
-};
-
-uniform perModel {
-    mat4 modelMatrix;
-    mat4 normalMatrix;
-};
+${UBO.scene()}
+${UBO.model()}
 
 in vec3 a_position;
 in vec3 a_normal;
@@ -63,30 +50,10 @@ void main() {
 precision highp float;
 precision highp int;
 
-uniform perScene {
-    mat4 projectionMatrix;
-    mat4 viewMatrix;
-    vec4 fogSettings;
-    vec4 fogColor;
-    float currentDirectionalLight;
-    float currentPointLight;
-    float iGlobalTime;
-};
+${UBO.scene()}
+${UBO.model()}
 
-uniform perModel {
-    mat4 modelMatrix;
-    mat4 normalMatrix;
-};
-
-struct Directional {
-    vec4 dlPosition;
-    vec4 dlColor;
-    float flIntensity;
-};
-
-uniform directional {
-    Directional directionalLights[MAX_DIRECTIONAL];
-};
+${DIRECTIONAL.before()}
 
 uniform sampler2D map;
 
@@ -97,7 +64,9 @@ out vec4 outColor;
 void main() {
     vec4 base = vec4(0.0, 0.0, 0.0, 1.0);
     base += texture(map, v_uv);
-    ${linear()}
+
+    ${FOG.linear()}
+
     outColor = base;
 }
         `;
