@@ -15,6 +15,8 @@ import * as loaders from './loaders';
 import * as helpers from './helpers';
 import * as constants from './constants';
 
+import * as chunks from './renderer/chunks';
+
 export {
     session,
     constants,
@@ -34,4 +36,6 @@ export {
     utils,
     helpers,
     loaders,
+
+    chunks,
 };

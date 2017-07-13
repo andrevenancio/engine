@@ -22,3 +22,18 @@ TODO
 * implement ShaderToy material
 * loaders should export geometry and material
 * add debug mode to renderer
+* implement alternative renderer for webgl1 and canvas.
+* implement `three-point lighting`
+
+
+# Lights to implement?
+https://www.pluralsight.com/blog/film-games/understanding-different-light-types
+Spot lights
+Point lights
+Area lights
+Directional lights
+    vec3 direction
+    vec3 ambient
+    vec3 specular
+Volume lights
+Ambient lights

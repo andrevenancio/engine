@@ -19,7 +19,7 @@ class FlatShading extends Material {
         Object.assign(this.uniforms, {
             color: {
                 type: 'vec3',
-                value: color.convert((props && props.color) || 0x111111),
+                value: color.convert((props && props.color) || 0xffffff),
             },
             map: {
                 type: 'sampler2D',

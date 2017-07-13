@@ -18,7 +18,7 @@ class Basic extends Material {
         Object.assign(this.uniforms, {
             color: {
                 type: 'vec3',
-                value: color.convert((props && props.color) || 0x111111),
+                value: color.convert((props && props.color) || 0xffffff),
             },
             map: {
                 type: 'sampler2D',
@@ -74,6 +74,8 @@ void main() {
     base += vec4(color, 1.0);
 
     ${DIRECTIONAL.main()}
+    // POINT light
+    // SPOTLIGHTS
     ${FOG.linear()}
 
     outColor = base;
