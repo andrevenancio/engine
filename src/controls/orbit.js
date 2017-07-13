@@ -43,7 +43,7 @@ class OrbitControls {
         this.domElement.addEventListener('touchstart', this.onStart, false);
         this.domElement.addEventListener('touchmove', this.onMove, false);
         this.domElement.addEventListener('touchend', this.onEnd, false);
-        global.addEventListener('mousewheel', this.onWheel, false);
+        global.addEventListener('wheel', this.onWheel, false);
     }
 
     disable() {
@@ -53,8 +53,7 @@ class OrbitControls {
         this.domElement.removeEventListener('touchstart', this.onStart, false);
         this.domElement.removeEventListener('touchmove', this.onMove, false);
         this.domElement.removeEventListener('touchend', this.onEnd, false);
-        global.removeEventListener('mousewheel', this.onWheel, false);
-
+        global.removeEventListener('wheel', this.onWheel, false);
     }
 
     onStart = (event) => {
@@ -85,15 +84,7 @@ class OrbitControls {
 
     onWheel = (event) => {
         event.preventDefault();
-        let delta = 0;
-
-        if (event.wheelDelta) {
-            delta = event.wheelDelta;
-        } else if (event.detail) {
-            delta = event.detail;
-        }
-
-        this.zoom(-delta);
+        this.zoom(-event.deltaY);
     }
 
     zoom(delta) {
