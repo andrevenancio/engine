@@ -2,7 +2,7 @@ import { BASIC_MATERIAL, MAX_DIRECTIONAL } from '../constants';
 import { color } from '../utils';
 import Material from '../core/material';
 import Texture from '../core/texture';
-import { UBO, FOG } from '../renderer/chunks';
+import { UBO, DIRECTIONAL, FOG } from '../renderer/chunks';
 
 class Basic extends Material {
 
@@ -54,6 +54,8 @@ precision highp int;
 ${UBO.scene()}
 ${UBO.model()}
 
+${DIRECTIONAL.before()}
+
 uniform vec3 color;
 uniform sampler2D map;
 
@@ -62,15 +64,12 @@ in vec3 v_normal;
 
 out vec4 outColor;
 
-float whenGreaterThan(float x, float y) {
-    return max(sign(x - y), 0.0);
-}
-
 void main() {
     vec4 base = vec4(0.0, 0.0, 0.0, 1.0);
     base += texture(map, v_uv);
     base += vec4(color, 1.0);
 
+    ${DIRECTIONAL.main()}
     ${FOG.linear()}
 
     outColor = base;

@@ -180,7 +180,7 @@ class Renderer {
                     gl.uniformBlockBinding(lastProgram, modelLocation, this.perModel.boundLocation);
                     gl.uniformBlockBinding(lastProgram, directionalLocation, this.directional.boundLocation);
                     // TODO: we need this?
-                    // gl.bindBufferBase(gl.UNIFORM_BUFFER, directionalLocation, this.directional.buffer);
+                    gl.bindBufferBase(gl.UNIFORM_BUFFER, directionalLocation, this.directional.buffer);
 
                     // console.log('change program', child.material.type);
                     // https://jsfiddle.net/andrevenancio/m9qchtdb/14/
