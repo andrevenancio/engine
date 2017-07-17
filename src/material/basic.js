@@ -51,6 +51,9 @@ void main() {
 precision highp float;
 precision highp int;
 
+in vec2 v_uv;
+in vec3 v_normal;
+
 ${UBO.scene()}
 ${UBO.model()}
 
@@ -59,8 +62,6 @@ ${DIRECTIONAL.before()}
 uniform vec3 color;
 uniform sampler2D map;
 
-in vec2 v_uv;
-in vec3 v_normal;
 
 out vec4 outColor;
 
