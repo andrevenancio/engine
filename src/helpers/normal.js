@@ -1,4 +1,4 @@
-/* eslint-disable */
+import { vec3 } from 'gl-matrix';
 import Model from '../core/model';
 import Raw from '../material/raw';
 import { getContext } from '../session';
@@ -66,8 +66,16 @@ class NormalHelper extends Model {
                     outColor = base;
                 }`,
         });
-        // const material = new Raw();
         super(geometry, material);
+        this.reference = props.model;
+    }
+
+    update() {
+        super.update();
+
+        vec3.copy(this.position.data, this.reference.position.data);
+        vec3.copy(this.rotation.data, this.reference.rotation.data);
+        vec3.copy(this.scale.data, this.reference.scale.data);
     }
 
     draw() {

@@ -35,7 +35,6 @@ class Material {
     createProgram() {
         const gl = getContext();
         const key = `shader-${this.type}`;
-        console.log('createProgram', key);
         if (programs[key] === undefined) {
             const program = createProgram(gl, this.vertex, this.fragment);
             programs[key] = program;
