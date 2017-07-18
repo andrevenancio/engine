@@ -2,7 +2,7 @@ import { BASIC_MATERIAL, MAX_DIRECTIONAL } from '../constants';
 import { color } from '../utils';
 import Material from '../core/material';
 import Texture from '../core/texture';
-import { UBO, DIRECTIONAL, FOG } from '../renderer/chunks';
+import { UBO, DIRECTIONAL } from '../renderer/chunks';
 
 class Basic extends Material {
 
@@ -69,9 +69,6 @@ void main() {
     vec4 base = vec4(0.0, 0.0, 0.0, 1.0);
     base += texture(map, v_uv);
     base += vec4(color, 1.0);
-
-    ${DIRECTIONAL.main()}
-    ${FOG.linear()}
 
     outColor = base;
 }`;

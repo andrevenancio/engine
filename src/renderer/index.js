@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { mat4, vec4 } from 'gl-matrix';
 import { library, version, getContext, setContext } from '../session';
 import UniformBuffer from './helpers/ubo';
@@ -114,6 +113,71 @@ class Renderer {
         this.ratio = ratio;
     }
 
+    renderObject(object) {
+        if (object === undefined) {
+            object = this;
+        }
+
+        for (let i = 0; i < object.children.length; i += 1) {
+            this.renderObject(object.children[i]);
+        }
+
+        if (object.parent === null) {
+            return;
+        }
+
+        // --------------------------
+        const gl = getContext();
+        child = object;
+
+        if (!child.material) {
+            // its just an empty container, we don't need to render it
+            return;
+        }
+
+        // first time
+        if (!child.material.program) {
+            child.init();
+            return;
+        }
+
+        // change program
+        if (lastProgram !== child.material.program) {
+            lastProgram = child.material.program;
+            gl.useProgram(lastProgram);
+
+            // change progam, so bind UBO
+            const sceneLocation = gl.getUniformBlockIndex(lastProgram, 'perScene');
+            const modelLocation = gl.getUniformBlockIndex(lastProgram, 'perModel');
+            const directionalLocation = gl.getUniformBlockIndex(lastProgram, 'directional');
+            gl.uniformBlockBinding(lastProgram, sceneLocation, this.perScene.boundLocation);
+            gl.uniformBlockBinding(lastProgram, modelLocation, this.perModel.boundLocation);
+            gl.uniformBlockBinding(lastProgram, directionalLocation, this.directional.boundLocation);
+            // TODO: we need this?
+            gl.bindBufferBase(gl.UNIFORM_BUFFER, directionalLocation, this.directional.buffer);
+
+            // console.log('change program', child.material.type);
+            // https://jsfiddle.net/andrevenancio/m9qchtdb/14/
+        }
+
+        // update matrices per model
+        mat4.identity(normalMatrix);
+        mat4.copy(normalMatrix, invertedViewMatrix);
+        mat4.transpose(normalMatrix, normalMatrix);
+
+        // render child
+        child.bind();
+
+        this.perModel.update([
+            ...child.modelMatrix,
+            ...normalMatrix,
+        ]);
+
+        child.update();
+        child.unbind();
+        child = null;
+    }
+
     draw(scene, camera, clear = true) {
         if (supported) {
             const gl = getContext();
@@ -158,51 +222,7 @@ class Renderer {
 
             // TODO: sort opaque and transparent objects
             // temporary render until I sort the "sort" :p
-            for (let i = 0, len = scene.children.length; i < len; i++) {
-                child = scene.children[i];
-
-                // first time
-                if (!child.material.program) {
-                    child.init();
-                    return;
-                }
-
-                // change program
-                if (lastProgram !== child.material.program) {
-                    lastProgram = child.material.program;
-                    gl.useProgram(lastProgram);
-
-                    // change progam, so bind UBO
-                    const sceneLocation = gl.getUniformBlockIndex(lastProgram, 'perScene');
-                    const modelLocation = gl.getUniformBlockIndex(lastProgram, 'perModel');
-                    const directionalLocation = gl.getUniformBlockIndex(lastProgram, 'directional');
-                    gl.uniformBlockBinding(lastProgram, sceneLocation, this.perScene.boundLocation);
-                    gl.uniformBlockBinding(lastProgram, modelLocation, this.perModel.boundLocation);
-                    gl.uniformBlockBinding(lastProgram, directionalLocation, this.directional.boundLocation);
-                    // TODO: we need this?
-                    gl.bindBufferBase(gl.UNIFORM_BUFFER, directionalLocation, this.directional.buffer);
-
-                    // console.log('change program', child.material.type);
-                    // https://jsfiddle.net/andrevenancio/m9qchtdb/14/
-                }
-
-                // update matrices per model
-                mat4.identity(normalMatrix);
-                mat4.copy(normalMatrix, invertedViewMatrix);
-                mat4.transpose(normalMatrix, normalMatrix);
-
-                // render child
-                child.bind();
-
-                this.perModel.update([
-                    ...child.modelMatrix,
-                    ...normalMatrix,
-                ]);
-
-                child.update();
-                child.unbind();
-                child = null;
-            }
+            this.renderObject(scene);
         }
     }
 

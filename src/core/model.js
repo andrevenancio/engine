@@ -21,6 +21,8 @@ class Model extends Object3 {
         this.material.attributes.a_normal.value = this.geometry.normals;
         this.material.attributes.a_uv.value = this.geometry.uvs;
         this.material.indices = this.geometry.indices;
+
+        this.positionsNeedUpdate = false;
     }
 
     init() {
@@ -33,6 +35,13 @@ class Model extends Object3 {
 
     update() {
         this.material.update();
+
+        if (this.positionsNeedUpdate === true) {
+            const gl = getContext();
+            gl.enableVertexAttribArray(this.material.attributes.a_position.location);
+            gl.bindBuffer(gl.ARRAY_BUFFER, this.material.attributes.a_position.buffer);
+            gl.bufferData(gl.ARRAY_BUFFER, this.geometry.positions, gl.DYNAMIC_DRAW);
+        }
         this.draw();
     }
 
@@ -42,7 +51,11 @@ class Model extends Object3 {
 
     draw() {
         const gl = getContext();
-        gl.drawElements(gl.TRIANGLES, this.geometry.indices.length, gl.UNSIGNED_SHORT, 0);
+        if (this.geometry.indices.length > 0) {
+            gl.drawElements(this.material.glMode(), this.geometry.indices.length, gl.UNSIGNED_SHORT, 0);
+        } else {
+            gl.drawArrays(this.material.glMode(), 0, this.geometry.positions.length / 3);
+        }
     }
 
     destroy() {

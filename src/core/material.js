@@ -1,6 +1,6 @@
 import Vao from '../renderer/helpers/vao';
 import { createProgram } from '../renderer/helpers/program';
-import { getContext } from '../session';
+import { getContext, GL_TRIANGLES } from '../session';
 
 const programs = {};
 
@@ -30,6 +30,8 @@ class Material {
         this.vao = new Vao();
         this.program = null;
         this.indices = null;
+
+        this.glMode = GL_TRIANGLES;
     }
 
     createProgram() {
@@ -49,7 +51,7 @@ class Material {
             const location = gl.getAttribLocation(this.program, prop);
             const buffer = gl.createBuffer();
             gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-            gl.bufferData(gl.ARRAY_BUFFER, current.value, gl.STATIC_DRAW);
+            gl.bufferData(gl.ARRAY_BUFFER, current.value, gl.DYNAMIC_DRAW); // STATIC_DRAW
 
             let size;
             switch (current.type) {
@@ -133,7 +135,7 @@ class Material {
     }
 
     update() {
-        // update uniforms / buffers
+        // update uniforms
         const gl = getContext();
         Object.keys(this.uniforms).forEach((key) => {
             const uniform = this.uniforms[key];
