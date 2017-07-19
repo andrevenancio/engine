@@ -7,6 +7,7 @@ class Line {
 
         return {
             positions,
+            indices: [],
         };
     }
 

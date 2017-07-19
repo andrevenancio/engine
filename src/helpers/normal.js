@@ -1,16 +1,14 @@
 import { vec3 } from 'gl-matrix';
 import Model from '../core/model';
-import Raw from '../material/raw';
-import { getContext } from '../session';
-import { MAX_DIRECTIONAL } from '../constants';
-import { color } from '../utils';
-import { UBO, DIRECTIONAL, FOG } from '../renderer/chunks';
+import Basic from '../material/basic';
+import { GL_LINES } from '../session';
 
 class NormalHelper extends Model {
 
     constructor(props) {
         const geometry = {
             positions: [],
+            indices: [],
         };
 
         // extract geometry
@@ -33,41 +31,10 @@ class NormalHelper extends Model {
             geometry.positions = geometry.positions.concat([v0x, v0y, v0z, v1x, v1y, v1z]);
         }
 
-        const material = new Raw({
-            uniforms: {
-                color: {
-                    type: 'vec3',
-                    value: color.convert(props && props.color || 0xffffff),
-                },
-            },
-            fragment: `#version 300 es
-                #define MAX_DIRECTIONAL ${MAX_DIRECTIONAL}
-
-                precision highp float;
-                precision highp int;
-
-                ${UBO.scene()}
-                ${UBO.model()}
-
-                ${DIRECTIONAL.before()}
-
-                uniform vec3 color;
-
-                in vec2 v_uv;
-                in vec3 v_normal;
-
-                out vec4 outColor;
-
-                void main() {
-                    vec4 base = vec4(color, 1.0);
-
-                    ${FOG.linear()}
-
-                    outColor = base;
-                }`,
-        });
+        const material = new Basic({ color: props && props.color || 0xffffff });
         super(geometry, material);
         this.reference = props.model;
+        this.material.glMode = GL_LINES;
     }
 
     update() {
@@ -75,12 +42,7 @@ class NormalHelper extends Model {
 
         vec3.copy(this.position.data, this.reference.position.data);
         vec3.copy(this.rotation.data, this.reference.rotation.data);
-        vec3.copy(this.scale.data, this.reference.scale.data);
-    }
-
-    draw() {
-        const gl = getContext();
-        gl.drawArrays(gl.LINES, 0, this.geometry.positions.length / 3);
+        this.lookToTarget = this.reference.lookToTarget;
     }
 
 }

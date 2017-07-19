@@ -150,13 +150,11 @@ class Renderer {
             const sceneLocation = gl.getUniformBlockIndex(lastProgram, 'perScene');
             const modelLocation = gl.getUniformBlockIndex(lastProgram, 'perModel');
             const directionalLocation = gl.getUniformBlockIndex(lastProgram, 'directional');
+
             gl.uniformBlockBinding(lastProgram, sceneLocation, this.perScene.boundLocation);
             gl.uniformBlockBinding(lastProgram, modelLocation, this.perModel.boundLocation);
             gl.uniformBlockBinding(lastProgram, directionalLocation, this.directional.boundLocation);
-            // TODO: we need this?
-            gl.bindBufferBase(gl.UNIFORM_BUFFER, directionalLocation, this.directional.buffer);
 
-            // console.log('change program', child.material.type);
             // https://jsfiddle.net/andrevenancio/m9qchtdb/14/
         }
 
@@ -210,15 +208,27 @@ class Renderer {
                 ...[(Date.now() - startTime) / 1000, 0, 0, 0],
             ]);
 
-            for (let i = 0; i < scene.directional.length; i++) {
+            for (let i = 0; i < MAX_DIRECTIONAL; i++) {
+
+                // NOTE: If there is no directional lights added, we have a NO
+                // BUFFER BIND error because the bindBuffer is on the update method.
+                // so, we always bind the buffers and fill them with empty data if there is no lights added.
+                // though I'm not sure how fast this code is, so leaving the old code here, until I decide what to do.
+
+                // OLD code was on a for loop with total scene.directional.length.
+                // this.directional.update([
+                //     ...[...scene.directional[i].position.data, 0],
+                //     ...[...scene.directional[i].color, 0],
+                //     ...[scene.directional[i].intensity, 0, 0, 0],
+                // ], i * 12);
+
+                // new code
                 this.directional.update([
-                    ...[...scene.directional[i].position.data, 0],
-                    ...[...scene.directional[i].color, 0],
-                    ...[scene.directional[i].intensity, 0, 0, 0],
+                    ...[...((scene.directional[i] && scene.directional[i].position.data) || [0, 0, 0]), 0],
+                    ...[...((scene.directional[i] && scene.directional[i].color) || [0, 0, 0]), 0],
+                    ...[(scene.directional[i] && scene.directional[i].intensity) || 0, 0, 0, 0],
                 ], i * 12);
             }
-
-            // console.log(this.directional.data);
 
             // TODO: sort opaque and transparent objects
             // temporary render until I sort the "sort" :p

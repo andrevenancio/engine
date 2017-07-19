@@ -83,8 +83,12 @@ class Object3 {
         }
 
         if (this.lookToTarget) {
-            // override gl-matrix lookAt matrix
+            // my version
             this.lookAt(this.lookAtMatrix, this.position.data, this.target, this.up);
+
+            // in theory this should work, but doesnt
+            // mat4.lookAt(this.lookAtMatrix, this.position.data, this.target, this.up);
+            // mat4.invert(this.lookAtMatrix, this.lookAtMatrix);
             mat4.multiply(this.modelMatrix, this.modelMatrix, this.lookAtMatrix);
         } else {
             mat4.translate(this.modelMatrix, this.modelMatrix, this.position.data);
@@ -94,7 +98,6 @@ class Object3 {
             axisAngle = quat.getAxisAngle(quaternionAxisAngle, this.quaternion);
             mat4.rotate(this.modelMatrix, this.modelMatrix, axisAngle, quaternionAxisAngle);
         }
-
         mat4.scale(this.modelMatrix, this.modelMatrix, this.scale.data);
     }
 

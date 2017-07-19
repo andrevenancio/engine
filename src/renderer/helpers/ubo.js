@@ -11,7 +11,7 @@ class UniformBuffer {
 
         this.buffer = gl.createBuffer();
         gl.bindBuffer(gl.UNIFORM_BUFFER, this.buffer);
-        gl.bufferData(gl.UNIFORM_BUFFER, this.data, gl.DYNAMIC_DRAW);
+        gl.bufferData(gl.UNIFORM_BUFFER, this.data, gl.STATIC_DRAW); // DYNAMIC_DRAW
         gl.bindBuffer(gl.UNIFORM_BUFFER, null);
     }
 

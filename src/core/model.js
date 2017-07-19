@@ -41,6 +41,12 @@ class Model extends Object3 {
             gl.enableVertexAttribArray(this.material.attributes.a_position.location);
             gl.bindBuffer(gl.ARRAY_BUFFER, this.material.attributes.a_position.buffer);
             gl.bufferData(gl.ARRAY_BUFFER, this.geometry.positions, gl.DYNAMIC_DRAW);
+
+            // do I need to bind this?
+            // if (this.indices) {
+            //     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
+            //     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.indices, gl.STATIC_DRAW);
+            // }
         }
         this.draw();
     }
