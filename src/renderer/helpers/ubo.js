@@ -15,6 +15,11 @@ class UniformBuffer {
         gl.bindBuffer(gl.UNIFORM_BUFFER, null);
     }
 
+    bind() {
+        const gl = getContext();
+        gl.bindBufferBase(gl.UNIFORM_BUFFER, this.boundLocation, this.buffer);
+    }
+
     update(data, offset = 0) {
         const gl = getContext();
 
@@ -23,7 +28,6 @@ class UniformBuffer {
         gl.bindBuffer(gl.UNIFORM_BUFFER, this.buffer);
         gl.bufferSubData(gl.UNIFORM_BUFFER, 0, this.data, 0, null);
         gl.bindBuffer(gl.UNIFORM_BUFFER, null);
-        gl.bindBufferBase(gl.UNIFORM_BUFFER, this.boundLocation, this.buffer);
     }
 }
 
