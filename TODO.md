@@ -12,13 +12,13 @@ TODO
 * implement normal helper                       ✔   20 Jun 2017
 * implement render targets                      ✔   26 Jun 2017
 * implement directional light                   ✔   4 Jul 2017
+* implement shader-chunks across materials      ✔   19 Jul 2019
 * implement normal maps
 * implement OBJ loader to material
 * implement instanced objects
 * implement post processing
 * avoid z-fighting
 * adding subdivision `utils/geometry`
-* implement shader-chunks across materials
 * implement ShaderToy material
 * loaders should export geometry and material
 * add debug mode to renderer
