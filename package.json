@@ -1,6 +1,6 @@
 {
   "name": "engine",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "WebGL Engine",
   "main": "lib/engine.js",
   "author": "Andre Venancio (info@andrevenancio.com)",
@@ -45,6 +45,6 @@
     "yargs": "^8.0.2"
   },
   "dependencies": {
-    "gl-matrix": "^2.3.2"
+    "gl-matrix": "^2.4.0"
   }
 }

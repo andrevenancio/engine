@@ -1,7 +1,8 @@
+/* eslint-disable */
 import { vec3 } from 'gl-matrix';
 import Model from '../../core/model';
 import Basic from '../../material/basic';
-import { GL_LINES } from '../../session';
+import { GL_LINES, GL_POINTS } from '../../session';
 
 class DirectionalHelper extends Model {
 
@@ -38,7 +39,7 @@ class DirectionalHelper extends Model {
         vec3.copy(this.scale.data, this.reference.scale.data);
 
         const origin = vec3.subtract(this.position.data, this.position.data, this.reference.target);
-        this.geometry.positions[this.geometry.positions.length - 1] = vec3.length(origin);
+        this.geometry.positions[this.geometry.positions.length - 1] = -vec3.length(origin);
 
         this.positionsNeedUpdate = true;
     }

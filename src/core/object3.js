@@ -84,13 +84,16 @@ class Object3 {
 
         if (this.lookToTarget) {
             // my version
-            this.lookAt(this.lookAtMatrix, this.position.data, this.target, this.up);
-            mat4.multiply(this.modelMatrix, this.modelMatrix, this.lookAtMatrix);
-
-            // in theory this should work, but doesnt
-            // mat4.lookAt(this.lookAtMatrix, this.position.data, this.target, this.up);
-            // mat4.invert(this.lookAtMatrix, this.lookAtMatrix);
+            // this.lookAt(this.lookAtMatrix, this.position.data, this.target, this.up);
+            // mat4.targetTo(this.lookAtMatrix, this.position.data, this.target, this.up);
             // mat4.multiply(this.modelMatrix, this.modelMatrix, this.lookAtMatrix);
+
+            // console.log(mat4);
+            // debugger; // eslint-disable-line
+            // in theory this should work, but doesnt
+            mat4.lookAt(this.lookAtMatrix, this.position.data, this.target, this.up);
+            mat4.invert(this.lookAtMatrix, this.lookAtMatrix);
+            mat4.multiply(this.modelMatrix, this.modelMatrix, this.lookAtMatrix);
         } else {
             mat4.translate(this.modelMatrix, this.modelMatrix, this.position.data);
             quat.rotateX(this.quaternion, this.quaternion, this.rotation.x);

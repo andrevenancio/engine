@@ -9,8 +9,9 @@ let child;
 let lastProgram;
 
 let viewMatrix = mat4.create();
-let invertedViewMatrix = mat4.create();
 let normalMatrix = mat4.create();
+let modelViewMatrix = mat4.create();
+let inversedModelViewMatrix = mat4.create();
 
 const startTime = Date.now();
 
@@ -158,10 +159,21 @@ class Renderer {
             // https://jsfiddle.net/andrevenancio/m9qchtdb/14/
         }
 
+        // model view matrix
+        mat4.identity(modelViewMatrix);
+        // OPTION I multiply view takes OrbitControls in consideration to normalMatrix
+        // mat4.multiply(modelViewMatrix, viewMatrix, child.modelMatrix);
+
+        // OPTION II dont use view
+        mat4.copy(modelViewMatrix, child.modelMatrix);
+
+        // inversed model view matrix
+        mat4.invert(inversedModelViewMatrix, modelViewMatrix);
+        mat4.transpose(inversedModelViewMatrix, inversedModelViewMatrix);
+
         // update matrices per model
         mat4.identity(normalMatrix);
-        mat4.copy(normalMatrix, invertedViewMatrix);
-        mat4.transpose(normalMatrix, normalMatrix);
+        mat4.copy(normalMatrix, inversedModelViewMatrix);
 
         // render child
         child.bind();
@@ -194,9 +206,6 @@ class Renderer {
             // common matrices
             mat4.identity(viewMatrix);
             mat4.lookAt(viewMatrix, camera.position.data, camera.target, camera.up);
-
-            mat4.identity(invertedViewMatrix);
-            mat4.invert(invertedViewMatrix, viewMatrix);
 
             scene.traverse();
 
