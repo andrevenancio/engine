@@ -1,8 +1,7 @@
-/* eslint-disable */
 import { vec3 } from 'gl-matrix';
 import Model from '../../core/model';
 import Basic from '../../material/basic';
-import { GL_LINES, GL_POINTS } from '../../session';
+import { GL_LINES } from '../../session';
 
 class DirectionalHelper extends Model {
 

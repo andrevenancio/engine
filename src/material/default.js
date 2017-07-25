@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { color } from '../utils';
 import { DEFAULT_MATERIAL, MAX_DIRECTIONAL } from '../constants';
 import Material from '../core/material';

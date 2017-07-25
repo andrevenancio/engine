@@ -6,11 +6,6 @@ let uuid = 0;
 let axisAngle = 0;
 let quaternionAxisAngle = vec3.create();
 
-// look at
-const xAxis = vec3.create();
-const yAxis = vec3.create();
-const zAxis = vec3.create();
-
 class Object3 {
 
     constructor() {
@@ -46,31 +41,6 @@ class Object3 {
         }
     }
 
-    lookAt(out, eye, target, up) {
-        vec3.subtract(zAxis, target, eye);
-        vec3.normalize(zAxis, zAxis);
-        vec3.cross(xAxis, up, zAxis);
-        vec3.cross(yAxis, zAxis, xAxis);
-
-        out[0] = xAxis[0];
-        out[1] = xAxis[1];
-        out[2] = xAxis[2];
-        out[3] = 0;
-        out[4] = yAxis[0];
-        out[5] = yAxis[1];
-        out[6] = yAxis[2];
-        out[7] = 0;
-        out[8] = zAxis[0];
-        out[9] = zAxis[1];
-        out[10] = zAxis[2];
-        out[11] = 0;
-        out[12] = eye[0];
-        out[13] = eye[1];
-        out[14] = eye[2];
-        out[15] = 1;
-        return out;
-    }
-
     updateMatrices() {
         mat4.identity(this.parentMatrix);
         mat4.identity(this.modelMatrix);
@@ -83,16 +53,7 @@ class Object3 {
         }
 
         if (this.lookToTarget) {
-            // my version
-            // this.lookAt(this.lookAtMatrix, this.position.data, this.target, this.up);
-            // mat4.targetTo(this.lookAtMatrix, this.position.data, this.target, this.up);
-            // mat4.multiply(this.modelMatrix, this.modelMatrix, this.lookAtMatrix);
-
-            // console.log(mat4);
-            // debugger; // eslint-disable-line
-            // in theory this should work, but doesnt
-            mat4.lookAt(this.lookAtMatrix, this.position.data, this.target, this.up);
-            mat4.invert(this.lookAtMatrix, this.lookAtMatrix);
+            mat4.targetTo(this.lookAtMatrix, this.position.data, this.target, this.up);
             mat4.multiply(this.modelMatrix, this.modelMatrix, this.lookAtMatrix);
         } else {
             mat4.translate(this.modelMatrix, this.modelMatrix, this.position.data);

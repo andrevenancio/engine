@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { vec3 } from 'gl-matrix';
 import Object3 from '../core/object3';
 import Model from '../core/model';
