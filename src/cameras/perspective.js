@@ -7,7 +7,7 @@ class PerspectiveCamera extends Object3 {
         super();
 
         Object.assign(this, {
-            near: 0.1,
+            near: 1,
             far: 1000,
             fov: 35,
         });

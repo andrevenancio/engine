@@ -144,3 +144,12 @@ export function mergeVertices(data) {
         normals: new Float32Array(generateVertexNormals(p, f)),
     };
 }
+
+export function subdivide(data) {
+    // subdivision geometry
+    const positions = unflatten(data.positions, 3);
+
+    console.log('positions', positions);
+
+    return data;
+}

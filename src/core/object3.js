@@ -25,7 +25,13 @@ class Object3 {
         this.modelMatrix = mat4.create();
         this.lookAtMatrix = mat4.create();
 
+        // use mat4.targetTo rotation when set to true
         this.lookToTarget = false; // use lookAt rotation when set to true
+
+        // enable polygonOffset (z-fighting)
+        this.polygonOffset = false;
+        this.polygonOffsetFactor = 0;
+        this.polygonOffsetUnits = 1;
     }
 
     addModel(model) {

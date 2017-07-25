@@ -57,6 +57,14 @@ class Model extends Object3 {
 
     draw() {
         const gl = getContext();
+
+        if (this.polygonOffset) {
+            gl.enable(gl.POLYGON_OFFSET_FILL);
+            gl.polygonOffset(this.polygonOffsetFactor, this.polygonOffsetUnits);
+        } else {
+            gl.disable(gl.POLYGON_OFFSET_FILL);
+        }
+
         if (this.geometry.indices.length > 0) {
             gl.drawElements(this.material.glMode(), this.geometry.indices.length, gl.UNSIGNED_SHORT, 0);
         } else {
