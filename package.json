@@ -45,6 +45,7 @@
     "yargs": "^8.0.2"
   },
   "dependencies": {
-    "gl-matrix": "^2.4.0"
+    "gl-matrix": "^2.4.0",
+    "esdoc": "^0.5.2"
   }
 }
