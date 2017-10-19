@@ -3,7 +3,7 @@
   "description": "WebGL2 Engine",
   "author": "Andre Venancio (info@andrevenancio.com)",
   "company": "lowww",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "MIT",
   "repository": "git@github.com:andrevenancio/engine.git",
   "main": "lib/engine.js",
@@ -49,6 +49,6 @@
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0",
     "gl-matrix": "^2.4.0",
-    "webpack": "^3.0.0"
+    "webpack": "^3.8.1"
   }
 }
