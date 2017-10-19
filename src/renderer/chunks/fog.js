@@ -7,7 +7,7 @@ function base() {
     float dist = 0.0;
     float fogFactor = 0.0;
     dist = gl_FragCoord.z / gl_FragCoord.w;`;
-};
+}
 
 const FOG = {
     linear: () => {

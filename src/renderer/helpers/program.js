@@ -14,7 +14,7 @@ function createShader(gl, str, type) {
     }
 
     return shader;
-};
+}
 
 export const createProgram = (gl, vertex, fragment) => {
     const vs = createShader(gl, vertex, gl.VERTEX_SHADER);

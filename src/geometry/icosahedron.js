@@ -1,8 +1,6 @@
-import { generateVertexNormals } from '../utils/geometry';
-import { flatten, unflatten } from '../utils/geometry';
+import { generateVertexNormals, flatten, unflatten } from '../utils/geometry';
 
 class Icosahedron {
-
     constructor(radius, detail = 0) {
         const t = 0.5 + (Math.sqrt(5) / 2);
         let positions = [
@@ -51,7 +49,7 @@ class Icosahedron {
 
         let d = Math.min(detail, 3);
 
-        while(d-- > 0) {
+        while (d-- > 0) {
             complex = this.subdivide(complex);
         }
 
@@ -59,15 +57,15 @@ class Icosahedron {
         for (let i = 0; i < complex.positions.length; i++) {
             const position = this.normalize(complex.positions[i]);
             const u = 0.5 * (-(Math.atan2(position[2], -position[0]) / Math.PI) + 1.0);
-            const v = 0.5 + Math.asin(position[1]) / Math.PI;
-            uvs.push([ 1 - u, 1 - v ]);
+            const v = 0.5 + (Math.asin(position[1]) / Math.PI);
+            uvs.push([1 - u, 1 - v]);
         }
 
         // http://mft-dev.dk/uv-mapping-sphere/
         // this.fixPoleUVs(complex.positions, complex.faces, uvs);
 
         // scale positions
-        positions = complex.positions;
+        positions = complex.positions; // eslint-disable-line
         for (let i = 0; i < positions.length; i++) {
             // this.normalize(positions[i]);
             this.scale(positions[i], radius);
@@ -86,8 +84,8 @@ class Icosahedron {
     }
 
     fixPoleUVs(positions, cells, uvs) {
-        let northIndex = this.firstYIndex(positions, 1);
-        let southIndex = this.firstYIndex(positions, -1);
+        const northIndex = this.firstYIndex(positions, 1);
+        const southIndex = this.firstYIndex(positions, -1);
 
         if (northIndex === -1 || southIndex === -1) {
             // could not find any poles, bail early
@@ -144,7 +142,7 @@ class Icosahedron {
 
         // avoid dividing by zero
         if (mag === 0) {
-            return Array.apply(null, new Array(vec.length)).map(Number.prototype.valueOf, 0);
+            return Array.apply(null, new Array(vec.length)).map(Number.prototype.valueOf, 0); // eslint-disable-line
         }
 
         for (let n = 0; n < vec.length; n++) {
@@ -162,8 +160,7 @@ class Icosahedron {
     }
 
     subdivide(complex) {
-        const positions = complex.positions;
-        const faces = complex.faces;
+        const { positions, faces } = complex;
 
         const newCells = [];
         const newPositions = [];
@@ -177,7 +174,7 @@ class Icosahedron {
         }
 
         function pointToKey(point) {
-            return point[0].toPrecision(6) + ',' + point[1].toPrecision(6) + ',' + point[2].toPrecision(6);
+            return `${point[0].toPrecision(6)},${point[1].toPrecision(6)},${point[2].toPrecision(6)}`;
         }
 
         function getMidpoint(a, b) {

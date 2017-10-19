@@ -4,7 +4,6 @@ import Basic from '../../material/basic';
 import { GL_LINES } from '../../session';
 
 class DirectionalHelper extends Model {
-
     constructor(props) {
         const geometry = {
             positions: [],

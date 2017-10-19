@@ -6,7 +6,6 @@ import Line from '../geometry/line';
 import { GL_LINES } from '../session';
 
 class AxisHelper extends Object3 {
-
     constructor(props) {
         super();
         const size = (props && props.size) || 1;
@@ -27,7 +26,9 @@ class AxisHelper extends Object3 {
         const z = new Model(g3, m3);
         this.addModel(z);
 
-        x.material.glMode = y.material.glMode = z.material.glMode = GL_LINES;
+        x.material.glMode = GL_LINES;
+        y.material.glMode = GL_LINES;
+        z.material.glMode = GL_LINES;
     }
 }
 export default AxisHelper;

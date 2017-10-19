@@ -4,7 +4,6 @@ import Basic from '../material/basic';
 import { GL_LINES } from '../session';
 
 class NormalHelper extends Model {
-
     constructor(props) {
         const geometry = {
             positions: [],
@@ -17,7 +16,7 @@ class NormalHelper extends Model {
         const sz = props.model.scale.z;
 
         const length = props.model.geometry.normals.length / 3;
-        for (let i = 0; i < length; i += 1) {
+        for (let i = 0; i < length; i++) {
             const i3 = i * 3;
             const v0x = sx * props.model.geometry.positions[i3 + 0];
             const v0y = sy * props.model.geometry.positions[i3 + 1];
@@ -25,13 +24,13 @@ class NormalHelper extends Model {
             const nx = props.model.geometry.normals[i3 + 0];
             const ny = props.model.geometry.normals[i3 + 1];
             const nz = props.model.geometry.normals[i3 + 2];
-            const v1x = v0x + props.size * nx;
-            const v1y = v0y + props.size * ny;
-            const v1z = v0z + props.size * nz;
+            const v1x = v0x + (props.size * nx);
+            const v1y = v0y + (props.size * ny);
+            const v1z = v0z + (props.size * nz);
             geometry.positions = geometry.positions.concat([v0x, v0y, v0z, v1x, v1y, v1z]);
         }
 
-        const material = new Basic({ color: props && props.color || 0xffffff });
+        const material = new Basic({ color: (props && props.color) || 0xffffff });
         super(geometry, material);
         this.reference = props.model;
         this.material.glMode = GL_LINES;
@@ -44,6 +43,6 @@ class NormalHelper extends Model {
         vec3.copy(this.rotation.data, this.reference.rotation.data);
         this.lookToTarget = this.reference.lookToTarget;
     }
-
 }
+
 export default NormalHelper;

@@ -1,11 +1,11 @@
 import Box from './box';
 import Icosahedron from './icosahedron';
-import Plane from './plane';
 import Line from './line';
+import Plane from './plane';
 
 export {
     Box,
     Icosahedron,
-    Plane,
     Line,
+    Plane,
 };

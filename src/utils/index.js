@@ -3,7 +3,7 @@ import * as math from './math';
 import * as color from './color';
 
 export {
+    color,
     geometry,
     math,
-    color,
 };

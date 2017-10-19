@@ -1,9 +1,9 @@
 import File from './file';
-import Obj from './obj';
 import Json from './json';
+import Obj from './obj';
 
 export {
     File,
-    Obj,
     Json,
+    Obj,
 };

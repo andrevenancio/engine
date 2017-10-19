@@ -8,15 +8,14 @@ let child;
 
 let lastProgram;
 
-let viewMatrix = mat4.create();
-let normalMatrix = mat4.create();
-let modelViewMatrix = mat4.create();
-let inversedModelViewMatrix = mat4.create();
+const viewMatrix = mat4.create();
+const normalMatrix = mat4.create();
+const modelViewMatrix = mat4.create();
+const inversedModelViewMatrix = mat4.create();
 
 const startTime = Date.now();
 
 class Renderer {
-
     constructor(props = {}) {
         this.ratio = global.devicePixelRatio;
 
@@ -75,8 +74,8 @@ class Renderer {
             this.renderBuffer = gl.createRenderbuffer();
             gl.bindRenderbuffer(gl.RENDERBUFFER, this.renderBuffer);
             gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, 256, 256);
-            gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.texture, 0);
-            gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, this.renderBuffer);
+            gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.texture, 0); // eslint-disable-line
+            gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, this.renderBuffer);  // eslint-disable-line
 
             gl.bindTexture(gl.TEXTURE_2D, null);
             gl.bindRenderbuffer(gl.RENDERBUFFER, null);
@@ -84,7 +83,7 @@ class Renderer {
 
             supported = true;
         } else {
-            alert('webgl2 not supported');
+            alert('webgl2 not supported'); // eslint-disable-line
         }
     }
 
@@ -119,7 +118,7 @@ class Renderer {
             object = this;
         }
 
-        for (let i = 0; i < object.children.length; i += 1) {
+        for (let i = 0; i < object.children.length; i++) {
             this.renderObject(object.children[i]);
         }
 
@@ -154,7 +153,7 @@ class Renderer {
 
             gl.uniformBlockBinding(lastProgram, sceneLocation, this.perScene.boundLocation);
             gl.uniformBlockBinding(lastProgram, modelLocation, this.perModel.boundLocation);
-            gl.uniformBlockBinding(lastProgram, directionalLocation, this.directional.boundLocation);
+            gl.uniformBlockBinding(lastProgram, directionalLocation, this.directional.boundLocation); // eslint-disable-line
 
             // https://jsfiddle.net/andrevenancio/m9qchtdb/14/
         }
@@ -252,7 +251,7 @@ class Renderer {
 
             // resize depth attachment
             gl.bindRenderbuffer(gl.RENDERBUFFER, this.renderBuffer);
-            gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, width * this.ratio, height * this.ratio);
+            gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, width * this.ratio, height * this.ratio); // eslint-disable-line
             gl.bindRenderbuffer(gl.RENDERBUFFER, null);
 
             this.rttwidth = width;

@@ -1,9 +1,7 @@
-// import { vec3 } from 'gl-matrix';
 import Object3 from './object3';
 import { getContext } from '../session';
 
 class Model extends Object3 {
-
     constructor(geometry, material) {
         super();
 
@@ -66,16 +64,24 @@ class Model extends Object3 {
         }
 
         if (this.geometry.indices.length > 0) {
-            gl.drawElements(this.material.glMode(), this.geometry.indices.length, gl.UNSIGNED_SHORT, 0);
+            gl.drawElements(
+                this.material.glMode(),
+                this.geometry.indices.length,
+                gl.UNSIGNED_SHORT,
+                0,
+            );
         } else {
-            gl.drawArrays(this.material.glMode(), 0, this.geometry.positions.length / 3);
+            gl.drawArrays(
+                this.material.glMode(),
+                0,
+                this.geometry.positions.length / 3,
+            );
         }
     }
 
     destroy() {
         this.material.destroy();
     }
-
 }
 
 export default Model;

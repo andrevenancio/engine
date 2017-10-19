@@ -5,8 +5,7 @@ import { getContext, GL_TRIANGLES } from '../session';
 const programs = {};
 
 class Material {
-
-    constructor(props = {}) {
+    constructor() {
         this.defines = {};
         this.attributes = Object.assign({
             a_position: {
@@ -46,7 +45,7 @@ class Material {
 
     initAttributes() {
         const gl = getContext();
-        for (let prop in this.attributes) {
+        for (const prop in this.attributes) {
             const current = this.attributes[prop];
             const location = gl.getAttribLocation(this.program, prop);
             const buffer = gl.createBuffer();
@@ -55,14 +54,14 @@ class Material {
 
             let size;
             switch (current.type) {
-                case 'vec3':
-                    size = 3;
-                    break;
-                case 'vec2':
-                    size = 2;
-                    break;
-                default:
-                    size = 1;
+            case 'vec3':
+                size = 3;
+                break;
+            case 'vec2':
+                size = 2;
+                break;
+            default:
+                size = 1;
             }
 
             Object.assign(current, {
@@ -80,7 +79,14 @@ class Material {
     initUniforms() {
         const gl = getContext();
 
-        const textureIndices = [gl.TEXTURE0, gl.TEXTURE1, gl.TEXTURE2, gl.TEXTURE3, gl.TEXTURE4, gl.TEXTURE5];
+        const textureIndices = [
+            gl.TEXTURE0,
+            gl.TEXTURE1,
+            gl.TEXTURE2,
+            gl.TEXTURE3,
+            gl.TEXTURE4,
+            gl.TEXTURE5,
+        ];
         Object.keys(this.uniforms).forEach((prop, i) => {
             const current = this.uniforms[prop];
             const location = gl.getUniformLocation(this.program, prop);
@@ -113,7 +119,7 @@ class Material {
 
     bind() {
         const gl = getContext();
-        Object.keys(this.attributes).forEach(key => {
+        Object.keys(this.attributes).forEach((key) => {
             const { location, buffer, size } = this.attributes[key];
             if (location !== -1) {
                 gl.enableVertexAttribArray(location);
@@ -140,36 +146,35 @@ class Material {
         Object.keys(this.uniforms).forEach((key) => {
             const uniform = this.uniforms[key];
 
-            switch(uniform.type) {
-                case 'mat4':
-                    gl.uniformMatrix4fv(uniform.location, false, uniform.value);
-                    break;
-                case 'mat3':
-                    gl.uniformMatrix3fv(uniform.location, false, uniform.value);
-                    break;
-                case 'vec4':
-                    gl.uniform4fv(uniform.location, uniform.value);
-                    break;
-                case 'vec3':
-                    gl.uniform3fv(uniform.location, uniform.value);
-                    break;
-                case 'vec2':
-                    gl.uniform2fv(uniform.location, uniform.value);
-                    break;
-                case 'float':
-                    gl.uniform1f(uniform.location, uniform.value);
-                    break;
-                case 'sampler2D':
-                    gl.uniform1i(uniform.location, uniform.textureIndex);
-                    gl.activeTexture(uniform.activeTexture);
-                    gl.bindTexture(gl.TEXTURE_2D, uniform.value);
-                    break;
-                default:
-                    console.warn('unknown uniform type', uniform.type);
+            switch (uniform.type) {
+            case 'mat4':
+                gl.uniformMatrix4fv(uniform.location, false, uniform.value);
+                break;
+            case 'mat3':
+                gl.uniformMatrix3fv(uniform.location, false, uniform.value);
+                break;
+            case 'vec4':
+                gl.uniform4fv(uniform.location, uniform.value);
+                break;
+            case 'vec3':
+                gl.uniform3fv(uniform.location, uniform.value);
+                break;
+            case 'vec2':
+                gl.uniform2fv(uniform.location, uniform.value);
+                break;
+            case 'float':
+                gl.uniform1f(uniform.location, uniform.value);
+                break;
+            case 'sampler2D':
+                gl.uniform1i(uniform.location, uniform.textureIndex);
+                gl.activeTexture(uniform.activeTexture);
+                gl.bindTexture(gl.TEXTURE_2D, uniform.value);
+                break;
+            default:
+                console.warn('unknown uniform type', uniform.type);
             }
         });
     }
-
 }
 
 export default Material;

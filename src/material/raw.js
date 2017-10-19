@@ -3,7 +3,6 @@ import Material from '../core/material';
 import { UBO, DIRECTIONAL } from '../renderer/chunks';
 
 class Raw extends Material {
-
     constructor(props = {}) {
         super();
         this.type = RAW_MATERIAL;
@@ -51,7 +50,6 @@ void main() {
 }
         `;
     }
-
 }
 
 export default Raw;

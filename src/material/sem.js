@@ -4,7 +4,6 @@ import Texture from '../core/texture';
 import { UBO, DIRECTIONAL, FOG } from '../renderer/chunks';
 
 class Sem extends Material {
-
     constructor(props = {}) {
         super();
         this.type = SEM_MATERIAL;
@@ -71,7 +70,6 @@ void main() {
 }
         `;
     }
-
 }
 
 export default Sem;

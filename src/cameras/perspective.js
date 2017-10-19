@@ -2,7 +2,6 @@ import { vec3, mat4 } from 'gl-matrix';
 import Object3 from '../core/object3';
 
 class PerspectiveCamera extends Object3 {
-
     constructor(options = {}) {
         super();
 
@@ -31,13 +30,12 @@ class PerspectiveCamera extends Object3 {
     updateCameraMatrix(width, height) {
         mat4.perspective(
             this.projectionMatrix,
-            this.fov * Math.PI / 180,
+            this.fov * (Math.PI / 180),
             width / height,
             this.near,
             this.far,
         );
     }
-
 }
 
 export default PerspectiveCamera;

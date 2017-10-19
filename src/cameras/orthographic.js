@@ -2,7 +2,6 @@ import { vec3, mat4 } from 'gl-matrix';
 import Object3 from '../core/object3';
 
 class OrthographicCamera extends Object3 {
-
     constructor(options = {}) {
         super();
 
@@ -27,7 +26,7 @@ class OrthographicCamera extends Object3 {
         vec3.copy(this.target, v);
     }
 
-    updateCameraMatrix(width, height) {
+    updateCameraMatrix() {
         mat4.ortho(
             this.projectionMatrix,
             -1.0,
@@ -38,7 +37,6 @@ class OrthographicCamera extends Object3 {
             this.far,
         );
     }
-
 }
 
 export default OrthographicCamera;

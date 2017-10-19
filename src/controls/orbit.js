@@ -5,7 +5,6 @@ import { getContext } from '../session';
 const offset = -Math.PI * 0.5;
 
 class OrbitControls {
-
     constructor(camera) {
         const gl = getContext();
 
@@ -62,8 +61,8 @@ class OrbitControls {
         this.oy = this.ry;
         this.ox = this.rx;
 
-        this._startY = event.pageX / this.width;
-        this._startX = event.pageY / this.height;
+        this.startY = event.pageX / this.width;
+        this.startX = event.pageY / this.height;
 
         this.isDown = true;
     }
@@ -72,8 +71,8 @@ class OrbitControls {
         if (this.isDown) {
             const y = event.pageX / this.width;
             const x = event.pageY / this.height;
-            this.rx = this.ox + -(this._startX - x) * this.rotationSpeed;
-            this.ry = this.oy + (this._startY - y) * this.rotationSpeed;
+            this.rx = this.ox + (-(this.startX - x) * this.rotationSpeed);
+            this.ry = this.oy + ((this.startY - y) * this.rotationSpeed);
             this.rx = clamp(this.rx, -Math.PI * 0.5, Math.PI * 0.5);
         }
     }
@@ -99,7 +98,6 @@ class OrbitControls {
         const z = Math.cos(this.ry) * r;
         vec3.set(this.camera.position.data, x, y, z);
     }
-
 }
 
 export default OrbitControls;

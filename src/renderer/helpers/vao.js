@@ -1,7 +1,6 @@
 import { getContext } from '../../session';
 
 class Vao {
-
     constructor() {
         const gl = getContext();
         this.vao = gl.createVertexArray();
@@ -23,7 +22,6 @@ class Vao {
         gl.deleteVertexArray(this.vao);
         this.vao = null;
     }
-
 }
 
 export default Vao;

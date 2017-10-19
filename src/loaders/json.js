@@ -2,7 +2,6 @@ import File from './file';
 import { generateVertexNormals } from '../utils/geometry';
 
 class JsonLoader {
-
     static load(url, callback) {
         File.load(url).then((raw) => {
             callback(JsonLoader.parse(raw));
@@ -23,7 +22,6 @@ class JsonLoader {
             normals,
         };
     }
-
 }
 
 export default JsonLoader;

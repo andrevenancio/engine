@@ -6,7 +6,6 @@ import {
 } from '../constants';
 
 class Scene extends Object3 {
-
     constructor() {
         super();
 
@@ -17,10 +16,10 @@ class Scene extends Object3 {
 
     traverse(object) {
         if (object === undefined) {
-            object = this;
+            object = this; // eslint-disable-line
         }
 
-        for (let i = 0; i < object.children.length; i += 1) {
+        for (let i = 0; i < object.children.length; i++) {
             this.traverse(object.children[i]);
         }
 
@@ -33,15 +32,17 @@ class Scene extends Object3 {
 
     addLight(light) {
         switch (light.type) {
-            case AMBIENT_LIGHT:
-                this.ambient.push(light);
-                break;
-            case DIRECTIONAL_LIGHT:
-                this.directional.push(light);
-                break;
-            case POINT_LIGHT:
-                this.point.push(light);
-                break;
+        case AMBIENT_LIGHT:
+            this.ambient.push(light);
+            break;
+        case DIRECTIONAL_LIGHT:
+            this.directional.push(light);
+            break;
+        case POINT_LIGHT:
+            this.point.push(light);
+            break;
+        default:
+            // nothing
         }
     }
 
@@ -66,7 +67,6 @@ class Scene extends Object3 {
             this.point.splice(index, 1);
         }
     }
-
 }
 
 export default Scene;

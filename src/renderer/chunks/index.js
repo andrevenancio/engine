@@ -1,9 +1,9 @@
-import { UBO } from './ubo';
 import { DIRECTIONAL } from './light';
 import { FOG } from './fog';
+import { UBO } from './ubo';
 
 export {
-    UBO,
     DIRECTIONAL,
     FOG,
+    UBO,
 };

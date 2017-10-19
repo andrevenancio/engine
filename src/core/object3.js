@@ -4,10 +4,9 @@ import Vector3 from './vector3';
 
 let uuid = 0;
 let axisAngle = 0;
-let quaternionAxisAngle = vec3.create();
+const quaternionAxisAngle = vec3.create();
 
 class Object3 {
-
     constructor() {
         this.uid = uuid++;
 
@@ -35,7 +34,7 @@ class Object3 {
     }
 
     addModel(model) {
-        model.parent = this;
+        model.parent = this; // eslint-disable-line
         this.children.push(model);
     }
 
@@ -71,7 +70,6 @@ class Object3 {
         }
         mat4.scale(this.modelMatrix, this.modelMatrix, this.scale.data);
     }
-
 }
 
 export default Object3;

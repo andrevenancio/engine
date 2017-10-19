@@ -37,3 +37,10 @@ Directional lights
     vec3 specular
 Volume lights
 Ambient lights
+
+# maybe...
+Possibly rethink materials and simplify this to the bare minimum where the users create the shaders, and we only have one `factory` material.
+Though this framework is optimised to reuse shaders when possible, might be better if functionality gets stripped to the bare minimum.
+Lights, utils, all of that can be external modules.
+
+remove vector3 and just use vec3 no point adding complexity to simplify user api

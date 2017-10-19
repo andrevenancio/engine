@@ -5,7 +5,6 @@ import Texture from '../core/texture';
 import { UBO, DIRECTIONAL, FOG } from '../renderer/chunks';
 
 class FlatShading extends Material {
-
     constructor(props = {}) {
         super();
         this.type = FLATSHADING_MATERIAL;
@@ -83,7 +82,6 @@ void main() {
 }
         `;
     }
-
 }
 
 export default FlatShading;

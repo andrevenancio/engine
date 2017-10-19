@@ -1,7 +1,6 @@
 import { vec3 } from 'gl-matrix';
 
 class Vector3 {
-
     constructor(x = 0, y = 0, z = 0) {
         this.data = vec3.fromValues(x, y, z);
     }
@@ -35,7 +34,6 @@ class Vector3 {
     get z() {
         return this.data[2];
     }
-
 }
 
 export default Vector3;

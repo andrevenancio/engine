@@ -5,7 +5,6 @@ import Texture from '../core/texture';
 import { UBO, DIRECTIONAL } from '../renderer/chunks';
 
 class Basic extends Material {
-
     constructor(props = {}) {
         super();
         this.type = BASIC_MATERIAL;
@@ -73,7 +72,6 @@ void main() {
     outColor = base;
 }`;
     }
-
 }
 
 export default Basic;

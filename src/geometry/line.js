@@ -1,5 +1,4 @@
 class Line {
-
     constructor(from, to) {
         const positions = [];
         positions.push(from[0] || 0, from[1] || 0, from[2] || 0);
@@ -10,7 +9,6 @@ class Line {
             indices: [],
         };
     }
-
 }
 
 export default Line;

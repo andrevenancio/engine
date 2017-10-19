@@ -1,5 +1,4 @@
 class Box {
-
     constructor(width = 1, height = 1, depth = 1) {
         const positions = [
             // Front face
@@ -74,7 +73,6 @@ class Box {
             uvs,
         };
     }
-
 }
 
 export default Box;

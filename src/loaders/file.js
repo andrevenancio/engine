@@ -1,11 +1,9 @@
 class File {
-
     static load(url) {
-        return new Promise(function (resolve, reject) {
-
-            var req = new XMLHttpRequest();
+        return new Promise((resolve, reject) => {
+            const req = new XMLHttpRequest();
             req.open('GET', url);
-            req.onload = function () {
+            req.onload = () => {
                 if (req.status === 200) {
                     resolve(req.response);
                 } else {
@@ -13,14 +11,13 @@ class File {
                 }
             };
 
-            req.onerror = function () {
+            req.onerror = () => {
                 reject(Error('Network Error'));
             };
 
             req.send();
         });
     }
-
 }
 
 export default File;

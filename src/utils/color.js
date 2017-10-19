@@ -5,12 +5,13 @@ function normalize(array) {
     return vec3.fromValues(
         array[0] / 255,
         array[1] / 255,
-        array[2] / 255);
+        array[2] / 255,
+    );
 }
 
 export function hexIntToRgb(hex) {
     const r = hex >> 16;
-    const g = hex >> 8 & 0xFF;
+    const g = hex >> 8 & 0xFF; // eslint-disable-line
     const b = hex & 0xFF;
     return vec3.fromValues(r, g, b);
 }

@@ -5,7 +5,6 @@ import Texture from '../core/texture';
 import { UBO, DIRECTIONAL, FOG } from '../renderer/chunks';
 
 class Default extends Material {
-
     constructor(props = {}) {
         super();
         this.type = DEFAULT_MATERIAL;

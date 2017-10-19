@@ -1,7 +1,6 @@
 import { getContext } from '../../session';
 
 class UniformBuffer {
-
     constructor(data, boundLocation = 0) {
         const gl = getContext();
 

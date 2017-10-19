@@ -1,7 +1,6 @@
 import { getContext } from '../session';
 
 class Texture {
-
     constructor(props = {}) {
         const gl = getContext();
 
@@ -41,7 +40,6 @@ class Texture {
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
         gl.bindTexture(gl.TEXTURE_2D, null);
     }
-
 }
 
 export default Texture;

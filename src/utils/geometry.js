@@ -3,14 +3,14 @@ import { vec3 } from 'gl-matrix';
 export function flatten(arr) {
     let output = [];
     for (let i = 0; i < arr.length; i++) {
-        if(Array.isArray(arr[i]) || arr[i] instanceof Float32Array) {
+        if (Array.isArray(arr[i]) || arr[i] instanceof Float32Array) {
             output = output.concat(flatten(arr[i]));
         } else {
             output.push(arr[i]);
         }
     }
     return output;
-};
+}
 
 export function unflatten(arr, amount) {
     const output = [];
@@ -30,11 +30,13 @@ export function generateVertexNormals(positions, indices) {
 
     const temp = [];
 
-    let cb = vec3.create();
-    let ab = vec3.create();
-    let cross = vec3.create();
+    const cb = vec3.create();
+    const ab = vec3.create();
+    const cross = vec3.create();
 
-    let vA, vB, vC;
+    let vA;
+    let vB;
+    let vC;
 
     for (let i = 0; i < faces.length; i++) {
         const face = faces[i];
@@ -72,7 +74,7 @@ export function generateVertexNormals(positions, indices) {
     }
 
     return flatten(temp, 3);
-};
+}
 
 export function mergeVertices(data) {
     const positions = unflatten(data.positions, 3);
@@ -81,7 +83,7 @@ export function mergeVertices(data) {
     const changes = [];
 
     const precisionPoints = 4; // number of decimal points, e.g. 4 for epsilon of 0.0001
-    const precision = Math.pow(10, precisionPoints);
+    const precision = Math.pow(10, precisionPoints); // eslint-disable-line
 
     // remove duplicated positions
     for (let i = 0; i < positions.length; i++) {
@@ -100,7 +102,6 @@ export function mergeVertices(data) {
             // console.log('Duplicate vertex found. ', i, ' could be using ', verticesMap[key]);
             changes[i] = changes[verticesMap[key]];
         }
-
     }
 
     // remove duplicated faces
