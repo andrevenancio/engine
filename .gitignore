@@ -1,3 +1,6 @@
 node_modules/*
-npm-debug.log
 debug.html
+docs/*
+dev/*
+
+npm-debug.log
